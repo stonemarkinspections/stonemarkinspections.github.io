@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,29 +9,33 @@
     :root{
       --bg:#000000;
       --sandstone:#c2a875;
-      --body-text:#9c8255;
+      --body-text:#b99c67; /* slightly richer than before */
       --muted:#777777;
       --divider: rgba(194,168,117,0.22);
       --chip: rgba(194,168,117,0.10);
+      --chip-border: rgba(194,168,117,0.18);
+      --cta-border: rgba(194,168,117,0.35);
+      --cta-bg: rgba(194,168,117,0.07);
+      --cta-bg-hover: rgba(194,168,117,0.11);
     }
 
     *{ box-sizing:border-box; margin:0; padding:0; }
-
     html, body{ width:100%; overflow-x:hidden; }
 
     body{
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
-               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--body-text);
-  line-height: 1.6;
-}
-
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--body-text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
     .container{
       width:100%;
       text-align:center;
-      padding: 24px 20px 40px;
+      padding: 22px 18px 40px;
     }
 
     /* HERO */
@@ -43,10 +46,12 @@
       flex-direction: column;
       align-items:center;
       justify-content:center;
-      gap: 1px;
+      gap: 10px;
       overflow: hidden;
+      padding: 10px 0 0;
     }
 
+    /* Side glow */
     .hero::before{
       content:"";
       position:absolute;
@@ -55,17 +60,18 @@
       pointer-events:none;
       background: linear-gradient(
         to right,
-        rgba(194,168,117,0.14) 0%,
-        rgba(194,168,117,0.06) 12%,
-        rgba(0,0,0,0.00) 32%,
-        rgba(0,0,0,0.00) 68%,
-        rgba(194,168,117,0.06) 88%,
-        rgba(194,168,117,0.14) 100%
+        rgba(194,168,117,0.12) 0%,
+        rgba(194,168,117,0.05) 14%,
+        rgba(0,0,0,0.00) 34%,
+        rgba(0,0,0,0.00) 66%,
+        rgba(194,168,117,0.05) 86%,
+        rgba(194,168,117,0.12) 100%
       );
       mix-blend-mode: screen;
       opacity: 0.55;
     }
 
+    /* Vignette */
     .hero::after{
       content:"";
       position:absolute;
@@ -75,11 +81,11 @@
       background: radial-gradient(
         ellipse at center,
         rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0) 48%,
+        rgba(0,0,0,0) 50%,
         rgba(0,0,0,0.45) 82%,
-        rgba(0,0,0,0.75) 100%
+        rgba(0,0,0,0.76) 100%
       );
-      opacity: 0.60;
+      opacity: 0.62;
     }
 
     .hero > *{
@@ -87,137 +93,170 @@
       z-index: 2;
     }
 
+    /* Whisper text (softened) */
     .whisper{
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.18em;
-      line-height: 2.2;
+      font-size: 1.10rem;
+      letter-spacing: 0.22em;
+      line-height: 2.25;
       text-transform: uppercase;
-      color: rgba(194,168,117,0.55);
+      color: rgba(194,168,117,0.28);
       pointer-events: none;
       user-select: none;
       white-space: nowrap;
       text-align: center;
       z-index: 3;
     }
+    .whisper.left{ left: 55px; }
+    .whisper.right{ right: 55px; }
 
-    .whisper.left{ left: 65px; }
-    .whisper.right{ right: 65px; }
+    /* Hero title system */
+    .hero-title{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.15rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.96);
+      margin-bottom: 2px;
+    }
 
+    .hero-sub{
+      font-size: 0.95rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.64);
+      margin-bottom: 8px;
+    }
+
+    /* CTA (minimal pill) */
     a.cta-link,
     a.cta-link:visited,
     a.cta-link:hover,
-    .cta-link{
-  border: 1px solid rgba(194,168,117,0.35);
-  border-radius: 999px;
-  padding: 12px 18px;
-  background: rgba(194,168,117,0.06);
-}
-.cta-link:hover{
-  opacity: 1;
-  background: rgba(194,168,117,0.10);
-  letter-spacing: 0.12em;
-}
+    a.cta-link:active{
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 0.98rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.95);
+      text-decoration: none;
+      display:inline-block;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--cta-border);
+      background: var(--cta-bg);
+      transition: background 0.18s ease, transform 0.18s ease, letter-spacing 0.18s ease, opacity 0.18s ease;
+      outline: none;
+      z-index: 4;
+      transform: translateY(0);
+    }
 
+    a.cta-link:hover{
+      background: var(--cta-bg-hover);
+      letter-spacing: 0.16em;
+      transform: translateY(-1px);
+      opacity: 1;
+    }
 
     a.cta-link:focus-visible{
-      text-decoration: underline;
-      text-underline-offset: 6px;
-      opacity: 0.9;
+      outline: 2px solid rgba(194,168,117,0.30);
+      outline-offset: 4px;
     }
 
     .cta-or{
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.10rem;
-      letter-spacing: 0.12em;
+      font-size: 0.92rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(194,168,117,0.70);
+      color: rgba(194,168,117,0.55);
       margin-top: 2px;
     }
 
     .cta-phone{
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.45rem;
+      font-size: 1.20rem;
       letter-spacing: 0.06em;
-      text-transform: none;
-      color: var(--sandstone);
+      color: rgba(194,168,117,0.92);
       margin-top: 2px;
+    }
+
+    /* Mini nav */
+    .nav-mini{
+      margin-top: 10px;
+      font-size: 0.92rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.55);
+    }
+    .nav-mini a{
+      color: rgba(194,168,117,0.70);
+      text-decoration: none;
+      transition: color 0.15s ease, opacity 0.15s ease;
+    }
+    .nav-mini a:hover{
+      color: rgba(194,168,117,0.96);
+    }
+    .nav-mini span{
+      margin: 0 10px;
+      color: rgba(194,168,117,0.28);
     }
 
     .logo{
       display:block;
-      margin:0 auto;
-      max-width: 1500px;
-      width:100%;
+      margin: 10px auto 0;
+      max-width: 980px;
+      width: 100%;
       height:auto;
       z-index: 4;
+      opacity: 0.98;
     }
 
+    /* Content */
     .content{
-      margin-top: -18px;
-      padding-top: 6px;
+      margin-top: -12px;
+      padding-top: 10px;
       padding-left: 20px;
       padding-right: 20px;
     }
 
     h1{
-      font-size: 2.4rem;
-      margin-bottom: 14px;
-      color: var(--sandstone);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.05rem;
+      margin-bottom: 12px;
+      color: rgba(194,168,117,0.95);
       font-weight: normal;
+      letter-spacing: 0.02em;
     }
 
     p{
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto 20px;
+      font-size: 1.08rem;
+      max-width: 760px;
+      margin: 0 auto 18px;
+      color: rgba(185,156,103,0.96);
     }
 
-    /* NEW: section blocks */
+    /* Sections */
     .section{
-      max-width: 840px;
-      margin: 36px auto 0;
-      padding-top: 28px;
+      max-width: 920px;
+      margin: 34px auto 0;
+      padding-top: 26px;
       border-top: 1px solid var(--divider);
     }
 
     .section h2{
-      font-size: 1.35rem;
-      letter-spacing: 0.12em;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.20em;
       text-transform: uppercase;
-      color: rgba(194,168,117,0.82);
+      color: rgba(194,168,117,0.78);
       font-weight: normal;
       margin-bottom: 14px;
     }
 
-    .about{
-      display:flex;
-      gap: 22px;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      text-align: left;
-    }
-
-    .about img{
-      width: 140px;
-      height: 140px;
-      border-radius: 999px;
-      object-fit: cover;
-      border: 1px solid rgba(194,168,117,0.25);
-    }
-
-    .about .about-text{
-      max-width: 640px;
-    }
-
-    .about .about-text p{
-      margin: 0 0 14px;
-      max-width: 640px;
-      text-align: left;
+    .section p{
+      max-width: 760px;
     }
 
     .chips{
@@ -233,22 +272,21 @@
       padding: 8px 12px;
       border-radius: 999px;
       background: var(--chip);
-      border: 1px solid rgba(194,168,117,0.18);
-      color: rgba(194,168,117,0.86);
+      border: 1px solid var(--chip-border);
+      color: rgba(194,168,117,0.82);
       letter-spacing: 0.06em;
       font-size: 0.95rem;
-      text-transform: none;
       white-space: nowrap;
     }
 
     footer{
-      margin-top: 80px;
-      font-size: 0.9rem;
-      color: var(--muted);
+      margin-top: 70px;
+      font-size: 0.95rem;
+      color: rgba(160,160,160,0.70);
     }
 
     footer a{
-      color: var(--sandstone);
+      color: rgba(194,168,117,0.85);
       text-decoration: none;
     }
 
@@ -257,56 +295,64 @@
       text-underline-offset: 4px;
     }
 
-    /* MOBILE ONLY */
+    /* MOBILE */
     @media (max-width: 900px){
       .container{ padding: 10px 14px 18px; }
 
       .hero{
         min-height: auto;
-        padding: 10px 0 8px;
+        padding: 12px 0 8px;
         gap: 10px;
         overflow: visible;
       }
 
       .whisper{ display:none; }
 
+      .hero-title{
+        font-size: 1.75rem;
+      }
+
+      .hero-sub{
+        font-size: 0.88rem;
+        letter-spacing: 0.14em;
+      }
+
       a.cta-link{
-        font-size: 1.05rem;
-        margin: 0;
-        letter-spacing: 0.09em;
+        font-size: 0.92rem;
+        padding: 12px 16px;
+        letter-spacing: 0.13em;
       }
 
       .cta-or{
         margin: 4px 0 0;
-        font-size: 0.95rem;
+        font-size: 0.90rem;
       }
 
       .cta-phone{
         margin: 2px 0 0;
-        font-size: 1.25rem;
+        font-size: 1.12rem;
       }
+
+      .nav-mini{
+        font-size: 0.86rem;
+        letter-spacing: 0.12em;
+      }
+      .nav-mini span{ margin: 0 8px; }
 
       .logo{
         width: 100%;
         max-width: 100%;
         height: auto;
-        margin: 0 auto;
+        margin: 8px auto 0;
       }
 
       .content{
-        padding-top: 18px;
+        margin-top: -6px;
+        padding-top: 12px;
       }
 
-      h1{ font-size: 2.0rem; }
+      h1{ font-size: 1.75rem; }
       p{ font-size: 1.05rem; }
-
-      .about{
-        text-align: center;
-      }
-
-      .about .about-text p{
-        text-align: center;
-      }
     }
   </style>
 </head>
@@ -327,9 +373,20 @@
         EST. 2025
       </div>
 
+      <div class="hero-title">StoneMark Inspections</div>
+      <div class="hero-sub">Licensed • Insured • Western Kentucky</div>
+
       <a href="request.html" class="cta-link">Order a Home Inspection Online</a>
       <div class="cta-or">OR</div>
       <div class="cta-phone">Call or Text Kyle @ (270) 349-8237</div>
+
+      <div class="nav-mini" aria-label="Site navigation">
+        <a href="#about">About</a>
+        <span>•</span>
+        <a href="#reporting">Reporting</a>
+        <span>•</span>
+        <a href="request.html">Request</a>
+      </div>
 
       <img src="logo.PNG" alt="StoneMark Inspections Logo" class="logo" />
     </section>
@@ -338,37 +395,22 @@
       <h1>Welcome to StoneMark Inspections</h1>
 
       <p>
-        StoneMark Inspections provides professional, thorough home inspections
-        with a focus on clarity, accuracy, and practical guidance.
+        StoneMark Inspections provides professional home inspections with a focus on clarity,
+        accuracy, and practical guidance for informed decisions.
       </p>
 
       <p>
-        Whether you are buying, selling, or simply seeking peace of mind,
-        our goal is to give you a clear understanding of a home’s condition
-        so you can make informed decisions with confidence.
+        Whether you are buying, selling, or simply seeking peace of mind, the goal is simple:
+        help you understand a home’s condition without unnecessary noise.
       </p>
 
-      <!-- ABOUT ME (PLACE IT HERE) -->
       <section class="section" id="about">
         <h2>About</h2>
 
-        <div class="about">
-          <!-- Swap this src to your headshot filename -->
-          
-
-          <div class="about-text">
-            <p>
-              Hi, I’m Kyle. I’m a licensed home inspector serving Western Kentucky.
-              StoneMark Inspections was built for clients who want clarity—what matters,
-              what doesn’t, and what to do next—without unnecessary noise.
-            </p>
-
-            <p>
-              My approach is simple: be thorough, document clearly, and communicate in plain language
-              so you can make decisions with confidence.
-            </p>
-          </div>
-        </div>
+        <p>
+          StoneMark Inspections serves Western Kentucky with a straightforward, professional approach:
+          thorough inspection, clear documentation, and plain-language communication.
+        </p>
 
         <div class="chips" aria-label="Credentials">
           <span class="chip">Licensed • Kentucky</span>
@@ -377,24 +419,23 @@
         </div>
       </section>
 
-      <!-- REPORTING APPROACH (RIGHT AFTER ABOUT) -->
       <section class="section" id="reporting">
         <h2>Reporting Approach</h2>
 
         <p>
-          Every inspection includes a digital report delivered within 24 hours of the inspection, with embedded photos,
-          system-by-system organization, and clear recommendations when action is needed.
+          Every inspection includes a digital report delivered within 24 hours, with embedded photos and
+          clear organization by system.
         </p>
 
         <p>
-          Reports are designed to be readable and useful—highlighting items that matter
-          without overwhelming buyers or creating unnecessary alarm.
+          When concerns are identified, the report provides clear next-step guidance recommending further evaluation
+          by qualified professionals where appropriate.
         </p>
 
         <div class="chips" aria-label="Report Features">
           <span class="chip">Photo documented</span>
           <span class="chip">Plain-language explanations</span>
-          <span class="chip">Actionable recommendations</span>
+          <span class="chip">Qualified follow-up guidance</span>
           <span class="chip">Easy to share</span>
         </div>
       </section>
