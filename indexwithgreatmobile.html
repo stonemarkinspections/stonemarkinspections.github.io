@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StoneMark Inspections</title>
+
+  <style>
+    :root{
+      --bg:#000000;
+      --sandstone:#c2a875;
+      --body-text:#b99c67; /* slightly richer than before */
+      --muted:#777777;
+      --divider: rgba(194,168,117,0.22);
+      --chip: rgba(194,168,117,0.10);
+      --chip-border: rgba(194,168,117,0.18);
+      --cta-border: rgba(194,168,117,0.35);
+      --cta-bg: rgba(194,168,117,0.07);
+      --cta-bg-hover: rgba(194,168,117,0.11);
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html, body{ width:100%; overflow-x:hidden; }
+
+    body{
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--body-text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container{
+      width:100%;
+      text-align:center;
+      padding: 22px 18px 40px;
+    }
+
+    /* HERO */
+    .hero{
+      position: relative;
+      min-height: 88vh;
+      display:flex;
+      flex-direction: column;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      overflow: hidden;
+      padding: 10px 0 0;
+    }
+
+    /* Side glow */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background: linear-gradient(
+        to right,
+        rgba(194,168,117,0.12) 0%,
+        rgba(194,168,117,0.05) 14%,
+        rgba(0,0,0,0.00) 34%,
+        rgba(0,0,0,0.00) 66%,
+        rgba(194,168,117,0.05) 86%,
+        rgba(194,168,117,0.12) 100%
+      );
+      mix-blend-mode: screen;
+      opacity: 0.55;
+    }
+
+    /* Vignette */
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 50%,
+        rgba(0,0,0,0.45) 82%,
+        rgba(0,0,0,0.76) 100%
+      );
+      opacity: 0.62;
+    }
+
+    .hero > *{
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Whisper text (softened) */
+    .whisper{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.10rem;
+      letter-spacing: 0.22em;
+      line-height: 2.25;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.28);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      text-align: center;
+      z-index: 3;
+    }
+    .whisper.left{ left: 55px; }
+    .whisper.right{ right: 55px; }
+
+    /* Hero title system */
+    .hero-title{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.15rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.96);
+      margin-bottom: 2px;
+    }
+
+    .hero-sub{
+      font-size: 0.95rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.64);
+      margin-bottom: 8px;
+    }
+
+    /* CTA (minimal pill) */
+    a.cta-link,
+    a.cta-link:visited,
+    a.cta-link:hover,
+    a.cta-link:active{
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 0.98rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.95);
+      text-decoration: none;
+      display:inline-block;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--cta-border);
+      background: var(--cta-bg);
+      transition: background 0.18s ease, transform 0.18s ease, letter-spacing 0.18s ease, opacity 0.18s ease;
+      outline: none;
+      z-index: 4;
+      transform: translateY(0);
+    }
+
+    a.cta-link:hover{
+      background: var(--cta-bg-hover);
+      letter-spacing: 0.16em;
+      transform: translateY(-1px);
+      opacity: 1;
+    }
+
+    a.cta-link:focus-visible{
+      outline: 2px solid rgba(194,168,117,0.30);
+      outline-offset: 4px;
+    }
+
+    .cta-or{
+      font-size: 0.92rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.55);
+      margin-top: 2px;
+    }
+
+    .cta-phone{
+      font-size: 1.20rem;
+      letter-spacing: 0.06em;
+      color: rgba(194,168,117,0.92);
+      margin-top: 2px;
+    }
+
+    /* Mini nav */
+    .nav-mini{
+      margin-top: 10px;
+      font-size: 0.92rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.55);
+    }
+    .nav-mini a{
+      color: rgba(194,168,117,0.70);
+      text-decoration: none;
+      transition: color 0.15s ease, opacity 0.15s ease;
+    }
+    .nav-mini a:hover{
+      color: rgba(194,168,117,0.96);
+    }
+    .nav-mini span{
+      margin: 0 10px;
+      color: rgba(194,168,117,0.28);
+    }
+
+    .logo{
+      display:block;
+      margin: 10px auto 0;
+      max-width: 980px;
+      width: 100%;
+      height:auto;
+      z-index: 4;
+      opacity: 0.98;
+    }
+
+    /* Content */
+    .content{
+      margin-top: -12px;
+      padding-top: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    h1{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.05rem;
+      margin-bottom: 12px;
+      color: rgba(194,168,117,0.95);
+      font-weight: normal;
+      letter-spacing: 0.02em;
+    }
+
+    p{
+      font-size: 1.08rem;
+      max-width: 760px;
+      margin: 0 auto 18px;
+      color: rgba(185,156,103,0.96);
+    }
+
+    /* Sections */
+    .section{
+      max-width: 920px;
+      margin: 34px auto 0;
+      padding-top: 26px;
+      border-top: 1px solid var(--divider);
+    }
+
+    .section h2{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.78);
+      font-weight: normal;
+      margin-bottom: 14px;
+    }
+
+    .section p{
+      max-width: 760px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .chip{
+      display:inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--chip-border);
+      color: rgba(194,168,117,0.82);
+      letter-spacing: 0.06em;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    footer{
+      margin-top: 70px;
+      font-size: 0.95rem;
+      color: rgba(160,160,160,0.70);
+    }
+
+    footer a{
+      color: rgba(194,168,117,0.85);
+      text-decoration: none;
+    }
+
+    footer a:hover{
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px){
+      .container{ padding: 10px 14px 18px; }
+
+      .hero{
+        min-height: auto;
+        padding: 12px 0 8px;
+        gap: 10px;
+        overflow: visible;
+      }
+
+      .whisper{ display:none; }
+
+      .hero-title{
+        font-size: 1.75rem;
+      }
+
+      .hero-sub{
+        font-size: 0.88rem;
+        letter-spacing: 0.14em;
+      }
+
+      a.cta-link{
+        font-size: 0.92rem;
+        padding: 12px 16px;
+        letter-spacing: 0.13em;
+      }
+
+      .cta-or{
+        margin: 4px 0 0;
+        font-size: 0.90rem;
+      }
+
+      .cta-phone{
+        margin: 2px 0 0;
+        font-size: 1.12rem;
+      }
+
+      .nav-mini{
+        font-size: 0.86rem;
+        letter-spacing: 0.12em;
+      }
+      .nav-mini span{ margin: 0 8px; }
+
+      .logo{
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 8px auto 0;
+      }
+
+      .content{
+        margin-top: -6px;
+        padding-top: 12px;
+      }
+
+      h1{ font-size: 1.75rem; }
+      p{ font-size: 1.05rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <section class="hero">
+      <div class="whisper left">
+        LICENSED<br>
+        INSURED<br>
+        PROFESSIONAL<br>
+      </div>
+
+      <div class="whisper right">
+        SERVING<br>
+        WESTERN KENTUCKY<br>
+        EST. 2025
+      </div>
+
+      <div class="hero-title">StoneMark Inspections</div>
+      <div class="hero-sub">Licensed • Insured • Western Kentucky</div>
+
+      <a href="request.html" class="cta-link">Order a Home Inspection Online</a>
+      <div class="cta-or">OR</div>
+      <div class="cta-phone">Call or Text Kyle @ (270) 349-8237</div>
+
+      <div class="nav-mini" aria-label="Site navigation">
+        <a href="#about">About</a>
+        <span>•</span>
+        <a href="#reporting">Reporting</a>
+        <span>•</span>
+        <a href="request.html">Request</a>
+      </div>
+
+      <img src="logo.PNG" alt="StoneMark Inspections Logo" class="logo" />
+    </section>
+
+    <section class="content">
+      <h1>Welcome to StoneMark Inspections</h1>
+
+      <p>
+        StoneMark Inspections provides professional home inspections with a focus on clarity,
+        accuracy, and practical guidance for informed decisions.
+      </p>
+
+      <p>
+        Whether you are buying, selling, or simply seeking peace of mind, the goal is simple:
+        help you understand a home’s condition without unnecessary noise.
+      </p>
+
+      <section class="section" id="about">
+        <h2>About</h2>
+
+        <p>
+          StoneMark Inspections serves Western Kentucky with a straightforward, professional approach:
+          thorough inspection, clear documentation, and plain-language communication.
+        </p>
+
+        <div class="chips" aria-label="Credentials">
+          <span class="chip">Licensed • Kentucky</span>
+          <span class="chip">Insured • E&amp;O + General Liability</span>
+          <span class="chip">Serving • Western Kentucky</span>
+        </div>
+      </section>
+
+      <section class="section" id="reporting">
+        <h2>Reporting Approach</h2>
+
+        <p>
+          Every inspection includes a digital report delivered within 24 hours, with embedded photos and
+          clear organization by system.
+        </p>
+
+        <p>
+          When concerns are identified, the report provides clear next-step guidance recommending further evaluation
+          by qualified professionals where appropriate.
+        </p>
+
+        <div class="chips" aria-label="Report Features">
+          <span class="chip">Photo documented</span>
+          <span class="chip">Plain-language explanations</span>
+          <span class="chip">Qualified follow-up guidance</span>
+          <span class="chip">Easy to share</span>
+        </div>
+      </section>
+
+      <footer>
+        <p>
+          © <span id="year"></span> StoneMark Inspections<br />
+          <a href="mailto:kyle@stonemarkinspections.com">kyle@stonemarkinspections.com</a>
+        </p>
+      </footer>
+    </section>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
