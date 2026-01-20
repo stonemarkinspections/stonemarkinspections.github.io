@@ -544,7 +544,21 @@
     }
   </style>
 </head>
+<script>
+  // Always start at the top on fresh loads (prevents "loads in the middle")
+  window.addEventListener("load", () => {
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  });
 
+  // Fix Safari/iOS back-forward cache restoring scroll position
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted && !window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  });
+</script>
 <body>
   <div class="bg"></div>
   <div class="grain"></div>
