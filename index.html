@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,29 +6,28 @@
   <title>StoneMark Inspections</title>
   <meta name="description" content="StoneMark Inspections provides licensed, insured home inspections across Western Kentucky. Clear, photo-documented reports delivered within 24 hours." />
 
-  <!-- Preconnect helps the seal script load faster -->
   <link rel="preconnect" href="https://www.nachi.org" crossorigin>
 
   <style>
     :root{
-      --bg0: #050506;
-      --bg1: #070708;
-      --panel: rgba(255,255,255,0.05);
-      --panel2: rgba(255,255,255,0.075);
-      --border: rgba(255,255,255,0.10);
-      --border2: rgba(194,168,117,0.22);
+      --bg0:#040405;
+      --bg1:#070708;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.095);
+      --border: rgba(255,255,255,0.11);
+      --border2: rgba(194,168,117,0.28);
 
-      --sand: #c2a875;
-      --sand2: rgba(194,168,117,0.78);
+      --sand:#c2a875;
+      --sand2: rgba(194,168,117,0.85);
 
-      --text: rgba(240,240,240,0.90);
-      --muted: rgba(240,240,240,0.66);
-      --muted2: rgba(240,240,240,0.46);
+      --text: rgba(245,245,245,0.92);
+      --muted: rgba(245,245,245,0.66);
+      --muted2: rgba(245,245,245,0.46);
 
-      --shadow: 0 22px 70px rgba(0,0,0,0.55);
+      --shadow: 0 28px 90px rgba(0,0,0,0.60);
       --radius: 18px;
       --radius2: 26px;
-      --max: 1120px;
+      --max: 1180px;
     }
 
     *{ box-sizing:border-box; margin:0; padding:0; }
@@ -38,7 +36,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
                    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x:hidden;
@@ -46,10 +44,6 @@
 
     a{ color: inherit; text-decoration:none; }
     img{ max-width:100%; height:auto; display:block; }
-    .sr-only{
-      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-      overflow:hidden; clip:rect(0,0,0,0); border:0;
-    }
 
     /* Background */
     .bg{
@@ -57,10 +51,10 @@
       inset: 0;
       z-index: -2;
       background:
-        radial-gradient(1200px 700px at 15% 15%, rgba(194,168,117,0.18), transparent 55%),
-        radial-gradient(900px 650px at 85% 25%, rgba(194,168,117,0.10), transparent 55%),
-        radial-gradient(800px 600px at 50% 95%, rgba(255,255,255,0.06), transparent 55%),
-        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 45%, var(--bg0) 100%);
+        radial-gradient(1200px 720px at 10% 10%, rgba(194,168,117,0.20), transparent 55%),
+        radial-gradient(900px 640px at 92% 20%, rgba(194,168,117,0.12), transparent 60%),
+        radial-gradient(900px 760px at 50% 110%, rgba(255,255,255,0.06), transparent 60%),
+        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 46%, var(--bg0) 100%);
     }
     .grain{
       position: fixed;
@@ -81,14 +75,14 @@
       padding: 0 20px;
     }
 
-    /* Top bar */
+    /* Topbar */
     .topbar{
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      background: rgba(7,7,8,0.62);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(7,7,8,0.66);
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .topbar-inner{
@@ -102,7 +96,7 @@
       display:flex;
       align-items:center;
       gap: 12px;
-      min-width: 230px;
+      min-width: 240px;
     }
     .mark{
       width: 34px;
@@ -110,17 +104,17 @@
       border-radius: 10px;
       background:
         radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,0.16), transparent 55%),
-        linear-gradient(135deg, rgba(194,168,117,0.38), rgba(194,168,117,0.10));
-      border: 1px solid rgba(194,168,117,0.30);
+        linear-gradient(135deg, rgba(194,168,117,0.40), rgba(194,168,117,0.10));
+      border: 1px solid rgba(194,168,117,0.34);
       box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
-    .brand-title{ display:flex; flex-direction:column; line-height: 1.1; }
+    .brand-title{ display:flex; flex-direction:column; line-height:1.08; }
     .brand-title strong{
-      font-weight: 700;
-      letter-spacing: 0.11em;
+      font-weight: 760;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       font-size: 0.92rem;
-      color: rgba(255,255,255,0.90);
+      color: rgba(255,255,255,0.92);
     }
     .brand-title span{
       font-size: 0.82rem;
@@ -133,7 +127,7 @@
     .nav{
       display:flex;
       align-items:center;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -141,24 +135,23 @@
       font-size: 0.84rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.72);
+      color: rgba(255,255,255,0.74);
       padding: 8px 10px;
       border-radius: 999px;
-      transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
       border: 1px solid transparent;
+      transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
     }
     .nav a:hover{
-      color: rgba(255,255,255,0.92);
+      color: rgba(255,255,255,0.94);
       background: rgba(255,255,255,0.04);
       border-color: rgba(255,255,255,0.08);
     }
 
     .actions{
       display:flex;
-      align-items:center;
       gap: 10px;
-      justify-content: flex-end;
-      min-width: 280px;
+      justify-content:flex-end;
+      min-width: 290px;
     }
     .pill{
       display:inline-flex;
@@ -170,56 +163,59 @@
       font-size: 0.86rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, opacity 160ms ease;
       white-space: nowrap;
       user-select: none;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, opacity 160ms ease;
     }
     .pill.primary{
-      color: rgba(0,0,0,0.90);
+      color: rgba(0,0,0,0.92);
       background: linear-gradient(180deg, rgba(194,168,117,0.98), rgba(194,168,117,0.84));
-      border: 1px solid rgba(194,168,117,0.20);
-      box-shadow: 0 12px 40px rgba(194,168,117,0.08), 0 22px 70px rgba(0,0,0,0.45);
+      border: 1px solid rgba(194,168,117,0.22);
+      box-shadow: 0 16px 55px rgba(194,168,117,0.10), 0 26px 85px rgba(0,0,0,0.55);
     }
-    .pill.primary:hover{ transform: translateY(-1px); opacity: 0.98; }
+    .pill.primary:hover{ transform: translateY(-1px); opacity:0.98; }
     .pill.ghost{
-      color: rgba(255,255,255,0.84);
+      color: rgba(255,255,255,0.86);
       background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.11);
     }
     .pill.ghost:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.16);
     }
 
     /* Hero */
-    .hero{ padding: 52px 0 24px; }
-    .hero-grid{
+    .hero{
+      padding: 54px 0 18px;
+    }
+    .hero-shell{
       display:grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 18px;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 16px;
       align-items: stretch;
     }
 
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.10);
+    .hero-card{
       border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.11);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
       box-shadow: var(--shadow);
-      overflow: hidden;
       position: relative;
+      overflow:hidden;
     }
-    .card::before{
+    .hero-card::before{
       content:"";
       position:absolute;
       inset:-2px;
-      background: radial-gradient(700px 220px at 20% 0%, rgba(194,168,117,0.24), transparent 60%);
-      opacity: 0.85;
+      background: radial-gradient(820px 250px at 20% 0%, rgba(194,168,117,0.28), transparent 62%);
+      opacity: 0.88;
       pointer-events:none;
     }
-    .card > *{ position: relative; }
+    .hero-card > *{ position: relative; }
 
-    .hero-left{ padding: 30px 30px 22px; }
+    .hero-left{ padding: 32px 30px 22px; }
+
     .kicker{
       display:inline-flex;
       align-items:center;
@@ -227,111 +223,157 @@
       font-size: 0.82rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.72);
-      padding: 8px 12px;
+      color: rgba(255,255,255,0.74);
+      padding: 9px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.04);
+      background: rgba(0,0,0,0.20);
       border: 1px solid rgba(255,255,255,0.10);
       width: fit-content;
     }
     .dot{
       width: 8px; height: 8px; border-radius: 999px;
-      background: rgba(194,168,117,0.95);
+      background: rgba(194,168,117,0.98);
       box-shadow: 0 0 0 6px rgba(194,168,117,0.12);
     }
+
     h1{
       margin-top: 16px;
-      font-size: clamp(2.0rem, 4.2vw, 3.05rem);
-      line-height: 1.08;
+      font-size: clamp(2.1rem, 4.4vw, 3.25rem);
+      line-height: 1.06;
       letter-spacing: 0.02em;
-      color: rgba(255,255,255,0.93);
-      font-weight: 720;
+      color: rgba(255,255,255,0.94);
+      font-weight: 820;
     }
     .lead{
       margin-top: 14px;
       font-size: 1.08rem;
-      color: rgba(240,240,240,0.72);
+      color: rgba(245,245,245,0.72);
       max-width: 62ch;
     }
 
     .hero-cta{
-      margin-top: 20px;
+      margin-top: 18px;
       display:flex;
       gap: 12px;
       flex-wrap: wrap;
       align-items: center;
     }
 
-    .trust-row{
-      margin-top: 16px;
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items:center;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.72);
-      font-size: 0.86rem;
-      letter-spacing: 0.06em;
-    }
-    .badge strong{
-      color: rgba(194,168,117,0.92);
-      font-weight: 720;
-    }
-
-    /* Your logo display */
-    .logo-frame{
+    /* BIG credentials band (above the fold) */
+    .cred-band{
       margin-top: 18px;
-      padding: 14px 14px;
-      border-radius: 18px;
-      background: rgba(0,0,0,0.20);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+      border-radius: 20px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.10);
+      overflow:hidden;
     }
-    .logo-frame img{
-      width: 100%;
-      max-width: 860px;
-      margin: 0 auto;
-      opacity: 0.96;
-      filter: drop-shadow(0 18px 60px rgba(0,0,0,0.55));
+    .cred-band-head{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+    .cred-band-head strong{
+      font-size: 0.86rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 820;
+      color: rgba(255,255,255,0.86);
+    }
+    .cred-band-head span{
+      font-size: 0.86rem;
+      color: rgba(245,245,245,0.58);
+    }
+    .cred-band-body{
+      padding: 14px 14px 10px;
     }
 
-    /* Right column */
+    /* InterNACHI injection styling (prominent) */
+    .nachi-prominent{
+      display:block;
+      width: 100%;
+    }
+    /* Make injected seals center, larger, and spaced */
+    .nachi-prominent img{
+      display:inline-block;
+      max-height: 110px;
+      width:auto;
+      height:auto;
+      margin: 10px 12px;
+      vertical-align: middle;
+      filter: drop-shadow(0 18px 45px rgba(0,0,0,0.55));
+    }
+    .nachi-prominent a{
+      color: var(--sand2);
+      text-decoration:none;
+    }
+    .nachi-prominent a:hover{
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .nachi-center{
+      text-align:center;
+    }
+    .cred-foot{
+      padding: 10px 14px 14px;
+      color: rgba(245,245,245,0.54);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+    .cred-foot small{ display:block; line-height:1.45; }
+
+    /* Logo block (still strong, on dark) */
+    .logo-block{
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.20);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.50);
+    }
+    .logo-block img{
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      opacity: 0.97;
+      filter: drop-shadow(0 20px 60px rgba(0,0,0,0.60));
+    }
+
+    /* Right column panels */
     .side{
       display:flex;
       flex-direction: column;
       gap: 14px;
     }
     .panel{
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.10);
       border-radius: var(--radius2);
-      box-shadow: 0 18px 60px rgba(0,0,0,0.50);
-      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.11);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: 0 18px 60px rgba(0,0,0,0.52);
       position: relative;
+      overflow:hidden;
     }
     .panel::before{
       content:"";
       position:absolute;
       inset:-2px;
-      background: radial-gradient(600px 220px at 80% 0%, rgba(194,168,117,0.18), transparent 62%);
+      background: radial-gradient(720px 240px at 78% 0%, rgba(194,168,117,0.20), transparent 62%);
       opacity: 0.9;
       pointer-events:none;
     }
-    .panel-inner{ position: relative; padding: 22px 20px; }
+    .panel > *{ position: relative; }
+
+    .panel-inner{ padding: 22px 20px; }
     .panel h2{
       font-size: 0.90rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.80);
-      font-weight: 750;
+      color: rgba(255,255,255,0.84);
+      font-weight: 860;
       margin-bottom: 10px;
     }
     .meta{
@@ -348,19 +390,20 @@
       padding: 12px 12px;
       border-radius: 14px;
       background: rgba(0,0,0,0.18);
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.07);
     }
     .meta-item span{
-      color: rgba(240,240,240,0.74);
+      color: rgba(245,245,245,0.74);
       font-size: 0.95rem;
     }
     .meta-item strong{
       color: rgba(194,168,117,0.92);
-      font-weight: 750;
+      font-weight: 860;
       font-size: 0.95rem;
       letter-spacing: 0.02em;
       text-align:right;
     }
+
     .phone{
       display:flex;
       gap: 10px;
@@ -370,9 +413,8 @@
       border-top: 1px solid rgba(255,255,255,0.08);
     }
     .phone a{
-      color: rgba(255,255,255,0.92);
-      letter-spacing: 0.02em;
-      font-weight: 750;
+      color: rgba(255,255,255,0.94);
+      font-weight: 860;
     }
     .phone small{
       display:block;
@@ -383,7 +425,7 @@
     }
 
     /* Sections */
-    section.block{ padding: 30px 0; }
+    section.block{ padding: 34px 0; }
     .block-title{
       display:flex;
       align-items: flex-end;
@@ -395,11 +437,11 @@
       font-size: 0.95rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.78);
-      font-weight: 750;
+      color: rgba(255,255,255,0.80);
+      font-weight: 860;
     }
     .block-title p{
-      color: rgba(240,240,240,0.52);
+      color: rgba(245,245,245,0.52);
       font-size: 0.98rem;
       max-width: 64ch;
       text-align:right;
@@ -410,32 +452,31 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
-    .mini{
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.10);
+    .card{
       border-radius: var(--radius);
-      padding: 18px 16px;
+      border: 1px solid rgba(255,255,255,0.11);
+      background: rgba(255,255,255,0.04);
       box-shadow: 0 16px 50px rgba(0,0,0,0.45);
+      padding: 18px 16px;
       position: relative;
       overflow:hidden;
     }
-    .mini::before{
+    .card::before{
       content:"";
       position:absolute;
       inset:-1px;
-      background: radial-gradient(480px 160px at 20% 0%, rgba(194,168,117,0.14), transparent 58%);
-      opacity: 0.85;
+      background: radial-gradient(520px 180px at 20% 0%, rgba(194,168,117,0.15), transparent 58%);
+      opacity: 0.86;
       pointer-events:none;
     }
-    .mini > *{ position: relative; }
-    .mini h4{
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.90);
-      font-weight: 750;
-      letter-spacing: 0.02em;
+    .card > *{ position: relative; }
+    .card h4{
+      font-size: 1.06rem;
+      font-weight: 860;
+      color: rgba(255,255,255,0.92);
       margin-bottom: 8px;
     }
-    .mini p{ color: rgba(240,240,240,0.64); font-size: 1.00rem; }
+    .card p{ color: rgba(245,245,245,0.66); }
 
     .list{
       margin-top: 12px;
@@ -450,11 +491,11 @@
       border-radius: 14px;
       background: rgba(0,0,0,0.18);
       border: 1px solid rgba(255,255,255,0.07);
-      color: rgba(240,240,240,0.66);
+      color: rgba(245,245,245,0.68);
     }
     .check{
       width: 18px; height: 18px; border-radius: 6px;
-      border: 1px solid rgba(194,168,117,0.40);
+      border: 1px solid rgba(194,168,117,0.44);
       background: rgba(194,168,117,0.10);
       margin-top: 2px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.35);
@@ -466,56 +507,70 @@
       position:absolute;
       left: 5px; top: 2px;
       width: 6px; height: 10px;
-      border-right: 2px solid rgba(194,168,117,0.85);
-      border-bottom: 2px solid rgba(194,168,117,0.85);
+      border-right: 2px solid rgba(194,168,117,0.88);
+      border-bottom: 2px solid rgba(194,168,117,0.88);
       transform: rotate(40deg);
     }
 
-    /* Credentials (InterNACHI seals) */
-    .creds-grid{
-      display:grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 14px;
-      align-items: start;
+    /* Credentials wall section */
+    .cred-wall{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position: relative;
     }
-    .creds-note{
-      color: rgba(240,240,240,0.62);
-      font-size: 0.98rem;
-      max-width: 68ch;
+    .cred-wall::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(900px 260px at 22% 0%, rgba(194,168,117,0.24), transparent 62%);
+      opacity: 0.88;
+      pointer-events:none;
     }
-    .seal-wrap{
+    .cred-wall > *{ position: relative; }
+
+    .cred-wall-inner{
+      padding: 20px 18px 18px;
+    }
+    .cred-wall-head{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .cred-wall-head strong{
+      font-size: 0.92rem;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.88);
+      font-weight: 920;
+    }
+    .cred-wall-head span{
+      color: rgba(245,245,245,0.56);
+      font-size: 0.96rem;
+    }
+    .cred-wall-body{
+      padding: 8px 10px 2px;
+      border-radius: 18px;
       background: rgba(0,0,0,0.18);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 14px;
-      overflow: hidden;
+      text-align:center;
     }
-    /* Make whatever InterNACHI injects look intentional */
-    .seal-wrap img{
-      max-width: 100%;
-      height: auto;
-      display: inline-block;
-    }
-    .seal-wrap a{
-      color: rgba(194,168,117,0.92);
-      text-decoration: none;
-    }
-    .seal-wrap a:hover{
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-    .seal-footnote{
-      margin-top: 10px;
-      color: rgba(240,240,240,0.50);
-      font-size: 0.92rem;
-      line-height: 1.45;
+    .cred-wall-body img{
+      max-height: 135px;
+      margin: 12px 14px;
+      filter: drop-shadow(0 20px 55px rgba(0,0,0,0.60));
     }
 
     /* Footer */
     footer{
       padding: 34px 0 46px;
       border-top: 1px solid rgba(255,255,255,0.10);
-      margin-top: 18px;
+      margin-top: 22px;
     }
     .footer-grid{
       display:grid;
@@ -524,13 +579,12 @@
       align-items:start;
     }
     .fine{
-      color: rgba(240,240,240,0.52);
+      color: rgba(245,245,245,0.54);
       font-size: 0.95rem;
-      max-width: 75ch;
+      max-width: 80ch;
     }
     .fine a{
-      color: rgba(194,168,117,0.88);
-      text-decoration: none;
+      color: rgba(194,168,117,0.90);
     }
     .fine a:hover{
       text-decoration: underline;
@@ -545,27 +599,28 @@
 
     .anchor{ scroll-margin-top: 90px; }
 
-    /* Mobile */
     @media (max-width: 980px){
-      .hero-grid{ grid-template-columns: 1fr; }
+      .hero-shell{ grid-template-columns: 1fr; }
       .actions{ min-width: unset; }
       .brand{ min-width: unset; }
       .nav{ display:none; }
-      .footer-grid{ grid-template-columns: 1fr; }
-      .foot-actions{ align-items:flex-start; }
+      .grid3{ grid-template-columns: 1fr; }
       .block-title{ flex-direction: column; align-items:flex-start; }
       .block-title p{ text-align:left; }
-      .grid3{ grid-template-columns: 1fr; }
-      .creds-grid{ grid-template-columns: 1fr; }
+      .footer-grid{ grid-template-columns: 1fr; }
+      .foot-actions{ align-items:flex-start; }
+      .nachi-prominent img{ max-height: 100px; }
+      .cred-wall-body img{ max-height: 120px; }
     }
+
     @media (max-width: 520px){
-      .topbar-inner{ padding: 12px 0; }
-      .hero{ padding: 36px 0 20px; }
+      .hero{ padding: 36px 0 14px; }
       .hero-left{ padding: 24px 18px 18px; }
       .panel-inner{ padding: 18px 16px; }
-      .pill{ width: 100%; justify-content:center; }
+      .pill{ width: 100%; }
       .hero-cta{ width: 100%; }
-      .trust-row{ margin-top: 14px; }
+      .cred-band-head{ flex-direction: column; align-items:flex-start; }
+      .nachi-prominent img{ max-height: 92px; margin: 10px 10px; }
     }
   </style>
 </head>
@@ -575,18 +630,14 @@
   <div class="grain"></div>
 
   <script>
-    // Always start at the top on fresh loads (prevents "loads in the middle")
     window.addEventListener("load", () => {
       if (!window.location.hash) window.scrollTo(0, 0);
     });
-
-    // Fix Safari/iOS back-forward cache restoring scroll position
     window.addEventListener("pageshow", (event) => {
       if (event.persisted && !window.location.hash) window.scrollTo(0, 0);
     });
   </script>
 
-  <!-- Top bar -->
   <header class="topbar">
     <div class="wrap">
       <div class="topbar-inner">
@@ -613,47 +664,62 @@
     </div>
   </header>
 
-  <!-- Hero -->
   <main id="top">
     <section class="hero">
       <div class="wrap">
-        <div class="hero-grid">
+        <div class="hero-shell">
 
-          <!-- Left: primary message -->
-          <div class="card">
+          <!-- LEFT -->
+          <div class="hero-card">
             <div class="hero-left">
-              <div class="kicker"><span class="dot"></span> Licensed • Insured • Western Kentucky</div>
+              <div class="kicker"><span class="dot"></span> Certified • Insured • Western Kentucky</div>
 
               <h1>
-                Calm, clear inspections.<br/>
-                Photo-documented reports.<br/>
-                Zero noise.
+                Certified Professional Inspector®<br/>
+                with clear, photo-documented reporting.
               </h1>
 
               <p class="lead">
-                StoneMark Inspections delivers structured home inspections designed to help buyers and agents make
-                confident decisions—without alarmism or filler.
+                StoneMark Inspections delivers calm, structured inspections built for real-world decisions.
+                No theatrics. No filler. Just clarity.
               </p>
 
               <div class="hero-cta">
-                <a class="pill primary" href="request.html">Request Inspection Online</a>
+                <a class="pill primary" href="request.html">Request an Inspection</a>
                 <a class="pill ghost" href="tel:+12703498237">Call/Text (270) 349-8237</a>
               </div>
 
-              <div class="trust-row" aria-label="Trust highlights">
-                <div class="badge"><strong>24h</strong> report delivery</div>
-                <div class="badge"><strong>Photos</strong> embedded throughout</div>
-                <div class="badge"><strong>Plain</strong> language</div>
+              <!-- 🔥 PROMINENT credentials band -->
+              <div class="cred-band" aria-label="Prominent credentials and certifications">
+                <div class="cred-band-head">
+                  <strong>Credentials &amp; Certifications</strong>
+                  <span>Click any seal to verify</span>
+                </div>
+
+                <div class="cred-band-body nachi-center">
+                  <div class="nachi-prominent">
+                    <!-- ✅ InterNACHI live seals (BIG, above-the-fold) -->
+                    <script src="https://www.nachi.org/webseals/legacy/education?nachiid=NACHI26011311&include_universal=1"></script>
+                  </div>
+                </div>
+
+                <div class="cred-foot">
+                  <small>
+                    Certifications acquired through
+                    <a href="https://www.nachi.org/education.htm">home inspector training</a>
+                    from InterNACHI&reg;.
+                  </small>
+                </div>
               </div>
 
-              <!-- Your logo stays prominent, on dark -->
-              <div class="logo-frame" aria-label="StoneMark logo">
+              <!-- Your logo stays strong on dark -->
+              <div class="logo-block" aria-label="StoneMark logo">
                 <img src="logo.PNG" alt="StoneMark Inspections Logo" />
               </div>
             </div>
           </div>
 
-          <!-- Right: quick facts -->
+          <!-- RIGHT -->
           <aside class="side" aria-label="Quick facts">
             <div class="panel">
               <div class="panel-inner">
@@ -668,12 +734,12 @@
                     <strong>Photo-documented</strong>
                   </div>
                   <div class="meta-item">
-                    <span>Service area</span>
-                    <strong>Western Kentucky</strong>
-                  </div>
-                  <div class="meta-item">
                     <span>Coverage</span>
                     <strong>E&amp;O + GL insured</strong>
+                  </div>
+                  <div class="meta-item">
+                    <span>Service area</span>
+                    <strong>Western Kentucky</strong>
                   </div>
                 </div>
 
@@ -694,9 +760,9 @@
                 <h2>What you get</h2>
                 <div class="list">
                   <div class="li"><span class="check"></span><span>System-by-system structure that’s easy to scan.</span></div>
-                  <div class="li"><span class="check"></span><span>Embedded photos supporting each observation.</span></div>
+                  <div class="li"><span class="check"></span><span>Photos embedded where they clarify the issue.</span></div>
                   <div class="li"><span class="check"></span><span>Clear next-step guidance (qualified evaluation when needed).</span></div>
-                  <div class="li"><span class="check"></span><span>Readable, shareable digital report for clients and agents.</span></div>
+                  <div class="li"><span class="check"></span><span>A report agents and clients can actually use.</span></div>
                 </div>
               </div>
             </div>
@@ -715,19 +781,19 @@
         </div>
 
         <div class="grid3">
-          <div class="mini">
+          <div class="card">
             <h4>Buyer’s Inspection</h4>
             <p>A thorough evaluation of accessible systems and components, documented with photos and clear organization.</p>
           </div>
 
-          <div class="mini">
+          <div class="card">
             <h4>Pre-Listing Inspection</h4>
             <p>Identify concerns before going to market. Reduce surprises and give sellers a cleaner path forward.</p>
           </div>
 
-          <div class="mini">
+          <div class="card">
             <h4>Maintenance Check</h4>
-            <p>For homeowners who want an objective snapshot of condition, priorities, and recommended follow-up.</p>
+            <p>A proactive snapshot of condition, priorities, and recommended follow-up for homeowners.</p>
           </div>
         </div>
       </div>
@@ -742,17 +808,17 @@
         </div>
 
         <div class="grid3">
-          <div class="mini">
+          <div class="card">
             <h4>Photo-Documented</h4>
             <p>Photos are embedded where they add clarity—supporting observations without overwhelming the reader.</p>
           </div>
 
-          <div class="mini">
+          <div class="card">
             <h4>Plain Language</h4>
             <p>No theatrics. No filler. Findings are written for normal people—not just contractors.</p>
           </div>
 
-          <div class="mini">
+          <div class="card">
             <h4>Qualified Follow-Up</h4>
             <p>When concerns are identified, the report recommends evaluation by qualified professionals where appropriate.</p>
           </div>
@@ -760,44 +826,33 @@
       </div>
     </section>
 
-    <!-- Credentials (InterNACHI seals) -->
+    <!-- Credentials wall -->
     <section class="block anchor" id="credentials">
       <div class="wrap">
         <div class="block-title">
           <h3>Credentials</h3>
-          <p>Verifiable certifications and training.</p>
+          <p>Full certification display (click any badge for details).</p>
         </div>
 
-        <div class="creds-grid">
-          <div class="mini" style="padding:18px 16px;">
-            <h4>Certified Professional Inspector®</h4>
-            <p class="creds-note">
-              StoneMark’s credentials and education history are verified through InterNACHI®. You can click any seal below
-              for details and validation.
-            </p>
-            <div class="list" style="margin-top:14px;">
-              <div class="li"><span class="check"></span><span>Credentials displayed directly from InterNACHI (live).</span></div>
-              <div class="li"><span class="check"></span><span>Clients and agents can verify with one click.</span></div>
-              <div class="li"><span class="check"></span><span>Trust signals without cluttering the page.</span></div>
+        <div class="cred-wall">
+          <div class="cred-wall-inner">
+            <div class="cred-wall-head">
+              <strong>InterNACHI® Certifications</strong>
+              <span>Live seals pulled directly from InterNACHI</span>
             </div>
-          </div>
 
-          <div class="seal-wrap" aria-label="InterNACHI certifications and seals">
-            <!-- ✅ Your InterNACHI script, placed inside a styled container -->
-            <div>
+            <div class="cred-wall-body">
+              <!-- ✅ Same script again is intentional: this section is a full “wall”.
+                   If it duplicates too much, delete this second instance. -->
               <script src="https://www.nachi.org/webseals/legacy/education?nachiid=NACHI26011311&include_universal=1"></script>
-              <div class="seal-footnote">
-                Certifications acquired through
-                <a href="https://www.nachi.org/education.htm">home inspector training</a>
-                from InterNACHI&reg;.
-              </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- About / Area -->
+    <!-- Service area -->
     <section class="block anchor" id="area">
       <div class="wrap">
         <div class="block-title">
@@ -806,7 +861,7 @@
         </div>
 
         <div class="grid3">
-          <div class="mini">
+          <div class="card">
             <h4>Scheduling</h4>
             <p>Request online anytime. Call/text for time-sensitive scheduling or tight deadlines.</p>
             <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
@@ -815,12 +870,12 @@
             </div>
           </div>
 
-          <div class="mini">
+          <div class="card">
             <h4>Professional, not performative</h4>
             <p>Competence and restraint: document clearly, communicate calmly, and respect the transaction.</p>
           </div>
 
-          <div class="mini">
+          <div class="card">
             <h4>What to expect</h4>
             <p>Clear findings, embedded photos, and next-step guidance when further evaluation is warranted.</p>
           </div>
@@ -828,7 +883,6 @@
       </div>
     </section>
 
-    <!-- Footer -->
     <footer>
       <div class="wrap">
         <div class="footer-grid">
@@ -836,8 +890,8 @@
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
               <div class="mark" aria-hidden="true"></div>
               <div>
-                <div style="letter-spacing:0.14em; text-transform:uppercase; font-weight:750; color:rgba(255,255,255,0.88);">StoneMark Inspections</div>
-                <div style="color:rgba(240,240,240,0.50); font-size:0.92rem;">Western Kentucky</div>
+                <div style="letter-spacing:0.14em; text-transform:uppercase; font-weight:860; color:rgba(255,255,255,0.90);">StoneMark Inspections</div>
+                <div style="color:rgba(245,245,245,0.50); font-size:0.92rem;">Western Kentucky</div>
               </div>
             </div>
 
@@ -846,29 +900,20 @@
               <a href="tel:+12703498237">(270) 349-8237</a>
             </div>
 
-            <!-- Optional: subtle footer trust signal -->
-            <div style="margin-top:14px; padding:12px 12px; border-radius:14px; background:rgba(0,0,0,0.16); border:1px solid rgba(255,255,255,0.08);">
-              <div style="font-size:0.84rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.70); font-weight:750;">
-                Verified Credentials
-              </div>
-              <div style="margin-top:8px;">
-                <script src="https://www.nachi.org/webseals/legacy/education?nachiid=NACHI26011311&include_universal=1"></script>
-              </div>
-            </div>
-
-            <div style="margin-top:12px; color:rgba(240,240,240,0.42);">
+            <div style="margin-top:12px; color:rgba(245,245,245,0.42);">
               © <span id="year"></span> StoneMark Inspections. All rights reserved.
             </div>
           </div>
 
           <div class="foot-actions">
             <a class="pill primary" href="request.html">Request Inspection</a>
-            <a class="pill ghost" href="#services">View Services</a>
             <a class="pill ghost" href="#credentials">Credentials</a>
+            <a class="pill ghost" href="#services">Services</a>
           </div>
         </div>
       </div>
     </footer>
+
   </main>
 
   <script>
@@ -876,3 +921,4 @@
   </script>
 </body>
 </html>
+
