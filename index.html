@@ -1,33 +1,34 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StoneMark Inspections</title>
-  <meta name="description" content="StoneMark Inspections provides licensed, insured home inspections across Western Kentucky. Clear, photo-documented reports delivered within 24 hours." />
+  <meta name="description" content="StoneMark Inspections — professional home inspections across Western Kentucky. Photo-documented reports delivered fast. Verified InterNACHI certifications." />
+
   <link rel="preconnect" href="https://www.nachi.org" crossorigin>
 
   <style>
     :root{
-      /* New palette: deep ink + graphite + sandstone accent */
-      --bg: #05070c;
-      --bg2:#070b12;
-      --panel: rgba(255,255,255,0.06);
-      --panel2: rgba(255,255,255,0.09);
-      --border: rgba(255,255,255,0.12);
-      --border2: rgba(194,168,117,0.32);
+      /* Premium dark + sandstone accent */
+      --bg: #050608;
+      --bg2:#080a0f;
+      --panel: rgba(255,255,255,0.05);
+      --panel2: rgba(255,255,255,0.08);
+      --line: rgba(255,255,255,0.12);
 
-      --sand: #c2a875;
-      --sandGlow: rgba(194,168,117,0.18);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.66);
+      --muted2: rgba(255,255,255,0.44);
 
-      --text: rgba(245,245,245,0.92);
-      --muted: rgba(245,245,245,0.68);
-      --muted2: rgba(245,245,245,0.48);
+      --accent: #c2a875;
+      --accent2: rgba(194,168,117,0.18);
 
-      --shadow: 0 26px 90px rgba(0,0,0,0.62);
-      --r1: 18px;
+      --shadow: 0 30px 120px rgba(0,0,0,0.65);
+      --r: 18px;
       --r2: 28px;
-      --max: 1180px;
+      --max: 1200px;
     }
 
     *{ box-sizing:border-box; margin:0; padding:0; }
@@ -41,77 +42,77 @@
       -moz-osx-font-smoothing: grayscale;
       overflow-x:hidden;
     }
-    a{ color: inherit; text-decoration:none; }
     img{ max-width:100%; height:auto; display:block; }
-    .wrap{ width:100%; max-width: var(--max); margin:0 auto; padding: 0 22px; }
+    a{ color: inherit; text-decoration:none; }
+    .wrap{ max-width: var(--max); margin:0 auto; padding: 0 22px; }
 
-    /* Cinematic background */
+    /* Background (quiet, expensive) */
     .bg{
       position: fixed; inset:0; z-index:-2;
       background:
-        radial-gradient(1100px 700px at 10% 18%, rgba(194,168,117,0.22), transparent 58%),
-        radial-gradient(900px 650px at 90% 22%, rgba(120,170,255,0.10), transparent 58%),
-        radial-gradient(900px 650px at 55% 105%, rgba(255,255,255,0.06), transparent 58%),
+        radial-gradient(1100px 700px at 10% 18%, rgba(194,168,117,0.20), transparent 60%),
+        radial-gradient(1000px 700px at 92% 22%, rgba(255,255,255,0.06), transparent 60%),
         linear-gradient(180deg, var(--bg) 0%, var(--bg2) 55%, var(--bg) 100%);
     }
     .grain{
       position: fixed; inset:0; z-index:-1; pointer-events:none;
       background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-      opacity: 0.24;
+      opacity: 0.22;
       mix-blend-mode: overlay;
     }
-    .vignette{
-      position: fixed; inset:-10px; z-index:-1; pointer-events:none;
-      background: radial-gradient(1200px 700px at 50% 35%, transparent 40%, rgba(0,0,0,0.45) 100%);
-      opacity: 0.9;
-    }
 
-    /* Top */
+    /* Top bar */
     header{
-      position: sticky; top:0; z-index: 50;
-      background: rgba(5,7,12,0.70);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(5,6,8,0.72);
       border-bottom: 1px solid rgba(255,255,255,0.10);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
     .top{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 14px 0; gap: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0;
     }
     .brand{
       display:flex; align-items:center; gap: 12px;
-      min-width: 240px;
+      min-width: 220px;
     }
-    .chip{
+    .mark{
       width: 38px; height: 38px; border-radius: 12px;
       background:
-        radial-gradient(16px 16px at 28% 28%, rgba(255,255,255,0.16), transparent 58%),
-        linear-gradient(135deg, rgba(194,168,117,0.45), rgba(194,168,117,0.08));
-      border: 1px solid rgba(194,168,117,0.40);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+        radial-gradient(16px 16px at 28% 28%, rgba(255,255,255,0.16), transparent 60%),
+        linear-gradient(135deg, rgba(194,168,117,0.46), rgba(194,168,117,0.08));
+      border: 1px solid rgba(194,168,117,0.42);
+      box-shadow: 0 14px 42px rgba(0,0,0,0.55);
     }
     .brand strong{
       display:block;
+      font-size: 0.95rem;
+      font-weight: 850;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      font-weight: 780;
-      font-size: 0.94rem;
-      color: rgba(255,255,255,0.92);
       line-height: 1.1;
+      color: rgba(255,255,255,0.92);
     }
     .brand span{
       display:block;
+      font-size: 0.78rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      font-size: 0.78rem;
       color: var(--muted2);
       margin-top: 2px;
     }
 
     nav{
-      display:flex; align-items:center; gap: 10px; flex-wrap:wrap;
+      display:flex; align-items:center; gap: 10px;
       justify-content:center;
+      flex-wrap: wrap;
     }
     nav a{
       font-size: 0.82rem;
@@ -121,368 +122,274 @@
       padding: 8px 10px;
       border-radius: 999px;
       border: 1px solid transparent;
-      transition: background 160ms ease, border-color 160ms ease, transform 160ms ease, color 160ms ease;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease;
     }
     nav a:hover{
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.10);
-      color: rgba(255,255,255,0.92);
       transform: translateY(-1px);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.92);
     }
 
     .actions{
       display:flex; align-items:center; gap: 10px;
-      min-width: 280px; justify-content:flex-end;
+      min-width: 290px;
+      justify-content:flex-end;
     }
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      display:inline-flex; align-items:center; justify-content:center;
       padding: 11px 14px;
       border-radius: 999px;
       font-size: 0.84rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      user-select:none;
-      white-space: nowrap;
-      transition: transform 160ms ease, opacity 160ms ease, background 160ms ease, border-color 160ms ease;
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.04);
-      color: rgba(255,255,255,0.86);
+      color: rgba(255,255,255,0.88);
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, opacity 160ms ease;
+      white-space: nowrap;
+      user-select:none;
     }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.16); }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.16);
+    }
     .btn.primary{
       color: rgba(0,0,0,0.92);
-      border-color: rgba(194,168,117,0.25);
+      border-color: rgba(194,168,117,0.30);
       background: linear-gradient(180deg, rgba(194,168,117,1), rgba(194,168,117,0.86));
-      box-shadow: 0 14px 50px rgba(194,168,117,0.10), 0 26px 90px rgba(0,0,0,0.55);
+      box-shadow: 0 16px 60px rgba(194,168,117,0.12), 0 26px 100px rgba(0,0,0,0.55);
     }
-    .btn.primary:hover{ opacity: 0.98; }
 
-    /* HERO: Logo + Credentials are the star */
+    /* Hero */
+    main{ padding: 34px 0 28px; }
+
     .hero{
-      padding: 34px 0 18px;
-    }
-    .heroShell{
-      border-radius: 34px;
+      border-radius: var(--r2);
       border: 1px solid rgba(255,255,255,0.10);
       background:
-        radial-gradient(900px 280px at 20% 0%, rgba(194,168,117,0.26), transparent 62%),
-        radial-gradient(900px 320px at 85% 0%, rgba(120,170,255,0.10), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+        radial-gradient(1100px 420px at 15% 0%, rgba(194,168,117,0.22), transparent 62%),
+        radial-gradient(900px 420px at 92% 0%, rgba(255,255,255,0.07), transparent 62%),
+        rgba(255,255,255,0.03);
       box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
-    }
-    .heroShell::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(1000px 600px at 50% 20%, rgba(0,0,0,0.0), rgba(0,0,0,0.35));
-      pointer-events:none;
-    }
-    .heroGrid{
-      position: relative;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      padding: 22px;
+      overflow: visible; /* IMPORTANT: don't trap injected seals */
+      padding: 18px;
     }
 
-    .headlineRow{
+    .heroGrid{
       display:grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap: 14px;
       align-items: stretch;
     }
 
-    .logoCard{
-      border-radius: 26px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.26);
-      padding: 18px;
-      overflow:hidden;
-    }
-    .logoCard .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 0.80rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-      color: rgba(255,255,255,0.78);
-      width: fit-content;
-    }
-    .dot{
-      width: 8px; height: 8px; border-radius: 999px;
-      background: rgba(194,168,117,0.95);
-      box-shadow: 0 0 0 6px rgba(194,168,117,0.14);
-    }
-    .logoBig{
-      margin-top: 14px;
+    .tile{
       border-radius: 22px;
       border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.18);
-      padding: 16px;
-      box-shadow: 0 18px 70px rgba(0,0,0,0.55);
-    }
-    .logoBig img{
-      width: 100%;
-      max-width: 940px;
-      margin: 0 auto;
-      opacity: 0.98;
-      filter: drop-shadow(0 22px 70px rgba(0,0,0,0.65));
-    }
-    .tagline{
-      margin-top: 14px;
-      font-size: clamp(1.40rem, 2.6vw, 2.05rem);
-      line-height: 1.12;
-      font-weight: 800;
-      color: rgba(255,255,255,0.94);
-      letter-spacing: 0.01em;
-    }
-    .subline{
-      margin-top: 10px;
-      color: rgba(245,245,245,0.72);
-      font-size: 1.05rem;
-      max-width: 70ch;
-    }
-    .miniTrust{
-      margin-top: 14px;
-      display:flex; gap: 10px; flex-wrap:wrap;
-    }
-    .pill{
-      display:inline-flex; align-items:center; gap:10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-      color: rgba(255,255,255,0.74);
-      font-size: 0.86rem;
-      letter-spacing: 0.06em;
-    }
-    .pill strong{
-      color: rgba(194,168,117,0.94);
-      font-weight: 850;
+      background: rgba(0,0,0,0.24);
+      padding: 18px;
     }
 
-    /* Credentials block: BIG, CENTERPIECE */
-    .credCard{
-      border-radius: 26px;
-      border: 1px solid rgba(194,168,117,0.26);
-      background:
-        radial-gradient(750px 280px at 50% 0%, rgba(194,168,117,0.22), transparent 65%),
-        rgba(0,0,0,0.24);
-      padding: 18px;
-      overflow:hidden;
+    .logoFrame{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.22);
+      padding: 16px;
       box-shadow: 0 20px 80px rgba(0,0,0,0.55);
     }
-    .credHeader{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .credHeader h2{
-      font-size: 0.92rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.80);
-      font-weight: 900;
-    }
-    .credHeader p{
-      color: rgba(245,245,245,0.58);
-      font-size: 0.94rem;
-      text-align:right;
-      max-width: 42ch;
+    .logoFrame img{
+      opacity: 0.98;
+      filter: drop-shadow(0 22px 70px rgba(0,0,0,0.70));
     }
 
-    .sealStage{
-      border-radius: 22px;
+    .headline{
+      margin-top: 16px;
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+      line-height: 1.10;
+      font-weight: 900;
+      letter-spacing: 0.01em;
+      color: rgba(255,255,255,0.94);
+    }
+    .subhead{
+      margin-top: 12px;
+      font-size: 1.08rem;
+      color: rgba(255,255,255,0.70);
+      max-width: 64ch;
+    }
+
+    .callout{
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(194,168,117,0.28);
+      background: rgba(194,168,117,0.10);
+    }
+    .callout .name{
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.90);
+      font-size: 0.92rem;
+    }
+    .callout .msg{
+      margin-top: 8px;
+      color: rgba(255,255,255,0.72);
+      font-size: 1.02rem;
+    }
+    .callout .big{
+      margin-top: 10px;
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .ctaRow{
+      margin-top: 14px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .ctaRow .btn{ flex: 1 1 220px; }
+
+    /* Credentials: BIG + SAFE for InterNACHI script */
+    .credTitle{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .credTitle h2{
+      font-size: 0.90rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: rgba(255,255,255,0.82);
+    }
+    .credTitle p{
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.58);
+      text-align:right;
+      max-width: 46ch;
+    }
+
+    .nachiStage{
+      border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(0,0,0,0.22);
       padding: 16px;
+      overflow: visible; /* critical */
+      text-align: center; /* gives the injected seals a clean center */
     }
 
-    /* Make injected InterNACHI content BIG and clean */
-    .sealStage img{
-      max-width: 100% !important;
+    /* Normalize InterNACHI injected stuff to look premium */
+    .nachiStage img{
+      display:inline-block !important;
+      max-width: 220px !important;   /* make them big but controlled */
+      width: auto !important;
       height: auto !important;
-      display: inline-block !important;
-      margin: 6px 10px 6px 0 !important;
+      margin: 10px 12px !important;
       filter: drop-shadow(0 10px 30px rgba(0,0,0,0.55));
     }
-    .sealStage a{
-      color: rgba(194,168,117,0.96);
+    .nachiStage table{
+      margin-left:auto !important;
+      margin-right:auto !important;
+    }
+    .nachiStage a{
+      color: var(--accent) !important;
       text-decoration: none;
     }
-    .sealStage a:hover{ text-decoration: underline; text-underline-offset: 4px; }
+    .nachiStage a:hover{
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .nachiNote{
+      margin-top: 12px;
+      color: rgba(255,255,255,0.58);
+      font-size: 0.95rem;
+    }
+    .nachiNote a{ color: var(--accent); }
 
-    /* Some InterNACHI blocks use divs/tables; give them room */
-    .sealStage *{
-      max-width: 100%;
-    }
-
-    .credFoot{
-      margin-top: 10px;
-      color: rgba(245,245,245,0.56);
-      font-size: 0.94rem;
-      line-height: 1.45;
-    }
-    .credFoot a{
-      color: rgba(194,168,117,0.96);
-    }
-
-    /* Section layout below hero */
-    section{
-      padding: 18px 0;
-    }
-    .sectionShell{
-      border-radius: 28px;
+    /* Lower sections */
+    .section{
+      margin-top: 16px;
+      border-radius: var(--r2);
       border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.035);
-      box-shadow: 0 18px 70px rgba(0,0,0,0.45);
-      overflow:hidden;
+      background: rgba(255,255,255,0.03);
+      box-shadow: 0 20px 80px rgba(0,0,0,0.45);
+      padding: 18px;
     }
-    .sectionInner{
-      padding: 20px;
-    }
-    .sectionTitle{
-      display:flex; justify-content:space-between; align-items:flex-end; gap: 14px;
+    .sectionHeader{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap: 14px;
       margin-bottom: 12px;
     }
-    .sectionTitle h3{
-      font-size: 0.92rem;
+    .sectionHeader h3{
+      font-size: 0.90rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.80);
       font-weight: 900;
+      color: rgba(255,255,255,0.82);
     }
-    .sectionTitle p{
-      color: rgba(245,245,245,0.55);
-      font-size: 0.96rem;
+    .sectionHeader p{
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.58);
       text-align:right;
-      max-width: 62ch;
+      max-width: 60ch;
     }
-
-    .cards{
+    .grid3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
-    .info{
-      border-radius: 20px;
+    .card{
+      border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.10);
       background: rgba(0,0,0,0.18);
       padding: 16px;
-      position: relative;
-      overflow:hidden;
     }
-    .info::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: radial-gradient(520px 160px at 18% 0%, rgba(194,168,117,0.14), transparent 62%);
-      opacity: 0.8;
-      pointer-events:none;
-    }
-    .info > *{ position: relative; }
-    .info h4{
-      font-size: 1.06rem;
-      font-weight: 850;
+    .card h4{
+      font-weight: 900;
       color: rgba(255,255,255,0.92);
       margin-bottom: 8px;
-      letter-spacing: 0.01em;
+      font-size: 1.06rem;
     }
-    .info p{
-      color: rgba(245,245,245,0.66);
+    .card p{
+      color: rgba(255,255,255,0.66);
       font-size: 1.00rem;
     }
 
-    .twoCol{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .list{
-      margin-top: 10px;
-      display:grid;
-      gap: 10px;
-    }
-    .li{
-      display:flex; align-items:flex-start; gap: 10px;
-      padding: 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(0,0,0,0.16);
-      color: rgba(245,245,245,0.66);
-    }
-    .check{
-      width: 18px; height: 18px; border-radius: 6px;
-      border: 1px solid rgba(194,168,117,0.46);
-      background: rgba(194,168,117,0.12);
-      margin-top: 2px;
-      position: relative;
-      flex: 0 0 auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
-    .check::after{
-      content:"";
-      position:absolute;
-      left: 5px; top: 2px;
-      width: 6px; height: 10px;
-      border-right: 2px solid rgba(194,168,117,0.90);
-      border-bottom: 2px solid rgba(194,168,117,0.90);
-      transform: rotate(40deg);
-    }
-
     footer{
-      padding: 26px 0 44px;
       margin-top: 18px;
+      padding: 26px 0 44px;
       border-top: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.10);
+      color: rgba(255,255,255,0.54);
+      text-align: center;
     }
-    .footGrid{
-      display:grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 14px;
-      align-items:start;
-    }
-    .fine{
-      color: rgba(245,245,245,0.52);
-      font-size: 0.95rem;
-      max-width: 78ch;
-    }
-    .fine a{ color: rgba(194,168,117,0.92); }
-    .fine a:hover{ text-decoration: underline; text-underline-offset: 4px; }
-    .footActions{
-      display:flex; flex-direction:column; align-items:flex-end; gap: 10px;
-    }
+    footer a{ color: var(--accent); }
 
-    .anchor{ scroll-margin-top: 88px; }
+    /* Anchors */
+    .anchor{ scroll-margin-top: 92px; }
 
     /* Mobile */
     @media (max-width: 980px){
       nav{ display:none; }
       .actions{ min-width: unset; }
-      .brand{ min-width: unset; }
-      .headlineRow{ grid-template-columns: 1fr; }
-      .cards{ grid-template-columns: 1fr; }
-      .twoCol{ grid-template-columns: 1fr; }
-      .footGrid{ grid-template-columns: 1fr; }
-      .footActions{ align-items:flex-start; }
-      .sectionTitle{ flex-direction:column; align-items:flex-start; }
-      .sectionTitle p{ text-align:left; }
-      .credHeader{ flex-direction:column; align-items:flex-start; }
-      .credHeader p{ text-align:left; }
+      .heroGrid{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .credTitle{ flex-direction:column; align-items:flex-start; }
+      .credTitle p{ text-align:left; }
+      .sectionHeader{ flex-direction:column; align-items:flex-start; }
+      .sectionHeader p{ text-align:left; }
     }
     @media (max-width: 520px){
-      .heroGrid{ padding: 16px; }
-      .logoCard, .credCard{ padding: 16px; }
-      .sealStage{ padding: 12px; }
-      .btn{ width: 100%; }
-      .actions{ width: 100%; flex-direction:column; }
+      .actions{ width:100%; flex-direction: column; }
+      .btn{ width:100%; }
+      .nachiStage img{ max-width: 260px !important; } /* bigger on small screens */
     }
   </style>
 </head>
@@ -490,22 +397,12 @@
 <body>
   <div class="bg"></div>
   <div class="grain"></div>
-  <div class="vignette"></div>
-
-  <script>
-    window.addEventListener("load", () => {
-      if (!window.location.hash) window.scrollTo(0, 0);
-    });
-    window.addEventListener("pageshow", (event) => {
-      if (event.persisted && !window.location.hash) window.scrollTo(0, 0);
-    });
-  </script>
 
   <header>
     <div class="wrap">
       <div class="top">
         <a class="brand" href="#top" aria-label="StoneMark Inspections home">
-          <div class="chip" aria-hidden="true"></div>
+          <div class="mark" aria-hidden="true"></div>
           <div>
             <strong>StoneMark</strong>
             <span>Home Inspections</span>
@@ -513,10 +410,10 @@
         </a>
 
         <nav aria-label="Primary navigation">
-          <a href="#services">Services</a>
-          <a href="#process">Process</a>
           <a href="#credentials">Credentials</a>
-          <a href="#area">Service Area</a>
+          <a href="#services">Services</a>
+          <a href="#reports">Reports</a>
+          <a href="#contact">Contact</a>
         </nav>
 
         <div class="actions">
@@ -527,237 +424,136 @@
     </div>
   </header>
 
-  <main id="top" class="wrap">
-    <!-- HERO: big logo + BIG credentials -->
+  <main class="wrap" id="top">
+    <!-- HERO -->
     <section class="hero">
-      <div class="heroShell">
-        <div class="heroGrid">
-          <div class="headlineRow">
-            <div class="logoCard">
-              <div class="kicker"><span class="dot"></span> Licensed • Insured • Western Kentucky</div>
-
-              <div class="logoBig" aria-label="StoneMark logo">
-                <img src="logo.PNG" alt="StoneMark Inspections Logo" />
-              </div>
-
-              <div class="tagline">Calm, structured inspections that people actually understand.</div>
-              <div class="subline">
-                Photo-documented findings. Plain language. Reports delivered within 24 hours—built for buyers, homeowners,
-                and agents who want clarity without drama.
-              </div>
-
-              <div class="miniTrust" aria-label="Trust highlights">
-                <div class="pill"><strong>24h</strong> report delivery</div>
-                <div class="pill"><strong>Photos</strong> embedded</div>
-                <div class="pill"><strong>Clear</strong> priorities</div>
-              </div>
-
-              <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="btn primary" href="request.html" style="flex:1 1 230px;">Request Online</a>
-                <a class="btn" href="tel:+12703498237" style="flex:1 1 230px;">(270) 349-8237</a>
-              </div>
-            </div>
-
-            <div class="credCard anchor" id="credentials">
-              <div class="credHeader">
-                <h2>Credentials &amp; Certifications</h2>
-                <p>Prominent, verifiable seals. Click any logo to validate directly through InterNACHI.</p>
-              </div>
-
-              <div class="sealStage" aria-label="InterNACHI web seals">
-                <!-- ✅ BIG placement: InterNACHI generates the logos/links here -->
-                <script src="https://www.nachi.org/webseals/legacy/education?nachiid=NACHI26011311&include_universal=1"></script>
-
-                <div class="credFoot">
-                  Certifications acquired through
-                  <a href="https://www.nachi.org/education.htm">home inspector training</a>
-                  from InterNACHI&reg;.
-                </div>
-              </div>
-
-              <div class="list" style="margin-top:12px;">
-                <div class="li"><span class="check"></span><span>Credentials shown live from InterNACHI (not screenshots).</span></div>
-                <div class="li"><span class="check"></span><span>Click-through verification for clients and agents.</span></div>
-                <div class="li"><span class="check"></span><span>Trust-forward presentation—front and center.</span></div>
-              </div>
-
-              <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="btn" href="#process" style="flex:1 1 200px;">How It Works</a>
-                <a class="btn primary" href="request.html" style="flex:1 1 200px;">Book Now</a>
-              </div>
-            </div>
+      <div class="heroGrid">
+        <!-- Left: Brand + CTA -->
+        <div class="tile">
+          <div class="logoFrame">
+            <img src="logo.PNG" alt="StoneMark Inspections logo" />
           </div>
 
-          <!-- Below-hero: quick facts strip -->
-          <div class="sectionShell">
-            <div class="sectionInner">
-              <div class="sectionTitle" style="margin-bottom:10px;">
-                <h3>At a glance</h3>
-                <p>Designed to feel premium, calm, and reliable—before you even open the report.</p>
-              </div>
-
-              <div class="twoCol">
-                <div class="info">
-                  <h4>Reporting built for speed</h4>
-                  <p>Structured, photo-documented reports delivered within 24 hours in most cases.</p>
-                  <div class="list">
-                    <div class="li"><span class="check"></span><span>Easy to scan system-by-system</span></div>
-                    <div class="li"><span class="check"></span><span>Photos placed where they matter</span></div>
-                  </div>
-                </div>
-
-                <div class="info">
-                  <h4>Clear next steps</h4>
-                  <p>When concerns are found, recommendations point to qualified evaluation—without guessing repairs.</p>
-                  <div class="list">
-                    <div class="li"><span class="check"></span><span>Plain language explanations</span></div>
-                    <div class="li"><span class="check"></span><span>Priorities highlighted for decision-making</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="headline">Professional inspections. Verified credentials. Zero drama.</div>
+          <div class="subhead">
+            Serving Western Kentucky with calm, photo-documented inspections designed for clear decisions.
+            Reports delivered fast — written for clients and agents to actually use.
           </div>
 
+          <div class="callout">
+            <div class="name">Inspector: (Name goes here)</div>
+            <div class="msg">Call or text anytime to schedule an inspection.</div>
+            <div class="big"><a href="tel:+12703498237" style="color:inherit;">(270) 349-8237</a></div>
+          </div>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="request.html">Request Inspection Online</a>
+            <a class="btn" href="tel:+12703498237">Call/Text Now</a>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Services -->
-    <section class="anchor" id="services">
-      <div class="sectionShell">
-        <div class="sectionInner">
-          <div class="sectionTitle">
-            <h3>Services</h3>
-            <p>Simple options. Professional execution. Clear deliverables.</p>
+        <!-- Right: Credentials (PROMINENT) -->
+        <div class="tile anchor" id="credentials">
+          <div class="credTitle">
+            <h2>Credentials &amp; Certifications</h2>
+            <p>These seals are pulled directly from InterNACHI — click any logo to verify.</p>
           </div>
 
-          <div class="cards">
-            <div class="info">
-              <h4>Buyer’s Inspection</h4>
-              <p>A thorough evaluation of accessible systems and components—documented with photos and clear organization.</p>
+          <div class="nachiStage" aria-label="InterNACHI web seals">
+            <script src="https://www.nachi.org/webseals/legacy/education?nachiid=NACHI26011311&include_universal=1"></script>
+            <div class="nachiNote">
+              Certifications acquired through
+              <a href="https://www.nachi.org/education.htm">home inspector training</a>
+              from InterNACHI&reg;.
             </div>
+          </div>
 
-            <div class="info">
-              <h4>Pre-Listing Inspection</h4>
-              <p>Identify concerns before going to market. Reduce surprises and give sellers a cleaner path forward.</p>
-            </div>
-
-            <div class="info">
-              <h4>Maintenance Check</h4>
-              <p>An objective snapshot of condition, priorities, and recommended professional follow-up.</p>
-            </div>
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" href="#services" style="flex:1 1 220px;">Services</a>
+            <a class="btn primary" href="request.html" style="flex:1 1 220px;">Book Online</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Process -->
-    <section class="anchor" id="process">
-      <div class="sectionShell">
-        <div class="sectionInner">
-          <div class="sectionTitle">
-            <h3>Process</h3>
-            <p>Built to be calm and predictable—for clients and agents.</p>
-          </div>
+    <!-- SERVICES -->
+    <section class="section anchor" id="services">
+      <div class="sectionHeader">
+        <h3>Services</h3>
+        <p>Simple options. Premium execution. Clean deliverables.</p>
+      </div>
 
-          <div class="cards">
-            <div class="info">
-              <h4>1) Schedule</h4>
-              <p>Request online anytime. Call/text for time-sensitive scheduling.</p>
-              <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="btn primary" href="request.html" style="flex:1 1 220px;">Request Online</a>
-                <a class="btn" href="tel:+12703498237" style="flex:1 1 220px;">Call/Text</a>
-              </div>
-            </div>
-
-            <div class="info">
-              <h4>2) Inspect</h4>
-              <p>System-by-system inspection of accessible areas with photo documentation throughout.</p>
-              <div class="list">
-                <div class="li"><span class="check"></span><span>Exterior, roof, structure, attic (when accessible)</span></div>
-                <div class="li"><span class="check"></span><span>Electrical, plumbing, HVAC, interior systems</span></div>
-              </div>
-            </div>
-
-            <div class="info">
-              <h4>3) Report</h4>
-              <p>A clear, shareable report that highlights issues and next steps without unnecessary noise.</p>
-              <div class="list">
-                <div class="li"><span class="check"></span><span>Photos embedded with findings</span></div>
-                <div class="li"><span class="check"></span><span>Recommendations for qualified evaluation when needed</span></div>
-              </div>
-            </div>
-          </div>
+      <div class="grid3">
+        <div class="card">
+          <h4>Buyer’s Inspection</h4>
+          <p>Evaluation of accessible systems and components with photo documentation and clear organization.</p>
+        </div>
+        <div class="card">
+          <h4>Pre-Listing Inspection</h4>
+          <p>Reduce surprises before going to market. Identify concerns early and plan repairs strategically.</p>
+        </div>
+        <div class="card">
+          <h4>Maintenance Check</h4>
+          <p>A condition snapshot for homeowners who want clear priorities and professional guidance.</p>
         </div>
       </div>
     </section>
 
-    <!-- Service Area / Contact -->
-    <section class="anchor" id="area">
-      <div class="sectionShell">
-        <div class="sectionInner">
-          <div class="sectionTitle">
-            <h3>Service Area</h3>
-            <p>Serving Western Kentucky, including the Paducah region and surrounding communities.</p>
+    <!-- REPORTS -->
+    <section class="section anchor" id="reports">
+      <div class="sectionHeader">
+        <h3>Reports</h3>
+        <p>Built to be read quickly and understood immediately.</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <h4>Photo-Documented</h4>
+          <p>Photos are embedded where they add clarity—supporting findings without overwhelming the reader.</p>
+        </div>
+        <div class="card">
+          <h4>Plain Language</h4>
+          <p>No theatrics. No filler. Findings are written so normal people can understand them.</p>
+        </div>
+        <div class="card">
+          <h4>Next Steps</h4>
+          <p>When needed, the report recommends evaluation by qualified professionals—clean and defensible.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section anchor" id="contact">
+      <div class="sectionHeader">
+        <h3>Contact</h3>
+        <p>Call or text for scheduling. Online requests accepted 24/7.</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <h4>Phone</h4>
+          <p><a href="tel:+12703498237" style="color:inherit; font-weight:900;">(270) 349-8237</a><br>
+          Call or text anytime.</p>
+        </div>
+        <div class="card">
+          <h4>Request Online</h4>
+          <p>Use the request form and you’ll receive confirmation and next steps.</p>
+          <div style="margin-top:12px;">
+            <a class="btn primary" href="request.html" style="width:100%;">Request Inspection</a>
           </div>
-
-          <div class="twoCol">
-            <div class="info">
-              <h4>Contact</h4>
-              <p>
-                <a href="mailto:kyle@stonemarkinspections.com">kyle@stonemarkinspections.com</a><br/>
-                <a href="tel:+12703498237">(270) 349-8237</a>
-              </p>
-              <div class="list">
-                <div class="li"><span class="check"></span><span>Call or text for fast scheduling</span></div>
-                <div class="li"><span class="check"></span><span>Online request form available 24/7</span></div>
-              </div>
-            </div>
-
-            <div class="info">
-              <h4>Ready to book?</h4>
-              <p>Send a request in under a minute. You’ll receive a prompt confirmation and next steps.</p>
-              <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="btn primary" href="request.html" style="flex:1 1 220px;">Request Inspection</a>
-                <a class="btn" href="#credentials" style="flex:1 1 220px;">View Credentials</a>
-              </div>
-            </div>
-          </div>
-
+        </div>
+        <div class="card">
+          <h4>Email</h4>
+          <p><a href="mailto:you@stonemarkinspections.com" style="color:inherit; font-weight:900;">you@stonemarkinspections.com</a><br>
+          (Replace with your real email.)</p>
         </div>
       </div>
     </section>
 
     <footer>
-      <div class="wrap">
-        <div class="footGrid">
-          <div class="fine">
-            <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
-              <div class="chip" aria-hidden="true"></div>
-              <div>
-                <div style="letter-spacing:0.14em; text-transform:uppercase; font-weight:900; color:rgba(255,255,255,0.90);">StoneMark Inspections</div>
-                <div style="color:rgba(245,245,245,0.50); font-size:0.92rem;">Western Kentucky</div>
-              </div>
-            </div>
-
-            <div style="margin-top:10px;">
-              <a href="mailto:kyle@stonemarkinspections.com">kyle@stonemarkinspections.com</a><br/>
-              <a href="tel:+12703498237">(270) 349-8237</a>
-            </div>
-
-            <div style="margin-top:12px; color:rgba(245,245,245,0.42);">
-              © <span id="year"></span> StoneMark Inspections. All rights reserved.
-            </div>
-          </div>
-
-          <div class="footActions">
-            <a class="btn primary" href="request.html">Request Inspection</a>
-            <a class="btn" href="#top">Back to top</a>
-          </div>
-        </div>
-      </div>
+      © <span id="year"></span> StoneMark Inspections • Western Kentucky •
+      <a href="request.html">Request Inspection</a>
     </footer>
-
   </main>
 
   <script>
@@ -765,4 +561,3 @@
   </script>
 </body>
 </html>
-
