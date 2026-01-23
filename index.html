@@ -5,33 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StoneMark Inspections</title>
   <meta name="description" content="StoneMark Inspections provides licensed, insured home inspections across Western Kentucky. Clear, photo-documented reports delivered within 24 hours." />
-
   <link rel="preconnect" href="https://www.nachi.org" crossorigin>
 
   <style>
     :root{
-      --bg0:#040405;
-      --bg1:#070708;
+      /* New palette: deep ink + graphite + sandstone accent */
+      --bg: #05070c;
+      --bg2:#070b12;
       --panel: rgba(255,255,255,0.06);
-      --panel2: rgba(255,255,255,0.095);
-      --border: rgba(255,255,255,0.11);
-      --border2: rgba(194,168,117,0.28);
+      --panel2: rgba(255,255,255,0.09);
+      --border: rgba(255,255,255,0.12);
+      --border2: rgba(194,168,117,0.32);
 
-      --sand:#c2a875;
-      --sand2: rgba(194,168,117,0.85);
+      --sand: #c2a875;
+      --sandGlow: rgba(194,168,117,0.18);
 
       --text: rgba(245,245,245,0.92);
-      --muted: rgba(245,245,245,0.66);
-      --muted2: rgba(245,245,245,0.46);
+      --muted: rgba(245,245,245,0.68);
+      --muted2: rgba(245,245,245,0.48);
 
-      --shadow: 0 28px 90px rgba(0,0,0,0.60);
-      --radius: 18px;
-      --radius2: 26px;
+      --shadow: 0 26px 90px rgba(0,0,0,0.62);
+      --r1: 18px;
+      --r2: 28px;
       --max: 1180px;
     }
 
     *{ box-sizing:border-box; margin:0; padding:0; }
-    html, body{ height:100%; background: var(--bg1); }
+    html, body{ height:100%; background: var(--bg); }
     body{
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
                    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -41,586 +41,448 @@
       -moz-osx-font-smoothing: grayscale;
       overflow-x:hidden;
     }
-
     a{ color: inherit; text-decoration:none; }
     img{ max-width:100%; height:auto; display:block; }
+    .wrap{ width:100%; max-width: var(--max); margin:0 auto; padding: 0 22px; }
 
-    /* Background */
+    /* Cinematic background */
     .bg{
-      position: fixed;
-      inset: 0;
-      z-index: -2;
+      position: fixed; inset:0; z-index:-2;
       background:
-        radial-gradient(1200px 720px at 10% 10%, rgba(194,168,117,0.20), transparent 55%),
-        radial-gradient(900px 640px at 92% 20%, rgba(194,168,117,0.12), transparent 60%),
-        radial-gradient(900px 760px at 50% 110%, rgba(255,255,255,0.06), transparent 60%),
-        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 46%, var(--bg0) 100%);
+        radial-gradient(1100px 700px at 10% 18%, rgba(194,168,117,0.22), transparent 58%),
+        radial-gradient(900px 650px at 90% 22%, rgba(120,170,255,0.10), transparent 58%),
+        radial-gradient(900px 650px at 55% 105%, rgba(255,255,255,0.06), transparent 58%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 55%, var(--bg) 100%);
     }
     .grain{
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events:none;
+      position: fixed; inset:0; z-index:-1; pointer-events:none;
       background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-      opacity: 0.22;
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      opacity: 0.24;
       mix-blend-mode: overlay;
     }
-
-    /* Layout */
-    .wrap{
-      width: 100%;
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 20px;
+    .vignette{
+      position: fixed; inset:-10px; z-index:-1; pointer-events:none;
+      background: radial-gradient(1200px 700px at 50% 35%, transparent 40%, rgba(0,0,0,0.45) 100%);
+      opacity: 0.9;
     }
 
-    /* Topbar */
-    .topbar{
-      position: sticky;
-      top: 0;
-      z-index: 50;
+    /* Top */
+    header{
+      position: sticky; top:0; z-index: 50;
+      background: rgba(5,7,12,0.70);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      background: rgba(7,7,8,0.66);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .topbar-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 14px 0;
-      gap: 14px;
+    .top{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0; gap: 14px;
     }
     .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
+      display:flex; align-items:center; gap: 12px;
       min-width: 240px;
     }
-    .mark{
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
+    .chip{
+      width: 38px; height: 38px; border-radius: 12px;
       background:
-        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,0.16), transparent 55%),
-        linear-gradient(135deg, rgba(194,168,117,0.40), rgba(194,168,117,0.10));
-      border: 1px solid rgba(194,168,117,0.34);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        radial-gradient(16px 16px at 28% 28%, rgba(255,255,255,0.16), transparent 58%),
+        linear-gradient(135deg, rgba(194,168,117,0.45), rgba(194,168,117,0.08));
+      border: 1px solid rgba(194,168,117,0.40);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.45);
     }
-    .brand-title{ display:flex; flex-direction:column; line-height:1.08; }
-    .brand-title strong{
-      font-weight: 760;
+    .brand strong{
+      display:block;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      font-size: 0.92rem;
+      font-weight: 780;
+      font-size: 0.94rem;
       color: rgba(255,255,255,0.92);
+      line-height: 1.1;
     }
-    .brand-title span{
-      font-size: 0.82rem;
-      letter-spacing: 0.10em;
-      color: var(--muted2);
+    .brand span{
+      display:block;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      font-size: 0.78rem;
+      color: var(--muted2);
       margin-top: 2px;
     }
 
-    .nav{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
+    nav{
+      display:flex; align-items:center; gap: 10px; flex-wrap:wrap;
+      justify-content:center;
     }
-    .nav a{
-      font-size: 0.84rem;
+    nav a{
+      font-size: 0.82rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.74);
       padding: 8px 10px;
       border-radius: 999px;
       border: 1px solid transparent;
-      transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+      transition: background 160ms ease, border-color 160ms ease, transform 160ms ease, color 160ms ease;
     }
-    .nav a:hover{
-      color: rgba(255,255,255,0.94);
-      background: rgba(255,255,255,0.04);
-      border-color: rgba(255,255,255,0.08);
+    nav a:hover{
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.92);
+      transform: translateY(-1px);
     }
 
     .actions{
-      display:flex;
-      gap: 10px;
-      justify-content:flex-end;
-      min-width: 290px;
+      display:flex; align-items:center; gap: 10px;
+      min-width: 280px; justify-content:flex-end;
     }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 10px;
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 11px 14px;
       border-radius: 999px;
-      padding: 10px 14px;
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
+      user-select:none;
       white-space: nowrap;
-      user-select: none;
-      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, opacity 160ms ease;
-    }
-    .pill.primary{
-      color: rgba(0,0,0,0.92);
-      background: linear-gradient(180deg, rgba(194,168,117,0.98), rgba(194,168,117,0.84));
-      border: 1px solid rgba(194,168,117,0.22);
-      box-shadow: 0 16px 55px rgba(194,168,117,0.10), 0 26px 85px rgba(0,0,0,0.55);
-    }
-    .pill.primary:hover{ transform: translateY(-1px); opacity:0.98; }
-    .pill.ghost{
+      transition: transform 160ms ease, opacity 160ms ease, background 160ms ease, border-color 160ms ease;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
       color: rgba(255,255,255,0.86);
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.11);
     }
-    .pill.ghost:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.16);
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.16); }
+    .btn.primary{
+      color: rgba(0,0,0,0.92);
+      border-color: rgba(194,168,117,0.25);
+      background: linear-gradient(180deg, rgba(194,168,117,1), rgba(194,168,117,0.86));
+      box-shadow: 0 14px 50px rgba(194,168,117,0.10), 0 26px 90px rgba(0,0,0,0.55);
+    }
+    .btn.primary:hover{ opacity: 0.98; }
+
+    /* HERO: Logo + Credentials are the star */
+    .hero{
+      padding: 34px 0 18px;
+    }
+    .heroShell{
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background:
+        radial-gradient(900px 280px at 20% 0%, rgba(194,168,117,0.26), transparent 62%),
+        radial-gradient(900px 320px at 85% 0%, rgba(120,170,255,0.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    .heroShell::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(1000px 600px at 50% 20%, rgba(0,0,0,0.0), rgba(0,0,0,0.35));
+      pointer-events:none;
+    }
+    .heroGrid{
+      position: relative;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 22px;
     }
 
-    /* Hero */
-    .hero{
-      padding: 54px 0 18px;
-    }
-    .hero-shell{
+    .headlineRow{
       display:grid;
-      grid-template-columns: 1.12fr 0.88fr;
-      gap: 16px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 14px;
       align-items: stretch;
     }
 
-    .hero-card{
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,0.11);
-      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
-      box-shadow: var(--shadow);
-      position: relative;
+    .logoCard{
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.26);
+      padding: 18px;
       overflow:hidden;
     }
-    .hero-card::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(820px 250px at 20% 0%, rgba(194,168,117,0.28), transparent 62%);
-      opacity: 0.88;
-      pointer-events:none;
-    }
-    .hero-card > *{ position: relative; }
-
-    .hero-left{ padding: 32px 30px 22px; }
-
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      font-size: 0.82rem;
+    .logoCard .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.80rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.74);
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.20);
-      border: 1px solid rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.78);
       width: fit-content;
     }
     .dot{
       width: 8px; height: 8px; border-radius: 999px;
-      background: rgba(194,168,117,0.98);
-      box-shadow: 0 0 0 6px rgba(194,168,117,0.12);
+      background: rgba(194,168,117,0.95);
+      box-shadow: 0 0 0 6px rgba(194,168,117,0.14);
     }
-
-    h1{
-      margin-top: 16px;
-      font-size: clamp(2.1rem, 4.4vw, 3.25rem);
-      line-height: 1.06;
-      letter-spacing: 0.02em;
-      color: rgba(255,255,255,0.94);
-      font-weight: 820;
-    }
-    .lead{
+    .logoBig{
       margin-top: 14px;
-      font-size: 1.08rem;
-      color: rgba(245,245,245,0.72);
-      max-width: 62ch;
-    }
-
-    .hero-cta{
-      margin-top: 18px;
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    /* BIG credentials band (above the fold) */
-    .cred-band{
-      margin-top: 18px;
-      border-radius: 20px;
-      background: rgba(0,0,0,0.22);
+      border-radius: 22px;
       border: 1px solid rgba(255,255,255,0.10);
-      overflow:hidden;
-    }
-    .cred-band-head{
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-    }
-    .cred-band-head strong{
-      font-size: 0.86rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 820;
-      color: rgba(255,255,255,0.86);
-    }
-    .cred-band-head span{
-      font-size: 0.86rem;
-      color: rgba(245,245,245,0.58);
-    }
-    .cred-band-body{
-      padding: 14px 14px 10px;
-    }
-
-    /* InterNACHI injection styling (prominent) */
-    .nachi-prominent{
-      display:block;
-      width: 100%;
-    }
-    /* Make injected seals center, larger, and spaced */
-    .nachi-prominent img{
-      display:inline-block;
-      max-height: 110px;
-      width:auto;
-      height:auto;
-      margin: 10px 12px;
-      vertical-align: middle;
-      filter: drop-shadow(0 18px 45px rgba(0,0,0,0.55));
-    }
-    .nachi-prominent a{
-      color: var(--sand2);
-      text-decoration:none;
-    }
-    .nachi-prominent a:hover{
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-    .nachi-center{
-      text-align:center;
-    }
-    .cred-foot{
-      padding: 10px 14px 14px;
-      color: rgba(245,245,245,0.54);
-      font-size: 0.95rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.02);
-    }
-    .cred-foot small{ display:block; line-height:1.45; }
-
-    /* Logo block (still strong, on dark) */
-    .logo-block{
-      margin-top: 16px;
-      padding: 14px;
-      border-radius: 20px;
-      background: rgba(0,0,0,0.20);
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: 0 22px 70px rgba(0,0,0,0.50);
-    }
-    .logo-block img{
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      opacity: 0.97;
-      filter: drop-shadow(0 20px 60px rgba(0,0,0,0.60));
-    }
-
-    /* Right column panels */
-    .side{
-      display:flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .panel{
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,0.11);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      box-shadow: 0 18px 60px rgba(0,0,0,0.52);
-      position: relative;
-      overflow:hidden;
-    }
-    .panel::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(720px 240px at 78% 0%, rgba(194,168,117,0.20), transparent 62%);
-      opacity: 0.9;
-      pointer-events:none;
-    }
-    .panel > *{ position: relative; }
-
-    .panel-inner{ padding: 22px 20px; }
-    .panel h2{
-      font-size: 0.90rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.84);
-      font-weight: 860;
-      margin-bottom: 10px;
-    }
-    .meta{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .meta-item{
-      display:flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 12px;
-      border-radius: 14px;
       background: rgba(0,0,0,0.18);
-      border: 1px solid rgba(255,255,255,0.07);
+      padding: 16px;
+      box-shadow: 0 18px 70px rgba(0,0,0,0.55);
     }
-    .meta-item span{
-      color: rgba(245,245,245,0.74);
-      font-size: 0.95rem;
+    .logoBig img{
+      width: 100%;
+      max-width: 940px;
+      margin: 0 auto;
+      opacity: 0.98;
+      filter: drop-shadow(0 22px 70px rgba(0,0,0,0.65));
     }
-    .meta-item strong{
-      color: rgba(194,168,117,0.92);
-      font-weight: 860;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
-      text-align:right;
-    }
-
-    .phone{
-      display:flex;
-      gap: 10px;
-      align-items:center;
+    .tagline{
       margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .phone a{
+      font-size: clamp(1.40rem, 2.6vw, 2.05rem);
+      line-height: 1.12;
+      font-weight: 800;
       color: rgba(255,255,255,0.94);
-      font-weight: 860;
+      letter-spacing: 0.01em;
     }
-    .phone small{
-      display:block;
-      color: var(--muted2);
-      margin-top: 2px;
+    .subline{
+      margin-top: 10px;
+      color: rgba(245,245,245,0.72);
+      font-size: 1.05rem;
+      max-width: 70ch;
+    }
+    .miniTrust{
+      margin-top: 14px;
+      display:flex; gap: 10px; flex-wrap:wrap;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.74);
+      font-size: 0.86rem;
       letter-spacing: 0.06em;
-      text-transform: uppercase;
+    }
+    .pill strong{
+      color: rgba(194,168,117,0.94);
+      font-weight: 850;
     }
 
-    /* Sections */
-    section.block{ padding: 34px 0; }
-    .block-title{
-      display:flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 14px;
+    /* Credentials block: BIG, CENTERPIECE */
+    .credCard{
+      border-radius: 26px;
+      border: 1px solid rgba(194,168,117,0.26);
+      background:
+        radial-gradient(750px 280px at 50% 0%, rgba(194,168,117,0.22), transparent 65%),
+        rgba(0,0,0,0.24);
+      padding: 18px;
+      overflow:hidden;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.55);
     }
-    .block-title h3{
-      font-size: 0.95rem;
+    .credHeader{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .credHeader h2{
+      font-size: 0.92rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.80);
-      font-weight: 860;
+      font-weight: 900;
     }
-    .block-title p{
-      color: rgba(245,245,245,0.52);
-      font-size: 0.98rem;
-      max-width: 64ch;
+    .credHeader p{
+      color: rgba(245,245,245,0.58);
+      font-size: 0.94rem;
       text-align:right;
+      max-width: 42ch;
     }
 
-    .grid3{
+    .sealStage{
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.22);
+      padding: 16px;
+    }
+
+    /* Make injected InterNACHI content BIG and clean */
+    .sealStage img{
+      max-width: 100% !important;
+      height: auto !important;
+      display: inline-block !important;
+      margin: 6px 10px 6px 0 !important;
+      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.55));
+    }
+    .sealStage a{
+      color: rgba(194,168,117,0.96);
+      text-decoration: none;
+    }
+    .sealStage a:hover{ text-decoration: underline; text-underline-offset: 4px; }
+
+    /* Some InterNACHI blocks use divs/tables; give them room */
+    .sealStage *{
+      max-width: 100%;
+    }
+
+    .credFoot{
+      margin-top: 10px;
+      color: rgba(245,245,245,0.56);
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+    .credFoot a{
+      color: rgba(194,168,117,0.96);
+    }
+
+    /* Section layout below hero */
+    section{
+      padding: 18px 0;
+    }
+    .sectionShell{
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.035);
+      box-shadow: 0 18px 70px rgba(0,0,0,0.45);
+      overflow:hidden;
+    }
+    .sectionInner{
+      padding: 20px;
+    }
+    .sectionTitle{
+      display:flex; justify-content:space-between; align-items:flex-end; gap: 14px;
+      margin-bottom: 12px;
+    }
+    .sectionTitle h3{
+      font-size: 0.92rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.80);
+      font-weight: 900;
+    }
+    .sectionTitle p{
+      color: rgba(245,245,245,0.55);
+      font-size: 0.96rem;
+      text-align:right;
+      max-width: 62ch;
+    }
+
+    .cards{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      gap: 12px;
     }
-    .card{
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,0.11);
-      background: rgba(255,255,255,0.04);
-      box-shadow: 0 16px 50px rgba(0,0,0,0.45);
-      padding: 18px 16px;
+    .info{
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      padding: 16px;
       position: relative;
       overflow:hidden;
     }
-    .card::before{
+    .info::before{
       content:"";
-      position:absolute;
-      inset:-1px;
-      background: radial-gradient(520px 180px at 20% 0%, rgba(194,168,117,0.15), transparent 58%);
-      opacity: 0.86;
+      position:absolute; inset:-1px;
+      background: radial-gradient(520px 160px at 18% 0%, rgba(194,168,117,0.14), transparent 62%);
+      opacity: 0.8;
       pointer-events:none;
     }
-    .card > *{ position: relative; }
-    .card h4{
+    .info > *{ position: relative; }
+    .info h4{
       font-size: 1.06rem;
-      font-weight: 860;
+      font-weight: 850;
       color: rgba(255,255,255,0.92);
       margin-bottom: 8px;
+      letter-spacing: 0.01em;
     }
-    .card p{ color: rgba(245,245,245,0.66); }
+    .info p{
+      color: rgba(245,245,245,0.66);
+      font-size: 1.00rem;
+    }
+
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
 
     .list{
-      margin-top: 12px;
+      margin-top: 10px;
       display:grid;
       gap: 10px;
     }
     .li{
-      display:flex;
-      align-items:flex-start;
-      gap: 10px;
-      padding: 12px 12px;
-      border-radius: 14px;
-      background: rgba(0,0,0,0.18);
-      border: 1px solid rgba(255,255,255,0.07);
-      color: rgba(245,245,245,0.68);
+      display:flex; align-items:flex-start; gap: 10px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.16);
+      color: rgba(245,245,245,0.66);
     }
     .check{
       width: 18px; height: 18px; border-radius: 6px;
-      border: 1px solid rgba(194,168,117,0.44);
-      background: rgba(194,168,117,0.10);
+      border: 1px solid rgba(194,168,117,0.46);
+      background: rgba(194,168,117,0.12);
       margin-top: 2px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-      flex: 0 0 auto;
       position: relative;
+      flex: 0 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
     .check::after{
       content:"";
       position:absolute;
       left: 5px; top: 2px;
       width: 6px; height: 10px;
-      border-right: 2px solid rgba(194,168,117,0.88);
-      border-bottom: 2px solid rgba(194,168,117,0.88);
+      border-right: 2px solid rgba(194,168,117,0.90);
+      border-bottom: 2px solid rgba(194,168,117,0.90);
       transform: rotate(40deg);
     }
 
-    /* Credentials wall section */
-    .cred-wall{
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,0.12);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position: relative;
-    }
-    .cred-wall::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(900px 260px at 22% 0%, rgba(194,168,117,0.24), transparent 62%);
-      opacity: 0.88;
-      pointer-events:none;
-    }
-    .cred-wall > *{ position: relative; }
-
-    .cred-wall-inner{
-      padding: 20px 18px 18px;
-    }
-    .cred-wall-head{
-      display:flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-      flex-wrap: wrap;
-    }
-    .cred-wall-head strong{
-      font-size: 0.92rem;
-      letter-spacing: 0.20em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.88);
-      font-weight: 920;
-    }
-    .cred-wall-head span{
-      color: rgba(245,245,245,0.56);
-      font-size: 0.96rem;
-    }
-    .cred-wall-body{
-      padding: 8px 10px 2px;
-      border-radius: 18px;
-      background: rgba(0,0,0,0.18);
-      border: 1px solid rgba(255,255,255,0.08);
-      text-align:center;
-    }
-    .cred-wall-body img{
-      max-height: 135px;
-      margin: 12px 14px;
-      filter: drop-shadow(0 20px 55px rgba(0,0,0,0.60));
-    }
-
-    /* Footer */
     footer{
-      padding: 34px 0 46px;
+      padding: 26px 0 44px;
+      margin-top: 18px;
       border-top: 1px solid rgba(255,255,255,0.10);
-      margin-top: 22px;
+      background: rgba(0,0,0,0.10);
     }
-    .footer-grid{
+    .footGrid{
       display:grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 16px;
+      gap: 14px;
       align-items:start;
     }
     .fine{
-      color: rgba(245,245,245,0.54);
+      color: rgba(245,245,245,0.52);
       font-size: 0.95rem;
-      max-width: 80ch;
+      max-width: 78ch;
     }
-    .fine a{
-      color: rgba(194,168,117,0.90);
-    }
-    .fine a:hover{
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-    .foot-actions{
-      display:flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: flex-end;
+    .fine a{ color: rgba(194,168,117,0.92); }
+    .fine a:hover{ text-decoration: underline; text-underline-offset: 4px; }
+    .footActions{
+      display:flex; flex-direction:column; align-items:flex-end; gap: 10px;
     }
 
-    .anchor{ scroll-margin-top: 90px; }
+    .anchor{ scroll-margin-top: 88px; }
 
+    /* Mobile */
     @media (max-width: 980px){
-      .hero-shell{ grid-template-columns: 1fr; }
+      nav{ display:none; }
       .actions{ min-width: unset; }
       .brand{ min-width: unset; }
-      .nav{ display:none; }
-      .grid3{ grid-template-columns: 1fr; }
-      .block-title{ flex-direction: column; align-items:flex-start; }
-      .block-title p{ text-align:left; }
-      .footer-grid{ grid-template-columns: 1fr; }
-      .foot-actions{ align-items:flex-start; }
-      .nachi-prominent img{ max-height: 100px; }
-      .cred-wall-body img{ max-height: 120px; }
+      .headlineRow{ grid-template-columns: 1fr; }
+      .cards{ grid-template-columns: 1fr; }
+      .twoCol{ grid-template-columns: 1fr; }
+      .footGrid{ grid-template-columns: 1fr; }
+      .footActions{ align-items:flex-start; }
+      .sectionTitle{ flex-direction:column; align-items:flex-start; }
+      .sectionTitle p{ text-align:left; }
+      .credHeader{ flex-direction:column; align-items:flex-start; }
+      .credHeader p{ text-align:left; }
     }
-
     @media (max-width: 520px){
-      .hero{ padding: 36px 0 14px; }
-      .hero-left{ padding: 24px 18px 18px; }
-      .panel-inner{ padding: 18px 16px; }
-      .pill{ width: 100%; }
-      .hero-cta{ width: 100%; }
-      .cred-band-head{ flex-direction: column; align-items:flex-start; }
-      .nachi-prominent img{ max-height: 92px; margin: 10px 10px; }
+      .heroGrid{ padding: 16px; }
+      .logoCard, .credCard{ padding: 16px; }
+      .sealStage{ padding: 12px; }
+      .btn{ width: 100%; }
+      .actions{ width: 100%; flex-direction:column; }
     }
   </style>
 </head>
@@ -628,6 +490,7 @@
 <body>
   <div class="bg"></div>
   <div class="grain"></div>
+  <div class="vignette"></div>
 
   <script>
     window.addEventListener("load", () => {
@@ -638,259 +501,241 @@
     });
   </script>
 
-  <header class="topbar">
+  <header>
     <div class="wrap">
-      <div class="topbar-inner">
+      <div class="top">
         <a class="brand" href="#top" aria-label="StoneMark Inspections home">
-          <div class="mark" aria-hidden="true"></div>
-          <div class="brand-title">
+          <div class="chip" aria-hidden="true"></div>
+          <div>
             <strong>StoneMark</strong>
             <span>Home Inspections</span>
           </div>
         </a>
 
-        <nav class="nav" aria-label="Primary navigation">
+        <nav aria-label="Primary navigation">
           <a href="#services">Services</a>
-          <a href="#reporting">Reporting</a>
+          <a href="#process">Process</a>
           <a href="#credentials">Credentials</a>
           <a href="#area">Service Area</a>
         </nav>
 
         <div class="actions">
-          <a class="pill ghost" href="tel:+12703498237">Call/Text</a>
-          <a class="pill primary" href="request.html">Request Inspection</a>
+          <a class="btn" href="tel:+12703498237">Call/Text</a>
+          <a class="btn primary" href="request.html">Request Inspection</a>
         </div>
       </div>
     </div>
   </header>
 
-  <main id="top">
+  <main id="top" class="wrap">
+    <!-- HERO: big logo + BIG credentials -->
     <section class="hero">
-      <div class="wrap">
-        <div class="hero-shell">
+      <div class="heroShell">
+        <div class="heroGrid">
+          <div class="headlineRow">
+            <div class="logoCard">
+              <div class="kicker"><span class="dot"></span> Licensed • Insured • Western Kentucky</div>
 
-          <!-- LEFT -->
-          <div class="hero-card">
-            <div class="hero-left">
-              <div class="kicker"><span class="dot"></span> Certified • Insured • Western Kentucky</div>
-
-              <h1>
-                Certified Professional Inspector®<br/>
-                with clear, photo-documented reporting.
-              </h1>
-
-              <p class="lead">
-                StoneMark Inspections delivers calm, structured inspections built for real-world decisions.
-                No theatrics. No filler. Just clarity.
-              </p>
-
-              <div class="hero-cta">
-                <a class="pill primary" href="request.html">Request an Inspection</a>
-                <a class="pill ghost" href="tel:+12703498237">Call/Text (270) 349-8237</a>
-              </div>
-
-              <!-- 🔥 PROMINENT credentials band -->
-              <div class="cred-band" aria-label="Prominent credentials and certifications">
-                <div class="cred-band-head">
-                  <strong>Credentials &amp; Certifications</strong>
-                  <span>Click any seal to verify</span>
-                </div>
-
-                <div class="cred-band-body nachi-center">
-                  <div class="nachi-prominent">
-                    <!-- ✅ InterNACHI live seals (BIG, above-the-fold) -->
-                    <script src="https://www.nachi.org/webseals/legacy/education?nachiid=NACHI26011311&include_universal=1"></script>
-                  </div>
-                </div>
-
-                <div class="cred-foot">
-                  <small>
-                    Certifications acquired through
-                    <a href="https://www.nachi.org/education.htm">home inspector training</a>
-                    from InterNACHI&reg;.
-                  </small>
-                </div>
-              </div>
-
-              <!-- Your logo stays strong on dark -->
-              <div class="logo-block" aria-label="StoneMark logo">
+              <div class="logoBig" aria-label="StoneMark logo">
                 <img src="logo.PNG" alt="StoneMark Inspections Logo" />
+              </div>
+
+              <div class="tagline">Calm, structured inspections that people actually understand.</div>
+              <div class="subline">
+                Photo-documented findings. Plain language. Reports delivered within 24 hours—built for buyers, homeowners,
+                and agents who want clarity without drama.
+              </div>
+
+              <div class="miniTrust" aria-label="Trust highlights">
+                <div class="pill"><strong>24h</strong> report delivery</div>
+                <div class="pill"><strong>Photos</strong> embedded</div>
+                <div class="pill"><strong>Clear</strong> priorities</div>
+              </div>
+
+              <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn primary" href="request.html" style="flex:1 1 230px;">Request Online</a>
+                <a class="btn" href="tel:+12703498237" style="flex:1 1 230px;">(270) 349-8237</a>
+              </div>
+            </div>
+
+            <div class="credCard anchor" id="credentials">
+              <div class="credHeader">
+                <h2>Credentials &amp; Certifications</h2>
+                <p>Prominent, verifiable seals. Click any logo to validate directly through InterNACHI.</p>
+              </div>
+
+              <div class="sealStage" aria-label="InterNACHI web seals">
+                <!-- ✅ BIG placement: InterNACHI generates the logos/links here -->
+                <script src="https://www.nachi.org/webseals/legacy/education?nachiid=NACHI26011311&include_universal=1"></script>
+
+                <div class="credFoot">
+                  Certifications acquired through
+                  <a href="https://www.nachi.org/education.htm">home inspector training</a>
+                  from InterNACHI&reg;.
+                </div>
+              </div>
+
+              <div class="list" style="margin-top:12px;">
+                <div class="li"><span class="check"></span><span>Credentials shown live from InterNACHI (not screenshots).</span></div>
+                <div class="li"><span class="check"></span><span>Click-through verification for clients and agents.</span></div>
+                <div class="li"><span class="check"></span><span>Trust-forward presentation—front and center.</span></div>
+              </div>
+
+              <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn" href="#process" style="flex:1 1 200px;">How It Works</a>
+                <a class="btn primary" href="request.html" style="flex:1 1 200px;">Book Now</a>
               </div>
             </div>
           </div>
 
-          <!-- RIGHT -->
-          <aside class="side" aria-label="Quick facts">
-            <div class="panel">
-              <div class="panel-inner">
-                <h2>At a glance</h2>
-                <div class="meta">
-                  <div class="meta-item">
-                    <span>Report delivery</span>
-                    <strong>Within 24 hours</strong>
-                  </div>
-                  <div class="meta-item">
-                    <span>Report style</span>
-                    <strong>Photo-documented</strong>
-                  </div>
-                  <div class="meta-item">
-                    <span>Coverage</span>
-                    <strong>E&amp;O + GL insured</strong>
-                  </div>
-                  <div class="meta-item">
-                    <span>Service area</span>
-                    <strong>Western Kentucky</strong>
+          <!-- Below-hero: quick facts strip -->
+          <div class="sectionShell">
+            <div class="sectionInner">
+              <div class="sectionTitle" style="margin-bottom:10px;">
+                <h3>At a glance</h3>
+                <p>Designed to feel premium, calm, and reliable—before you even open the report.</p>
+              </div>
+
+              <div class="twoCol">
+                <div class="info">
+                  <h4>Reporting built for speed</h4>
+                  <p>Structured, photo-documented reports delivered within 24 hours in most cases.</p>
+                  <div class="list">
+                    <div class="li"><span class="check"></span><span>Easy to scan system-by-system</span></div>
+                    <div class="li"><span class="check"></span><span>Photos placed where they matter</span></div>
                   </div>
                 </div>
 
-                <div class="phone">
-                  <div>
-                    <a href="tel:+12703498237">(270) 349-8237</a>
-                    <small>Call or text</small>
-                  </div>
-                  <div style="margin-left:auto;">
-                    <a class="pill ghost" href="request.html" style="padding:10px 12px; letter-spacing:0.12em;">Request</a>
+                <div class="info">
+                  <h4>Clear next steps</h4>
+                  <p>When concerns are found, recommendations point to qualified evaluation—without guessing repairs.</p>
+                  <div class="list">
+                    <div class="li"><span class="check"></span><span>Plain language explanations</span></div>
+                    <div class="li"><span class="check"></span><span>Priorities highlighted for decision-making</span></div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div class="panel">
-              <div class="panel-inner">
-                <h2>What you get</h2>
-                <div class="list">
-                  <div class="li"><span class="check"></span><span>System-by-system structure that’s easy to scan.</span></div>
-                  <div class="li"><span class="check"></span><span>Photos embedded where they clarify the issue.</span></div>
-                  <div class="li"><span class="check"></span><span>Clear next-step guidance (qualified evaluation when needed).</span></div>
-                  <div class="li"><span class="check"></span><span>A report agents and clients can actually use.</span></div>
-                </div>
-              </div>
-            </div>
-          </aside>
+          </div>
 
         </div>
       </div>
     </section>
 
     <!-- Services -->
-    <section class="block anchor" id="services">
-      <div class="wrap">
-        <div class="block-title">
-          <h3>Services</h3>
-          <p>Simple options. Professional execution. Clear deliverables.</p>
-        </div>
-
-        <div class="grid3">
-          <div class="card">
-            <h4>Buyer’s Inspection</h4>
-            <p>A thorough evaluation of accessible systems and components, documented with photos and clear organization.</p>
+    <section class="anchor" id="services">
+      <div class="sectionShell">
+        <div class="sectionInner">
+          <div class="sectionTitle">
+            <h3>Services</h3>
+            <p>Simple options. Professional execution. Clear deliverables.</p>
           </div>
 
-          <div class="card">
-            <h4>Pre-Listing Inspection</h4>
-            <p>Identify concerns before going to market. Reduce surprises and give sellers a cleaner path forward.</p>
-          </div>
+          <div class="cards">
+            <div class="info">
+              <h4>Buyer’s Inspection</h4>
+              <p>A thorough evaluation of accessible systems and components—documented with photos and clear organization.</p>
+            </div>
 
-          <div class="card">
-            <h4>Maintenance Check</h4>
-            <p>A proactive snapshot of condition, priorities, and recommended follow-up for homeowners.</p>
+            <div class="info">
+              <h4>Pre-Listing Inspection</h4>
+              <p>Identify concerns before going to market. Reduce surprises and give sellers a cleaner path forward.</p>
+            </div>
+
+            <div class="info">
+              <h4>Maintenance Check</h4>
+              <p>An objective snapshot of condition, priorities, and recommended professional follow-up.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Reporting -->
-    <section class="block anchor" id="reporting">
-      <div class="wrap">
-        <div class="block-title">
-          <h3>Reporting approach</h3>
-          <p>Built to be read. Built to be useful.</p>
-        </div>
-
-        <div class="grid3">
-          <div class="card">
-            <h4>Photo-Documented</h4>
-            <p>Photos are embedded where they add clarity—supporting observations without overwhelming the reader.</p>
+    <!-- Process -->
+    <section class="anchor" id="process">
+      <div class="sectionShell">
+        <div class="sectionInner">
+          <div class="sectionTitle">
+            <h3>Process</h3>
+            <p>Built to be calm and predictable—for clients and agents.</p>
           </div>
 
-          <div class="card">
-            <h4>Plain Language</h4>
-            <p>No theatrics. No filler. Findings are written for normal people—not just contractors.</p>
-          </div>
+          <div class="cards">
+            <div class="info">
+              <h4>1) Schedule</h4>
+              <p>Request online anytime. Call/text for time-sensitive scheduling.</p>
+              <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn primary" href="request.html" style="flex:1 1 220px;">Request Online</a>
+                <a class="btn" href="tel:+12703498237" style="flex:1 1 220px;">Call/Text</a>
+              </div>
+            </div>
 
-          <div class="card">
-            <h4>Qualified Follow-Up</h4>
-            <p>When concerns are identified, the report recommends evaluation by qualified professionals where appropriate.</p>
+            <div class="info">
+              <h4>2) Inspect</h4>
+              <p>System-by-system inspection of accessible areas with photo documentation throughout.</p>
+              <div class="list">
+                <div class="li"><span class="check"></span><span>Exterior, roof, structure, attic (when accessible)</span></div>
+                <div class="li"><span class="check"></span><span>Electrical, plumbing, HVAC, interior systems</span></div>
+              </div>
+            </div>
+
+            <div class="info">
+              <h4>3) Report</h4>
+              <p>A clear, shareable report that highlights issues and next steps without unnecessary noise.</p>
+              <div class="list">
+                <div class="li"><span class="check"></span><span>Photos embedded with findings</span></div>
+                <div class="li"><span class="check"></span><span>Recommendations for qualified evaluation when needed</span></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Credentials wall -->
-    <section class="block anchor" id="credentials">
-      <div class="wrap">
-        <div class="block-title">
-          <h3>Credentials</h3>
-          <p>Full certification display (click any badge for details).</p>
-        </div>
-
-        <div class="cred-wall">
-          <div class="cred-wall-inner">
-            <div class="cred-wall-head">
-              <strong>InterNACHI® Certifications</strong>
-              <span>Live seals pulled directly from InterNACHI</span>
-            </div>
-
-            <div class="cred-wall-body">
-              <!-- ✅ Same script again is intentional: this section is a full “wall”.
-                   If it duplicates too much, delete this second instance. -->
-              <script src="https://www.nachi.org/webseals/legacy/education?nachiid=NACHI26011311&include_universal=1"></script>
-            </div>
+    <!-- Service Area / Contact -->
+    <section class="anchor" id="area">
+      <div class="sectionShell">
+        <div class="sectionInner">
+          <div class="sectionTitle">
+            <h3>Service Area</h3>
+            <p>Serving Western Kentucky, including the Paducah region and surrounding communities.</p>
           </div>
-        </div>
 
-      </div>
-    </section>
+          <div class="twoCol">
+            <div class="info">
+              <h4>Contact</h4>
+              <p>
+                <a href="mailto:kyle@stonemarkinspections.com">kyle@stonemarkinspections.com</a><br/>
+                <a href="tel:+12703498237">(270) 349-8237</a>
+              </p>
+              <div class="list">
+                <div class="li"><span class="check"></span><span>Call or text for fast scheduling</span></div>
+                <div class="li"><span class="check"></span><span>Online request form available 24/7</span></div>
+              </div>
+            </div>
 
-    <!-- Service area -->
-    <section class="block anchor" id="area">
-      <div class="wrap">
-        <div class="block-title">
-          <h3>Service Area</h3>
-          <p>Serving Western Kentucky, including the Paducah region and surrounding communities.</p>
-        </div>
-
-        <div class="grid3">
-          <div class="card">
-            <h4>Scheduling</h4>
-            <p>Request online anytime. Call/text for time-sensitive scheduling or tight deadlines.</p>
-            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-              <a class="pill primary" href="request.html" style="flex:1 1 220px;">Request Inspection</a>
-              <a class="pill ghost" href="tel:+12703498237" style="flex:1 1 220px;">Call/Text</a>
+            <div class="info">
+              <h4>Ready to book?</h4>
+              <p>Send a request in under a minute. You’ll receive a prompt confirmation and next steps.</p>
+              <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn primary" href="request.html" style="flex:1 1 220px;">Request Inspection</a>
+                <a class="btn" href="#credentials" style="flex:1 1 220px;">View Credentials</a>
+              </div>
             </div>
           </div>
 
-          <div class="card">
-            <h4>Professional, not performative</h4>
-            <p>Competence and restraint: document clearly, communicate calmly, and respect the transaction.</p>
-          </div>
-
-          <div class="card">
-            <h4>What to expect</h4>
-            <p>Clear findings, embedded photos, and next-step guidance when further evaluation is warranted.</p>
-          </div>
         </div>
       </div>
     </section>
 
     <footer>
       <div class="wrap">
-        <div class="footer-grid">
+        <div class="footGrid">
           <div class="fine">
-            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-              <div class="mark" aria-hidden="true"></div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+              <div class="chip" aria-hidden="true"></div>
               <div>
-                <div style="letter-spacing:0.14em; text-transform:uppercase; font-weight:860; color:rgba(255,255,255,0.90);">StoneMark Inspections</div>
+                <div style="letter-spacing:0.14em; text-transform:uppercase; font-weight:900; color:rgba(255,255,255,0.90);">StoneMark Inspections</div>
                 <div style="color:rgba(245,245,245,0.50); font-size:0.92rem;">Western Kentucky</div>
               </div>
             </div>
@@ -905,10 +750,9 @@
             </div>
           </div>
 
-          <div class="foot-actions">
-            <a class="pill primary" href="request.html">Request Inspection</a>
-            <a class="pill ghost" href="#credentials">Credentials</a>
-            <a class="pill ghost" href="#services">Services</a>
+          <div class="footActions">
+            <a class="btn primary" href="request.html">Request Inspection</a>
+            <a class="btn" href="#top">Back to top</a>
           </div>
         </div>
       </div>
