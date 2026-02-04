@@ -3,65 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- Primary SEO -->
   <title>StoneMark Inspections | Home Inspector in Paducah, KY & Western Kentucky</title>
-  <meta name="description" content="StoneMark Inspections provides licensed, insured home inspections across Paducah and Western Kentucky. Clear, photo-documented reports delivered fast." />
+  <meta name="description" content="StoneMark Inspections provides professional home inspections in Paducah, KY and Western Kentucky. Photo-documented reports, clear findings, fast turnaround. Add-ons: radon testing, mold/indoor air quality screening, pool & spa inspections, and thermal imaging." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://stonemarkinspections.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="StoneMark Inspections | Home Inspector in Paducah, KY & Western Kentucky" />
+  <meta property="og:description" content="Licensed, insured home inspections with photo-documented reporting. Radon, mold/IAQ, pool & spa, thermal imaging." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://stonemarkinspections.com/" />
+  <!-- Optional: set a real image URL once you have it -->
+  <!-- <meta property="og:image" content="https://stonemarkinspections.com/og.jpg" /> -->
+
+  <meta name="theme-color" content="#000000" />
+
+  <!-- LocalBusiness Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"StoneMark Inspections",
+    "url":"https://stonemarkinspections.com/",
+    "telephone":"+1-270-349-8237",
+    "areaServed":[
+      {"@type":"City","name":"Paducah"},
+      {"@type":"AdministrativeArea","name":"McCracken County"},
+      {"@type":"AdministrativeArea","name":"Western Kentucky"},
+      {"@type":"AdministrativeArea","name":"Marshall County"},
+      {"@type":"AdministrativeArea","name":"Graves County"},
+      {"@type":"AdministrativeArea","name":"Calloway County"}
+    ],
+    "serviceType":[
+      "Home Inspection",
+      "Radon Testing",
+      "Mold Inspection",
+      "Indoor Air Quality Screening",
+      "Pool and Spa Inspection",
+      "Thermal Imaging"
+    ]
+  }
+  </script>
 
   <style>
     :root{
-      --bg:#000;
-      --sandstone:#c2a875;
-      --sandstone-soft:rgba(194,168,117,.18);
-      --sandstone-border:rgba(194,168,117,.26);
-      --text:#fff;
+      --bg:#000000;
+      --sand:#c2a875;
+      --sand-soft:rgba(194,168,117,.18);
+      --sand-border:rgba(194,168,117,.26);
+      --text:#ffffff;
       --muted:rgba(255,255,255,.70);
       --muted2:rgba(255,255,255,.55);
 
       --nav-h:78px;
       --max:1320px;
 
-      --tile-bg:rgba(0,0,0,.52);
-      --tile-bg2:rgba(0,0,0,.62);
+      --tile-bg:rgba(0,0,0,.54);
+      --tile-bg2:rgba(0,0,0,.66);
       --tile-border:rgba(194,168,117,.22);
-      --tile-shadow: 0 14px 40px rgba(0,0,0,.55);
-      --tile-radius:20px;
+      --tile-shadow:0 18px 50px rgba(0,0,0,.60);
+      --tile-radius:22px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
       overflow-x:hidden;
     }
 
-    /* Background like the render: image + soft vignette */
+    /* Cinematic background like the render */
     .page-bg{
       position:fixed; inset:0;
       background:
-        radial-gradient(1100px 600px at 34% 52%, rgba(194,168,117,.12), transparent 60%),
-        radial-gradient(900px 500px at 70% 40%, rgba(194,168,117,.08), transparent 62%),
-        linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.82)),
-        url("assets/hero-bg.jpg");
-      background-size: cover;
-      background-position: center;
-      filter:saturate(.95) contrast(1.02);
+        radial-gradient(1100px 650px at 34% 55%, rgba(194,168,117,.14), transparent 60%),
+        radial-gradient(900px 540px at 70% 40%, rgba(194,168,117,.10), transparent 62%),
+        linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.86)),
+        /* if you later add a hero photo background, set it here and keep the gradients above it */
+        /* url("hero-bg.jpg") */
+        ;
+      background-size:cover;
+      background-position:center;
       transform:scale(1.02);
       z-index:-3;
     }
     .vignette{
       position:fixed; inset:0;
       background:
-        radial-gradient(1200px 700px at 40% 55%, transparent 35%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.78) 100%);
+        radial-gradient(1200px 700px at 40% 55%, transparent 35%, rgba(0,0,0,.58) 72%, rgba(0,0,0,.82) 100%);
       z-index:-2;
-      pointer-events:none;
-    }
-    .grain{
-      position:fixed; inset:0;
-      background-image:url("assets/grain.png");
-      opacity:.06;
-      mix-blend-mode:overlay;
-      z-index:-1;
       pointer-events:none;
     }
 
@@ -74,7 +108,7 @@
       position:sticky;
       top:0;
       z-index:50;
-      background: linear-gradient(to bottom, rgba(0,0,0,.72), rgba(0,0,0,.20));
+      background:linear-gradient(to bottom, rgba(0,0,0,.76), rgba(0,0,0,.22));
       backdrop-filter: blur(6px);
       border-bottom: 1px solid rgba(255,255,255,.06);
     }
@@ -88,33 +122,28 @@
       display:flex;
       align-items:center;
       gap:12px;
-      min-width: 270px;
+      min-width: 280px;
       text-decoration:none;
       color:inherit;
     }
     .brand-mark{
-      width:46px;height:46px;border-radius:50%;
+      width:46px;height:46px;border-radius:999px;
       border:1px solid rgba(194,168,117,.22);
       background: radial-gradient(circle at 30% 30%, rgba(194,168,117,.25), rgba(0,0,0,.15));
       display:grid;place-items:center;
       box-shadow: 0 10px 25px rgba(0,0,0,.45);
       overflow:hidden;
+      flex:0 0 46px;
     }
-    .brand-mark img{width:100%;height:100%;object-fit:cover;display:block}
-    .brand-text{
-      line-height:1.05;
-      letter-spacing:.6px;
+    .brand-mark span{
+      font-weight:800;
+      letter-spacing:.8px;
+      color:rgba(194,168,117,.95);
+      font-size:12px;
     }
-    .brand-text .top{
-      font-weight:700;
-      font-size:15px;
-    }
-    .brand-text .sub{
-      font-size:10.5px;
-      color: var(--muted2);
-      letter-spacing: 1.8px;
-      margin-top:4px;
-    }
+    .brand-text{ line-height:1.05; letter-spacing:.6px; }
+    .brand-text .top{ font-weight:800; font-size:15px; }
+    .brand-text .sub{ font-size:10.5px; color: var(--muted2); letter-spacing: 1.8px; margin-top:4px; }
 
     nav{
       flex:1;
@@ -160,15 +189,12 @@
     }
     .pill.gold{
       color:#1b1408;
-      background: linear-gradient(135deg, rgba(194,168,117,.95), rgba(214,189,137,.92));
+      background: linear-gradient(135deg, rgba(194,168,117,.96), rgba(214,189,137,.92));
       border-color: rgba(194,168,117,.40);
     }
 
     /* Hero */
-    main{
-      display:flex;
-      justify-content:center;
-    }
+    main{ display:flex; justify-content:center; }
     .hero{
       width:min(var(--max), calc(100% - 48px));
       min-height: calc(100vh - var(--nav-h));
@@ -176,37 +202,43 @@
       grid-template-columns: 1.1fr 1fr;
       align-items:center;
       gap: 46px;
-      padding: 34px 0 60px;
+      padding: 34px 0 40px;
     }
 
-    /* Portrait: NO BOX. Soft fade like the render */
+    /* SEO: keep headings in DOM (visually hidden, not display:none) */
+    .sr-only{
+      position:absolute;
+      width:1px;height:1px;
+      padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0,0,0,0);
+      white-space:nowrap;border:0;
+    }
+
+    /* Portrait: BIG, no box, with soft fade */
     .portrait{
       position:relative;
-      height: 560px;
+      height: 640px;
       display:flex;
       align-items:flex-end;
       justify-content:flex-start;
-      overflow:visible; /* important: no clipping */
+      overflow:visible;
     }
     .portrait img{
-      height: 720px;
+      height: 640px;
       width:auto;
       display:block;
-      filter:
-        drop-shadow(0 30px 60px rgba(0,0,0,.75))
-        saturate(1.02)
-        contrast(1.02);
-      /* soft edge fade so it blends into background */
-      -webkit-mask-image: radial-gradient(circle at 45% 40%, #000 62%, transparent 82%);
-              mask-image: radial-gradient(circle at 45% 40%, #000 62%, transparent 82%);
+      filter: drop-shadow(0 28px 62px rgba(0,0,0,.75)) saturate(1.02) contrast(1.02);
+      /* soft edge fade like the render */
+      -webkit-mask-image: radial-gradient(circle at 42% 42%, #000 66%, transparent 88%);
+              mask-image: radial-gradient(circle at 42% 42%, #000 66%, transparent 88%);
     }
     .portrait::after{
       content:"";
       position:absolute;
-      inset:-40px -60px -40px -60px;
-      background: radial-gradient(600px 420px at 45% 55%, rgba(0,0,0,.0), rgba(0,0,0,.55) 70%, rgba(0,0,0,.0) 88%);
+      inset:-40px -80px -40px -80px;
+      background: radial-gradient(640px 520px at 42% 52%, transparent 42%, rgba(0,0,0,.76) 78%);
       pointer-events:none;
-
+    }
 
     /* Tiles */
     .actions{
@@ -219,7 +251,7 @@
     .tiles{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px 18px;
+      gap: 18px;
       width: 100%;
       max-width: 610px;
     }
@@ -235,41 +267,38 @@
       box-shadow: var(--tile-shadow);
       text-decoration:none;
       color:inherit;
-      transition: transform .15s ease, border-color .15s ease;
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
     }
     .tile:hover{
       transform: translateY(-2px);
-      border-color: rgba(194,168,117,.38);
+      border-color: rgba(194,168,117,.40);
+      box-shadow: 0 22px 60px rgba(0,0,0,.62);
     }
     .tile::before{
       content:"";
-      position:absolute;
-      inset:0;
+      position:absolute; inset:0;
       border-radius: var(--tile-radius);
-      background: radial-gradient(220px 120px at 18% 30%, rgba(194,168,117,.14), transparent 60%);
+      background: radial-gradient(240px 140px at 18% 30%, rgba(194,168,117,.14), transparent 60%);
       pointer-events:none;
     }
+
     .icon{
-      width:56px;
-      height:56px;
+      width:56px;height:56px;
       flex:0 0 56px;
       display:grid;
       place-items:center;
-      filter: drop-shadow(0 10px 18px rgba(194,168,117,.15));
+      filter: drop-shadow(0 10px 18px rgba(194,168,117,.16));
     }
     .icon svg{
-      width:56px;
-      height:56px;
-      fill: var(--sandstone);
+      width:56px;height:56px;
+      fill: var(--sand);
       opacity:.95;
     }
-    .ttext{
-      line-height:1.05;
-    }
+    .ttext{ line-height:1.06; }
     .ttext .top{
       font-size:18px;
-      font-weight:700;
-      letter-spacing:.3px;
+      font-weight:800;
+      letter-spacing:.2px;
       margin-bottom:6px;
     }
     .ttext .sub{
@@ -279,7 +308,7 @@
     }
 
     .micro{
-      margin-top: 10px;
+      margin-top: 8px;
       font-size:10.5px;
       letter-spacing:2.3px;
       text-transform:uppercase;
@@ -288,6 +317,60 @@
       width:100%;
       text-align:center;
       max-width: 610px;
+    }
+
+    /* Below-the-fold SEO content (looks premium, not spammy) */
+    .below{
+      display:flex;
+      justify-content:center;
+      padding: 28px 0 64px;
+    }
+    .below .wrap{
+      width:min(var(--max), calc(100% - 48px));
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      align-items:start;
+    }
+    .panel{
+      background: rgba(0,0,0,.40);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 22px;
+      padding: 22px 22px;
+      box-shadow: 0 18px 46px rgba(0,0,0,.55);
+    }
+    .panel h2{
+      font-size:18px;
+      letter-spacing:.4px;
+      margin-bottom: 10px;
+    }
+    .panel p, .panel li{
+      color: rgba(255,255,255,.78);
+      line-height:1.55;
+      font-size:14px;
+    }
+    .panel ul{ margin: 10px 0 0 18px; }
+    .panel a{ color: rgba(194,168,117,.95); text-decoration:none; }
+    .panel a:hover{ text-decoration:underline; }
+
+    /* InterNACHI embed (scroll down to see) */
+    .cred{
+      margin-top: 22px;
+      padding: 18px;
+    }
+    .cred iframe{
+      width:100%;
+      min-height: 520px;
+      border:0;
+      border-radius: 18px;
+      background: rgba(0,0,0,.20);
+    }
+    .cred .hint{
+      font-size:12px;
+      color: rgba(255,255,255,.52);
+      letter-spacing:1.6px;
+      text-transform:uppercase;
+      margin-bottom: 10px;
     }
 
     /* Responsive */
@@ -299,20 +382,18 @@
         gap: 26px;
         padding-top: 22px;
       }
-      .portrait{
-        height: 420px;
-        justify-content:center;
-      }
-      .portrait img{height:420px}
-      .actions{align-items:center}
-      .tiles{max-width: 680px}
+      .portrait{ height: 440px; justify-content:center; }
+      .portrait img{ height: 440px; }
+      .actions{ align-items:center; }
+      .tiles{ max-width: 680px; }
+      .below .wrap{ grid-template-columns:1fr; }
     }
     @media (max-width: 560px){
-      .tiles{grid-template-columns:1fr}
-      .portrait{height: 360px}
-      .portrait img{height:360px}
-      .nav-wrap{width:calc(100% - 24px)}
-      .pill{padding:0 14px}
+      .tiles{ grid-template-columns:1fr; }
+      .portrait{ height: 380px; }
+      .portrait img{ height: 380px; }
+      .nav-wrap{ width:calc(100% - 24px); }
+      .pill{ padding:0 14px; }
     }
   </style>
 </head>
@@ -320,16 +401,11 @@
 <body>
   <div class="page-bg"></div>
   <div class="vignette"></div>
-  <!-- optional: add a grain.png asset for cinematic texture -->
-  <!-- <div class="grain"></div> -->
 
   <header>
     <div class="nav-wrap">
       <a class="brand" href="index.html" aria-label="StoneMark Home">
-        <div class="brand-mark">
-          <!-- swap this for your round SMI mark if you have it -->
-          <img src="assets/smi-mark.png" alt="SMI" onerror="this.style.display='none'; this.parentNode.style.fontWeight='700'; this.parentNode.style.color='rgba(194,168,117,.9)'; this.parentNode.textContent='SMI';" />
-        </div>
+        <div class="brand-mark" aria-hidden="true"><span>SMI</span></div>
         <div class="brand-text">
           <div class="top">STONEMARK</div>
           <div class="sub">HOME INSPECTIONS</div>
@@ -352,21 +428,22 @@
   </header>
 
   <main>
-    <section class="hero" aria-label="StoneMark hero">
+    <section class="hero" aria-label="StoneMark Inspections in Paducah KY and Western Kentucky">
+      <!-- Hidden headings for SEO -->
+      <h1 class="sr-only">Home Inspector in Paducah, KY & Western Kentucky | StoneMark Inspections</h1>
+      <p class="sr-only">Professional home inspections with photo-documented reports. Add-ons available: radon testing, mold/indoor air quality screening, pool & spa inspections, and thermal imaging.</p>
 
-      <!-- LEFT: portrait with NO box -->
+      <!-- LEFT: portrait -->
       <div class="portrait">
-        <!-- Use a transparent cutout PNG for best match -->
-        <img src="/logo1.png" alt="StoneMark " />
+        <img src="logo1.png" alt="StoneMark Inspections - Home Inspector serving Paducah, KY and Western Kentucky" />
       </div>
 
-      <!-- RIGHT: tiles -->
+      <!-- RIGHT: action tiles -->
       <div class="actions">
         <div class="tiles">
 
-          <a class="tile" href="request.html">
+          <a class="tile" href="request.html" aria-label="Request Inspection">
             <div class="icon" aria-hidden="true">
-              <!-- clipboard-check -->
               <svg viewBox="0 0 24 24">
                 <path d="M16 2H8a2 2 0 0 0-2 2v1H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V4a2 2 0 0 0-2-2zm0 3H8V4h8v1zM8.6 16.6l-1.2-1.2L6 16.8l2.6 2.6L18 10l-1.4-1.4-8 8z"/>
               </svg>
@@ -377,9 +454,8 @@
             </div>
           </a>
 
-          <a class="tile" href="tel:+12703498237">
+          <a class="tile" href="tel:+12703498237" aria-label="Call or Text StoneMark Inspections">
             <div class="icon" aria-hidden="true">
-              <!-- phone -->
               <svg viewBox="0 0 24 24">
                 <path d="M6.6 10.8c1.7 3.1 3.5 4.9 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.7 3.9.7.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.1 22 2 13.9 2 3c0-.6.4-1 1-1h3.8c.6 0 1 .4 1 1 0 1.4.2 2.7.7 3.9.1.4 0 .8-.3 1.1l-2.3 2.8z"/>
               </svg>
@@ -390,9 +466,8 @@
             </div>
           </a>
 
-          <a class="tile" href="services.html#home">
+          <a class="tile" href="services.html#home" aria-label="Home Inspection services">
             <div class="icon" aria-hidden="true">
-              <!-- home -->
               <svg viewBox="0 0 24 24">
                 <path d="M12 3l9 8h-3v10h-5v-6H11v6H6V11H3l9-8z"/>
               </svg>
@@ -403,9 +478,8 @@
             </div>
           </a>
 
-          <a class="tile" href="services.html#radon">
+          <a class="tile" href="services.html#radon" aria-label="Radon Testing">
             <div class="icon" aria-hidden="true">
-              <!-- triangle / radon vibe -->
               <svg viewBox="0 0 24 24">
                 <path d="M12 2l10 18H2L12 2zm0 4.2L5.6 18h12.8L12 6.2z"/>
                 <path d="M10 10h3.2c1.5 0 2.6 1 2.6 2.5 0 1.4-1.1 2.5-2.6 2.5H12v2h-2v-7zm2 1.7v1.6h1.2c.6 0 1-.3 1-.8s-.4-.8-1-.8H12z" />
@@ -417,9 +491,8 @@
             </div>
           </a>
 
-          <a class="tile" href="services.html#mold">
+          <a class="tile" href="services.html#mold" aria-label="Mold Inspection and screening">
             <div class="icon" aria-hidden="true">
-              <!-- spores -->
               <svg viewBox="0 0 24 24">
                 <path d="M7 14a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm10 2a3 3 0 1 1 0-6 3 3 0 0 1 0 6zM12 21a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-10a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
               </svg>
@@ -430,11 +503,10 @@
             </div>
           </a>
 
-          <a class="tile" href="services.html#iaq">
+          <a class="tile" href="services.html#iaq" aria-label="Indoor Air Quality screening">
             <div class="icon" aria-hidden="true">
-              <!-- fan/air -->
               <svg viewBox="0 0 24 24">
-                <path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm7.5 1c-2.1 0-3.8-1-4.8-2.2.5-.9.8-1.9.8-2.8 0-2-1.5-3.5-3.5-3.5-1 0-2 .3-2.9.8C8.9 4.3 7.9 2.5 6 2.5 3.8 2.5 2 4.3 2 6.5c0 2.1 1 3.8 2.2 4.8-.5.9-.8 1.9-.8 2.9 0 2 1.5 3.5 3.5 3.5 1 0 2-.3 2.9-.8 1 1.2 2.7 2.2 4.8 2.2 2.2 0 4-1.8 4-4s-1.8-4-4-4zm-13.5-8c1 0 1.9.7 1.9 1.9 0 .9-.4 1.9-1 2.8C5.7 9.5 5 8.6 5 7.5 5 6.1 5.9 5 6 5zm6 14c-1 0-1.9-.7-1.9-1.9 0-.9.4-1.9 1-2.8 1.2 1 1.9 1.9 1.9 3 0 1.4-.9 2.5-1 2.5zm7.5-1.5c-1.1 0-2-.5-3-1.9.9-.6 1.9-1 2.8-1 1.2 0 1.9.9 1.9 1.9 0 1.1-.7 2-1.7 2z"/>
+                <path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm7.5 1c-2.1 0-3.8-1-4.8-2.2.5-.9.8-1.9.8-2.8 0-2-1.5-3.5-3.5-3.5-1 0-2 .3-2.9.8C8.9 4.3 7.9 2.5 6 2.5 3.8 2.5 2 4.3 2 6.5c0 2.1 1 3.8 2.2 4.8-.5.9-.8 1.9-.8 2.9 0 2 1.5 3.5 3.5 3.5 1 0 2-.3 2.9-.8 1 1.2 2.7 2.2 4.8 2.2 2.2 0 4-1.8 4-4s-1.8-4-4-4z"/>
               </svg>
             </div>
             <div class="ttext">
@@ -443,9 +515,8 @@
             </div>
           </a>
 
-          <a class="tile" href="services.html#pool-spa">
+          <a class="tile" href="services.html#pool-spa" aria-label="Pool and Spa Inspection">
             <div class="icon" aria-hidden="true">
-              <!-- pool -->
               <svg viewBox="0 0 24 24">
                 <path d="M3 14c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2 2.5-2 5-2v2c-2.5 0-2.5 2-5 2s-2.5-2-5-2-2.5 2-5 2-2.5-2-5-2v-2z"/>
                 <path d="M3 18c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2 2.5-2 5-2v2c-2.5 0-2.5 2-5 2s-2.5-2-5-2-2.5 2-5 2-2.5-2-5-2v-2z"/>
@@ -458,9 +529,8 @@
             </div>
           </a>
 
-          <a class="tile" href="services.html#thermal">
+          <a class="tile" href="services.html#thermal" aria-label="Thermal Imaging">
             <div class="icon" aria-hidden="true">
-              <!-- thermal camera -->
               <svg viewBox="0 0 24 24">
                 <path d="M4 6h12a2 2 0 0 1 2 2v8H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm16 4h2v6h-2v-6z"/>
                 <path d="M7 9h6v4H7V9zm1.5 1.2v1.6h3V10.2h-3z"/>
@@ -476,8 +546,47 @@
 
         <div class="micro">LICENSED • INSURED • PHOTO-DOCUMENTED REPORTS</div>
       </div>
-
     </section>
   </main>
+
+  <!-- Below-the-fold content for SEO + credibility (scroll down to reach logos) -->
+  <section class="below" aria-label="Paducah KY home inspection details and credentials">
+    <div class="wrap">
+      <div class="panel">
+        <h2>Home Inspections in Paducah, KY &amp; Western Kentucky</h2>
+        <p>
+          StoneMark Inspections provides thorough, photo-documented home inspections for buyers, sellers, and homeowners in
+          <strong>Paducah, Kentucky</strong> and surrounding <strong>Western Kentucky</strong> communities. You get clear findings,
+          practical context, and a report designed to help you make confident decisions.
+        </p>
+        <p style="margin-top:10px">
+          Need add-ons? We offer <a href="services.html#radon">radon testing</a>, <a href="services.html#mold">mold screening</a>,
+          <a href="services.html#iaq">indoor air quality</a>, <a href="services.html#pool-spa">pool &amp; spa inspections</a>, and
+          <a href="services.html#thermal">thermal imaging</a>.
+        </p>
+        <ul>
+          <li>Clear, photo-backed documentation</li>
+          <li>Fast, professional communication</li>
+          <li>Service area focused on Paducah and Western Kentucky</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h2>Book an Inspection</h2>
+        <p>
+          Ready to schedule? Use the request form or call/text directly.
+        </p>
+        <p style="margin-top:10px">
+          <a href="request.html">Request Inspection</a> • <a href="tel:+12703498237">(270) 349-8237</a>
+        </p>
+
+        <div class="cred">
+          <div class="hint">Credentials &amp; Certifications (Scroll)</div>
+          <iframe src="InterNACHIlogos.html" title="InterNACHI credentials and certification logos"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
