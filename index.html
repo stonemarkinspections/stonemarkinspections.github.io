@@ -346,68 +346,106 @@
     }
 
     /* Below-the-fold SEO content (looks premium, not spammy) */
-    .below{
-      display:flex;
-      justify-content:center;
-      padding: 28px 0 64px;
-    }
-    .below .wrap{
-      width:min(var(--max), calc(100% - 48px));
-      display:grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 34px;
-      align-items:start;
-    }
-    .panel{
-      background: rgba(0,0,0,.40);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 22px;
-      padding: 22px 22px;
-      box-shadow: 0 18px 46px rgba(0,0,0,.55);
-    }
-    .panel h2{
-      font-size:18px;
-      letter-spacing:.4px;
-      margin-bottom: 10px;
-    }
-    .panel p, .panel li{
-      color: rgba(255,255,255,.78);
-      line-height:1.55;
-      font-size:14px;
-    }
-    .panel ul{ margin: 10px 0 0 18px; }
-    .panel a{ color: rgba(194,168,117,.95); text-decoration:none; }
-    .panel a:hover{ text-decoration:underline; }
+  /* BELOW-THE-FOLD — premium, bigger hierarchy */
+.below{
+  display:flex;
+  justify-content:center;
+  padding: 34px 0 90px;
+}
 
-    /* InterNACHI embed (scroll down to see) */
-    .cred{
-      margin-top: 22px;
-      padding: 18px;
-    }
-    .cred iframe{
-      width:100%;
-      min-height: 520px;
-      border:0;
-      border-radius: 18px;
-      background: rgba(0,0,0,.20);
-    }
-    .cred .hint{
-      font-size:12px;
-      color: rgba(255,255,255,.52);
-      letter-spacing:1.6px;
-      text-transform:uppercase;
-      margin-bottom: 10px;
-    }
+.below .wrap{
+  width:min(var(--max), calc(100% - 48px));
+  display:grid;
+  grid-template-columns: 1.05fr 0.95fr;  /* slightly larger right panel */
+  gap: 34px;
+  align-items:stretch;
+}
 
-    /* Responsive */
-    @media (max-width: 980px){
-      nav{display:none}
-      .brand{min-width:auto}
-      .hero{
-        grid-template-columns: 1fr;
-        gap: 26px;
-        padding-top: 22px;
-      }
+/* Make the panels feel expensive */
+.panel{
+  background: linear-gradient(to bottom, rgba(255,255,255,.035), rgba(0,0,0,.42));
+  border: 1px solid rgba(194,168,117,.14);
+  border-radius: 26px;
+  padding: 28px 30px;
+  box-shadow: 0 26px 70px rgba(0,0,0,.62);
+}
+
+/* Hierarchy: headings feel like a brand, not default text */
+.panel h2{
+  font-family: "Cinzel", ui-serif, Georgia, serif;
+  font-size: 26px;
+  letter-spacing: .6px;
+  line-height: 1.12;
+  margin-bottom: 12px;
+  color: rgba(255,255,255,.94);
+}
+
+/* Body copy: clean, readable */
+.panel p{
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: rgba(255,255,255,.78);
+}
+
+.panel strong{ color: rgba(255,255,255,.92); }
+
+.panel ul{
+  margin: 14px 0 0 18px;
+}
+
+.panel li{
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(255,255,255,.74);
+  margin: 6px 0;
+}
+
+/* Links look premium (not bright web-blue) */
+.panel a{
+  color: rgba(214,189,137,.95);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(214,189,137,.25);
+}
+.panel a:hover{
+  border-bottom-color: rgba(214,189,137,.65);
+}
+
+/* Credentials area: make it feel like a feature, not a widget */
+.cred{
+  margin-top: 18px;
+  padding: 18px 18px 16px;
+  border-radius: 22px;
+  background: rgba(0,0,0,.26);
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+.cred .hint{
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.50);
+  margin-bottom: 12px;
+}
+
+/* The iframe itself needs to be big and “installed” */
+.cred iframe{
+  width:100%;
+  min-height: 760px; /* BIGGER */
+  border: 1px solid rgba(194,168,117,.18);
+  border-radius: 20px;
+  background: rgba(0,0,0,.18);
+  box-shadow: 0 24px 70px rgba(0,0,0,.62);
+}
+
+/* Responsive: keep it premium */
+@media (max-width: 980px){
+  .below .wrap{ grid-template-columns: 1fr; }
+  .panel h2{ font-size: 24px; }
+  .cred iframe{ min-height: 720px; }
+}
       .portrait{ height: 440px; justify-content:center; }
       .portrait img{ height: 440px; }
       .actions{ align-items:center; }
