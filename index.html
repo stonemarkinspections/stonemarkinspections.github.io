@@ -20,6 +20,7 @@
   <!-- Performance -->
   <link rel="preconnect" href="https://www.nachi.org" crossorigin>
 
+  <!-- ===== Minimal landing / SEO below fold ===== -->
   <style>
     :root{
       --bg0:#050607;
@@ -225,7 +226,9 @@
 
     /* Layout helpers */
     main{ width:100%; }
-    .section{ padding: 18px var(--edge) 26px; }
+    .section{
+      padding: 18px var(--edge) 26px;
+    }
     .shell{
       border-radius: calc(var(--r) + 10px);
       border: 1px solid rgba(255,255,255,0.12);
@@ -249,11 +252,11 @@
       max-width: 78ch;
     }
 
-    /* HERO (service tiles live above the fold) */
+    /* ===== HERO: minimal copy ===== */
     .hero{
       padding-top: 14px;
       padding-bottom: 14px;
-      min-height: auto; /* key change: no giant empty space */
+      min-height: auto; /* no forced empty space */
     }
     .heroShell{
       width: 100%;
@@ -267,78 +270,46 @@
       padding: clamp(16px, 2vw, 22px);
       overflow:hidden;
     }
+
     .heroGrid{
       display:grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap: 16px;
-      align-items:start;
+      align-items:center;
     }
 
-    .heroBrandRow{
+    .logoPanel{
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.30);
+      padding: clamp(14px, 1.8vw, 18px);
+      box-shadow: 0 26px 90px rgba(0,0,0,0.62);
+      max-height: 66vh;
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      padding: 8px 8px 14px;
+      justify-content:center;
+      overflow:hidden;
     }
-    .heroLogoMini{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      min-width: 0;
-    }
-    .heroLogoMini img{
-      width: 54px;
-      height: 54px;
+    .logoPanel img{
+      width: 100%;
+      max-height: 60vh;
       object-fit: contain;
-      filter: drop-shadow(0 18px 60px rgba(0,0,0,0.70));
-      border-radius: 12px;
-    }
-    .heroLogoMini .t1{
-      font-weight: 950;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 0.92rem;
-      line-height: 1.05;
-      color: rgba(255,255,255,0.92);
-    }
-    .heroLogoMini .t2{
-      margin-top: 2px;
-      font-style: normal;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.50);
-    }
-
-    h1{
-      font-size: clamp(2.05rem, 3.2vw, 3.3rem);
-      line-height: 1.06;
-      font-weight: 950;
-      letter-spacing: 0.01em;
-      color: rgba(255,255,255,0.96);
-    }
-    .sub{
-      margin-top: 10px;
-      color: rgba(255,255,255,0.70);
-      font-size: clamp(1.02rem, 1.1vw, 1.15rem);
-      line-height: 1.6;
-      max-width: 68ch;
+      filter: drop-shadow(0 28px 90px rgba(0,0,0,0.78));
     }
 
     .ctaRow{
-      margin-top: 14px;
       display:flex;
       gap: 10px;
       flex-wrap: wrap;
+      margin: 0 0 12px;
     }
     .ctaRow .btn{ flex: 1 1 220px; }
 
     .trustRow{
-      margin-top: 12px;
       display:flex;
       flex-wrap: wrap;
       gap: 10px;
+      margin: 0 0 12px;
     }
     .pill{
       padding: 10px 12px;
@@ -349,36 +320,9 @@
       font-size: 0.92rem;
     }
 
-    /* Service tiles in HERO */
-    .tilesWrap{
-      border-radius: 26px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.22);
-      padding: 14px;
-      box-shadow: 0 26px 90px rgba(0,0,0,0.55);
-    }
-    .tilesHead{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 12px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-      margin-bottom: 12px;
-    }
-    .tilesHead .k{
-      font-weight: 950;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.84);
-    }
-    .tilesHead .s{
-      color: rgba(255,255,255,0.56);
-      font-size: 0.92rem;
-    }
-
-    .tiles{
+    /* ===== Minimal Hero Service Tiles ===== */
+    .heroTiles{
+      margin-top: 0;
       display:grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
@@ -388,110 +332,83 @@
       position: relative;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.12);
-      background:
-        radial-gradient(520px 220px at 20% 0%, rgba(194,168,117,0.16), transparent 55%),
-        rgba(0,0,0,0.18);
       overflow:hidden;
       min-height: 112px;
-      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      background: rgba(0,0,0,0.20);
+      display:flex;
+      align-items:flex-end;
+      padding: 12px;
+      transition: transform 160ms ease, border-color 160ms ease;
+      isolation: isolate;
     }
+
     .tile:hover{
       transform: translateY(-2px);
       border-color: rgba(194,168,117,0.34);
-      background:
-        radial-gradient(520px 220px at 20% 0%, rgba(194,168,117,0.20), transparent 55%),
-        rgba(0,0,0,0.22);
     }
 
     .tileMedia{
       position:absolute;
       inset:0;
       background-size: cover;
-      background-position: center;
+      background-position:center;
+      opacity: 0.82;
       filter: saturate(1.02) contrast(1.03);
-      opacity: 0.80;
+      z-index: -1;
     }
+
     .tileMedia::after{
       content:"";
       position:absolute; inset:0;
       background:
-        linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
+        linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.78)),
         radial-gradient(260px 160px at 20% 10%, rgba(194,168,117,0.22), transparent 65%);
     }
 
-    .tileInner{
-      position:relative;
-      z-index:1;
-      padding: 14px;
-      display:flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .tileTitle{
+    .tileText{
+      position: relative;
+      z-index: 1;
       font-weight: 950;
-      font-size: 1.02rem;
-      color: rgba(255,255,255,0.94);
-      line-height: 1.12;
-    }
-    .tileSub{
-      color: rgba(255,255,255,0.66);
-      font-size: 0.93rem;
-      line-height: 1.35;
-      max-width: 34ch;
-    }
-    .tileArrow{
-      margin-top: 2px;
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      font-size: 0.80rem;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.78);
+      font-size: 0.90rem;
+      color: rgba(255,255,255,0.94);
     }
-    .tile a{
+
+    .tileNote{
       position:absolute;
-      inset:0;
-      border-radius: 18px;
+      left:12px;
+      bottom:12px;
+      transform: translateY(22px);
+      opacity: 0;
+      transition: opacity 160ms ease, transform 160ms ease;
+      z-index: 2;
+      max-width: 92%;
+      color: rgba(255,255,255,0.72);
+      font-size: 0.85rem;
+      line-height: 1.25;
+      pointer-events:none;
     }
 
-    /* Slim contact panel (no big block) */
-    .contactSlim{
-      margin-top: 14px;
-      border-radius: 22px;
-      border: 1px solid rgba(194,168,117,0.26);
-      background: rgba(194,168,117,0.08);
-      padding: 14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .contactSlim .left{
-      min-width: 240px;
-    }
-    .contactSlim .name{
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 0.86rem;
-      color: rgba(255,255,255,0.88);
-    }
-    .contactSlim .msg{
-      margin-top: 6px;
-      color: rgba(255,255,255,0.70);
-      font-size: 0.98rem;
-      line-height: 1.4;
-    }
-    .contactSlim .phone{
-      font-weight: 950;
-      font-size: 1.25rem;
-      color: rgba(255,255,255,0.94);
-      white-space: nowrap;
+    .tile:hover .tileNote{
+      opacity: 1;
+      transform: translateY(0px);
     }
 
-    /* Cards / lower sections */
+    /* Accessible "hero identity" but visually minimal */
+    h1{
+      position:absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0,0,0,0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    /* Cards */
     .grid3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -594,12 +511,15 @@
       .mobileBar{ display:block; }
       footer{ padding-bottom: 88px; }
 
-      :root{ --headerH: 70px; }
-      .heroGrid{ grid-template-columns: 1fr; }
-      .tiles{ grid-template-columns: 1fr; }
+      .heroGrid{ grid-template-columns: 1fr; align-items:start; }
+      .logoPanel{ max-height: 46vh; }
+      .logoPanel img{ max-height: 40vh; }
+
+      .heroTiles{ grid-template-columns: 1fr; }
       .grid3{ grid-template-columns: 1fr; }
       .twoCol{ grid-template-columns: 1fr; }
       .brand{ min-width: 190px; }
+      :root{ --headerH: 70px; }
     }
   </style>
 
@@ -656,182 +576,112 @@
   </header>
 
   <main id="main">
-    <!-- ===== HERO (buttons live here) ===== -->
-    <section class="section hero" id="top">
+    <!-- Hidden H1 for SEO while keeping landing page minimal -->
+    <h1>StoneMark Inspections — Home Inspector in Paducah, KY & Western Kentucky</h1>
+
+    <!-- ===== HERO: logo + tiles, minimal text ===== -->
+    <section class="section hero" id="top" aria-label="StoneMark landing">
       <div class="heroShell">
-
-        <div class="heroBrandRow" aria-label="StoneMark summary">
-          <div class="heroLogoMini">
-            <img src="logo.PNG" alt="StoneMark Inspections logo">
-            <div>
-              <div class="t1">StoneMark</div>
-              <div class="t2">Home Inspections</div>
-            </div>
-          </div>
-          <a class="btn primary" href="request.html" aria-label="Request an inspection online">Request Inspection</a>
-        </div>
-
         <div class="heroGrid">
-          <!-- LEFT: message + CTA -->
-          <div>
-            <h1>Home inspections in Paducah, KY &amp; Western Kentucky.</h1>
-            <p class="sub">
-              Photo-documented, plain-language inspection reports designed for quick decisions.
-              Verified InterNACHI credentials. Schedule fast by call/text or request online 24/7.
-            </p>
 
-            <div class="ctaRow">
-              <a class="btn primary" href="request.html">Request Inspection Online</a>
+          <!-- LEFT: big logo -->
+          <div class="logoPanel" aria-label="StoneMark logo">
+            <img src="logo.PNG" alt="StoneMark Inspections logo">
+          </div>
+
+          <!-- RIGHT: CTAs + tiles -->
+          <div>
+            <div class="ctaRow" aria-label="Primary actions">
+              <a class="btn primary" href="request.html">Request Inspection</a>
               <a class="btn" href="tel:+12703498237">Call/Text (270) 349-8237</a>
             </div>
 
-            <div class="trustRow" aria-label="Trust highlights">
+            <div class="trustRow" aria-label="Quick facts">
+              <span class="pill">Paducah, KY</span>
+              <span class="pill">Western Kentucky</span>
               <span class="pill">InterNACHI Verified</span>
-              <span class="pill">Photo-Documented Reports</span>
-              <span class="pill">Plain-Language Findings</span>
             </div>
 
-            <div class="contactSlim anchor" id="contact" aria-label="Contact">
-              <div class="left">
-                <div class="name">Kyle Wilkins • StoneMark Inspections</div>
-                <div class="msg">Call or text to schedule. Online requests available 24/7.</div>
-              </div>
-              <div class="phone"><a href="tel:+12703498237" style="color:inherit;">(270) 349-8237</a></div>
+            <div class="heroTiles" aria-label="Inspection services">
+              <a class="tile" href="home-inspection.html" aria-label="Home Inspection">
+                <span class="tileMedia" style="background-image:url('img/services/home.jpg')"></span>
+                <span class="tileText">Home Inspection</span>
+              </a>
+
+              <a class="tile" href="radon-testing.html" aria-label="Radon Testing">
+                <span class="tileMedia" style="background-image:url('img/services/radon.jpg')"></span>
+                <span class="tileText">Radon Testing</span>
+                <span class="tileNote">The EPA recommends that every home be tested for radon.</span>
+              </a>
+
+              <a class="tile" href="mold-inspection.html" aria-label="Mold Inspection">
+                <span class="tileMedia" style="background-image:url('img/services/mold.jpg')"></span>
+                <span class="tileText">Mold</span>
+              </a>
+
+              <a class="tile" href="air-quality.html" aria-label="Indoor Air Quality">
+                <span class="tileMedia" style="background-image:url('img/services/air.jpg')"></span>
+                <span class="tileText">Air Quality</span>
+              </a>
+
+              <a class="tile" href="pool-spa-inspection.html" aria-label="Pool and Spa Inspection">
+                <span class="tileMedia" style="background-image:url('img/services/pool.jpg')"></span>
+                <span class="tileText">Pool &amp; Spa</span>
+              </a>
+
+              <a class="tile" href="thermal-imaging.html" aria-label="Thermal Imaging Inspection">
+                <span class="tileMedia" style="background-image:url('img/services/thermal.jpg')"></span>
+                <span class="tileText">Thermal Imaging</span>
+              </a>
+
+              <a class="tile" href="borescope.html" aria-label="Borescope / Endoscope">
+                <span class="tileMedia" style="background-image:url('img/services/borescope.jpg')"></span>
+                <span class="tileText">Borescope</span>
+              </a>
+
+              <a class="tile" href="request.html" aria-label="Request Inspection Online">
+                <span class="tileMedia" style="background-image:url('img/services/request.jpg')"></span>
+                <span class="tileText">Request Online</span>
+              </a>
             </div>
+
+            <!-- Invisible anchor target for nav -->
+            <div id="contact" class="anchor" style="height:1px;"></div>
           </div>
 
-          <!-- RIGHT: service tiles (above the fold) -->
-          <aside class="tilesWrap" aria-label="Inspection service links">
-            <div class="tilesHead">
-              <div>
-                <div class="k">Services</div>
-                <div class="s">Tap a service for details.</div>
-              </div>
-              <a class="btn" href="#services" aria-label="Jump to services section">All Services</a>
-            </div>
-
-            <div class="tiles">
-              <!-- NOTE:
-                Put images here if you want:
-                /img/services/home.jpg
-                /img/services/radon.jpg
-                /img/services/mold.jpg
-                /img/services/air.jpg
-                /img/services/pool.jpg
-                /img/services/thermal.jpg
-                /img/services/borescope.jpg
-              -->
-
-              <div class="tile">
-                <div class="tileMedia" style="background-image:url('img/services/home.jpg');"></div>
-                <a href="home-inspection.html" aria-label="Home Inspection page"></a>
-                <div class="tileInner">
-                  <div class="tileTitle">Home Inspection</div>
-                  <div class="tileSub">Full system-by-system evaluation.</div>
-                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
-                </div>
-              </div>
-
-              <div class="tile">
-                <div class="tileMedia" style="background-image:url('img/services/radon.jpg');"></div>
-                <a href="radon-testing.html" aria-label="Radon Testing page"></a>
-                <div class="tileInner">
-                  <div class="tileTitle">Radon Testing</div>
-                  <div class="tileSub">The EPA recommends every home be tested.</div>
-                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
-                </div>
-              </div>
-
-              <div class="tile">
-                <div class="tileMedia" style="background-image:url('img/services/mold.jpg');"></div>
-                <a href="mold-inspection.html" aria-label="Mold Inspection page"></a>
-                <div class="tileInner">
-                  <div class="tileTitle">Mold Inspection</div>
-                  <div class="tileSub">Moisture + visible growth assessment.</div>
-                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
-                </div>
-              </div>
-
-              <div class="tile">
-                <div class="tileMedia" style="background-image:url('img/services/air.jpg');"></div>
-                <a href="air-quality.html" aria-label="Indoor Air Quality page"></a>
-                <div class="tileInner">
-                  <div class="tileTitle">Indoor Air Quality</div>
-                  <div class="tileSub">Allergens and environmental concerns.</div>
-                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
-                </div>
-              </div>
-
-              <div class="tile">
-                <div class="tileMedia" style="background-image:url('img/services/pool.jpg');"></div>
-                <a href="pool-spa-inspection.html" aria-label="Pool and Spa Inspection page"></a>
-                <div class="tileInner">
-                  <div class="tileTitle">Pool &amp; Spa</div>
-                  <div class="tileSub">Visible equipment, safety, condition.</div>
-                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
-                </div>
-              </div>
-
-              <div class="tile">
-                <div class="tileMedia" style="background-image:url('img/services/thermal.jpg');"></div>
-                <a href="thermal-imaging.html" aria-label="Thermal Imaging page"></a>
-                <div class="tileInner">
-                  <div class="tileTitle">Thermal Imaging</div>
-                  <div class="tileSub">Infrared scan for hidden anomalies.</div>
-                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
-                </div>
-              </div>
-
-              <div class="tile">
-                <div class="tileMedia" style="background-image:url('img/services/borescope.jpg');"></div>
-                <a href="borescope.html" aria-label="Borescope and Endoscope page"></a>
-                <div class="tileInner">
-                  <div class="tileTitle">Borescope / Endoscope</div>
-                  <div class="tileSub">Camera verification in tight spaces.</div>
-                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
-                </div>
-              </div>
-
-              <div class="tile">
-                <div class="tileMedia" style="background-image:url('img/services/request.jpg');"></div>
-                <a href="request.html" aria-label="Request an Inspection"></a>
-                <div class="tileInner">
-                  <div class="tileTitle">Request Online</div>
-                  <div class="tileSub">24/7 request form — fast response.</div>
-                  <div class="tileArrow">Request <span aria-hidden="true">→</span></div>
-                </div>
-              </div>
-
-            </div>
-          </aside>
         </div>
       </div>
     </section>
 
-    <!-- ===== SERVICES (deeper info, still kept) ===== -->
+    <!-- ===== SERVICES (SEO below fold) ===== -->
     <section class="section anchor" id="services">
       <div class="shell">
         <div class="kicker">Inspection Services</div>
         <p class="lead">
-          Detailed service pages help buyers, sellers, and homeowners understand what’s included and what to expect.
+          StoneMark Inspections provides professional home inspections and specialty inspections in Paducah, KY and
+          across Western Kentucky. Select a service for full details.
         </p>
 
-        <div class="grid3" aria-label="Service summaries">
+        <div class="grid3" aria-label="Service pages">
           <div class="card">
             <h3><a href="home-inspection.html">Home Inspection</a></h3>
-            <p>System-by-system evaluation of accessible components with photo documentation and clear findings.</p>
+            <p>System-by-system evaluation with photo documentation and plain-language reporting for buyers, sellers, and homeowners.</p>
           </div>
           <div class="card">
             <h3><a href="radon-testing.html">Radon Testing</a></h3>
-            <p>The EPA recommends testing every home for radon. Add testing to your inspection or schedule separately.</p>
+            <p>The EPA recommends testing every home for radon. Add radon testing to a real estate transaction or schedule separately.</p>
           </div>
           <div class="card">
             <h3><a href="mold-inspection.html">Mold Inspection</a></h3>
-            <p>Identify visible growth and moisture conditions that may support microbial activity.</p>
+            <p>Focused evaluation of visible growth and moisture conditions that can support microbial activity.</p>
           </div>
           <div class="card">
             <h3><a href="air-quality.html">Indoor Air Quality</a></h3>
-            <p>Assess indoor air concerns including allergens, particles, and environmental conditions.</p>
+            <p>Assess indoor air concerns including allergens, particles, and general environmental conditions.</p>
+          </div>
+          <div class="card">
+            <h3><a href="pool-spa-inspection.html">Pool &amp; Spa Inspection</a></h3>
+            <p>Evaluate visible equipment, safety items, and general condition of pool and spa systems.</p>
           </div>
           <div class="card">
             <h3><a href="thermal-imaging.html">Thermal Imaging</a></h3>
@@ -839,7 +689,15 @@
           </div>
           <div class="card">
             <h3><a href="borescope.html">Borescope / Endoscope</a></h3>
-            <p>Targeted camera inspection when visual confirmation matters in limited-access areas.</p>
+            <p>Targeted camera inspection in limited-access areas when visual confirmation matters.</p>
+          </div>
+          <div class="card">
+            <h3><a href="request.html">Request an Inspection</a></h3>
+            <p>Use the online request form 24/7 or call/text for fast scheduling in Paducah and Western Kentucky.</p>
+          </div>
+          <div class="card">
+            <h3>Service Area</h3>
+            <p>Paducah, McCracken County, Marshall County, Graves County, and surrounding Western Kentucky communities.</p>
           </div>
         </div>
 
@@ -946,7 +804,7 @@
     // Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Optional: keep the landing experience consistent on Safari
+    // Fix: Safari sometimes restores scroll position; force landing page to show top
     (function () {
       try { history.scrollRestoration = "manual"; } catch (e) {}
       function goTop(){ window.scrollTo(0,0); }
