@@ -3,10 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StoneMark Inspections</title>
-  <meta name="description" content="StoneMark Inspections — professional home inspections across Western Kentucky. Verified InterNACHI credentials. Request online or call/text." />
 
+  <!-- SEO: Title + Description (location + core service) -->
+  <title>StoneMark Inspections | Home Inspector in Paducah, KY & Western Kentucky</title>
+  <meta name="description" content="StoneMark Inspections provides professional home inspections in Paducah, KY and across Western Kentucky. Photo-documented reports, verified InterNACHI credentials. Call/text (270) 349-8237 or request online 24/7." />
+
+  <!-- SEO: Canonical (adjust if you use www) -->
+  <link rel="canonical" href="https://stonemarkinspections.com/" />
+
+  <!-- Social preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="StoneMark Inspections | Home Inspector in Paducah, KY & Western Kentucky" />
+  <meta property="og:description" content="Professional home inspections across Western Kentucky with verified InterNACHI credentials. Request online or call/text." />
+  <meta property="og:url" content="https://stonemarkinspections.com/" />
+  <meta property="og:image" content="https://stonemarkinspections.com/logo.PNG" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Performance -->
   <link rel="preconnect" href="https://www.nachi.org" crossorigin>
+
+  <!-- Basic favicon (optional if you have one) -->
+  <!-- <link rel="icon" href="/favicon.ico"> -->
 
   <style>
     :root{
@@ -24,8 +41,8 @@
       --shadow: 0 28px 120px rgba(0,0,0,0.70);
       --r: 22px;
 
-      /* FULL-SCREEN: no max width clamps */
       --edgePad: clamp(14px, 2.2vw, 32px);
+      --focus: 0 0 0 3px rgba(194,168,117,0.35);
     }
 
     *{ box-sizing:border-box; margin:0; padding:0; }
@@ -40,6 +57,18 @@
     }
     a{ color: inherit; text-decoration:none; }
     img{ max-width:100%; height:auto; display:block; }
+    :focus-visible{ outline:none; box-shadow: var(--focus); border-radius: 12px; }
+
+    /* Skip link */
+    .skip{
+      position:absolute; left:-999px; top:10px;
+      background: rgba(0,0,0,0.85);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 10px 12px;
+      border-radius: 12px;
+      z-index: 999;
+    }
+    .skip:focus{ left: var(--edgePad); }
 
     /* ===== FULL-BLEED BACKGROUND ===== */
     .bg{
@@ -76,21 +105,45 @@
       justify-content:space-between;
       gap: 12px;
     }
+
+    /* FIX #1: Replace the “empty block” with a real mark (monogram) that looks intentional */
     .brand{
       display:flex;
       align-items:center;
       gap: 12px;
-      min-width: 220px;
+      min-width: 240px;
     }
     .brand .chip{
       width: 40px; height: 40px;
       border-radius: 14px;
+      display:grid;
+      place-items:center;
       background:
         radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,0.16), transparent 60%),
-        linear-gradient(135deg, rgba(194,168,117,0.52), rgba(194,168,117,0.06));
-      border: 1px solid rgba(194,168,117,0.42);
+        linear-gradient(135deg, rgba(194,168,117,0.62), rgba(194,168,117,0.08));
+      border: 1px solid rgba(194,168,117,0.46);
       box-shadow: 0 16px 50px rgba(0,0,0,0.60);
+      position: relative;
+      overflow: hidden;
     }
+    .brand .chip::after{
+      content:"";
+      position:absolute; inset:-30%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.22), transparent 55%);
+      transform: rotate(18deg);
+      opacity: 0.8;
+      pointer-events:none;
+    }
+    .brand .chipText{
+      font-weight: 950;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      color: rgba(0,0,0,0.86);
+      text-transform: uppercase;
+      z-index: 1;
+      transform: translateX(1px);
+    }
+
     .brand .txt strong{
       display:block;
       font-weight: 950;
@@ -186,7 +239,6 @@
       padding: 22px;
     }
 
-    /* New structure: logo dominates as a centerpiece with typographic band under it */
     .logoCenter{
       width: 100%;
       display:flex;
@@ -217,7 +269,8 @@
       align-items: start;
     }
 
-    .headline{
+    /* SEO: Real H1 (not just a div) */
+    h1.headline{
       font-size: clamp(2.2rem, 3.8vw, 3.6rem);
       line-height: 1.04;
       font-weight: 950;
@@ -270,7 +323,7 @@
     }
     .ctaRow .btn{ flex: 1 1 220px; }
 
-    /* ===== CREDENTIALS WALL (FULL WIDTH, PROMINENT) ===== */
+    /* ===== CREDENTIALS WALL ===== */
     .credBand{
       width: 100%;
       padding: 18px var(--edgePad) 22px;
@@ -314,7 +367,7 @@
       overflow: visible;
     }
 
-    /* Make injected seals BIG and consistent */
+    /* Seal sizing */
     .nachiStage img{
       display:inline-block !important;
       max-width: 280px !important;
@@ -327,23 +380,21 @@
       margin-left:auto !important;
       margin-right:auto !important;
     }
-    .nachiStage a{
-      color: var(--accent) !important;
-      text-decoration: none;
-    }
-    .nachiStage a:hover{
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
 
+    /* FIX #2: Do NOT globally recolor all <a> inside nachiStage (that was overriding button text) */
     .nachiNote{
       margin-top: 14px;
       color: rgba(255,255,255,0.58);
       font-size: 0.95rem;
     }
-    .nachiNote a{ color: var(--accent); }
+    .nachiNote a{ color: var(--accent); text-decoration:none; }
+    .nachiNote a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 
-    /* ===== CONTENT BANDS (FULL WIDTH) ===== */
+    /* Ensure buttons always win inside nachiStage */
+    .nachiStage .btn{ color: rgba(255,255,255,0.88); }
+    .nachiStage .btn.primary{ color: rgba(0,0,0,0.92) !important; } /* black text guaranteed */
+
+    /* ===== CONTENT BANDS ===== */
     .contentBand{
       width: 100%;
       padding: 0 var(--edgePad) 24px;
@@ -379,6 +430,48 @@
       line-height: 1.55;
     }
 
+    .stack{
+      display:grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .bullets{
+      margin-top: 10px;
+      display:grid;
+      gap: 8px;
+      color: rgba(255,255,255,0.66);
+      line-height: 1.6;
+    }
+    .bullets span{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+    }
+    .dot{
+      width: 8px; height: 8px;
+      border-radius: 99px;
+      background: rgba(194,168,117,0.85);
+      margin-top: 8px;
+      flex: 0 0 auto;
+    }
+
+    .pillRow{
+      margin-top: 10px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .pill{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.20);
+      color: rgba(255,255,255,0.70);
+      font-size: 0.92rem;
+    }
+
     footer{
       width: 100%;
       padding: 26px var(--edgePad) 42px;
@@ -388,10 +481,9 @@
     }
     footer a{ color: var(--accent); }
 
-    /* Anchors */
     .anchor{ scroll-margin-top: 92px; }
 
-    /* ===== MOBILE: make CTA always available ===== */
+    /* MOBILE CTA BAR */
     .mobileBar{
       display:none;
       position: fixed;
@@ -403,36 +495,59 @@
       -webkit-backdrop-filter: blur(14px);
       padding: 10px var(--edgePad);
     }
-    .mobileBar .row{
-      display:flex; gap: 10px;
-    }
+    .mobileBar .row{ display:flex; gap: 10px; }
     .mobileBar .btn{ width: 100%; }
 
     @media (max-width: 980px){
       .nav{ display:none; }
       .heroType{ grid-template-columns: 1fr; }
       .grid3{ grid-template-columns: 1fr; }
-      .actions{ display:none; } /* replaced by mobileBar */
+      .stack{ grid-template-columns: 1fr; }
+      .actions{ display:none; }
       .mobileBar{ display:block; }
-      footer{ padding-bottom: 88px; } /* room for fixed bar */
+      footer{ padding-bottom: 88px; }
     }
 
     @media (max-width: 520px){
       .nachiStage img{ max-width: 320px !important; }
       .logoPanel{ border-radius: 22px; }
       .contactStack{ border-radius: 22px; }
+      .brand{ min-width: 190px; }
     }
   </style>
+
+  <!-- LocalBusiness schema (edit address if you want it displayed publicly) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "StoneMark Inspections",
+    "url": "https://stonemarkinspections.com/",
+    "telephone": "+1-270-349-8237",
+    "areaServed": [
+      "Paducah KY",
+      "McCracken County KY",
+      "Marshall County KY",
+      "Graves County KY",
+      "Western Kentucky"
+    ],
+    "image": "https://stonemarkinspections.com/logo.PNG",
+    "description": "Professional home inspections in Paducah, KY and across Western Kentucky. Photo-documented reports and verified InterNACHI credentials.",
+    "sameAs": []
+  }
+  </script>
 </head>
 
 <body>
-  <div class="bg"></div>
-  <div class="grain"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="bg" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
   <header>
     <div class="topbar">
       <a class="brand" href="#top" aria-label="StoneMark Inspections home">
-        <span class="chip" aria-hidden="true"></span>
+        <span class="chip" aria-hidden="true"><span class="chipText">SM</span></span>
         <span class="txt">
           <strong>StoneMark</strong>
           <span>Home Inspections</span>
@@ -440,22 +555,23 @@
       </a>
 
       <nav class="nav" aria-label="Primary navigation">
-        <a href="#credentials">Credentials</a>
         <a href="#services">Services</a>
+        <a href="#areas">Service Area</a>
+        <a href="#credentials">Credentials</a>
         <a href="#reports">Reports</a>
         <a href="#contact">Contact</a>
       </nav>
 
       <div class="actions">
-        <a class="btn" href="tel:+12703498237">Call/Text</a>
-        <a class="btn primary" href="request.html">Request Inspection</a>
+        <a class="btn" href="tel:+12703498237" aria-label="Call or text (270) 349-8237">Call/Text</a>
+        <a class="btn primary" href="request.html" aria-label="Request an inspection online">Request Inspection</a>
       </div>
     </div>
   </header>
 
-  <main id="top">
-    <!-- FULL-BLEED HERO -->
-    <section class="heroBand">
+  <main id="main">
+    <!-- HERO -->
+    <section class="heroBand" id="top">
       <div class="heroShell">
         <div class="logoCenter">
           <div class="logoPanel">
@@ -465,10 +581,16 @@
 
         <div class="heroType">
           <div>
-            <div class="headline">Professional inspections. Verified credentials.</div>
-            <div class="subhead">
-              StoneMark delivers thorough, photo-documented inspections across Western Kentucky with
-              plain language designed for homebuyers.
+            <h1 class="headline">Home inspections in Paducah, KY &amp; Western Kentucky — verified credentials.</h1>
+            <p class="subhead">
+              StoneMark Inspections provides thorough, photo-documented home inspections with plain-language findings.
+              Fast scheduling, clean deliverables, and credentials you can verify.
+            </p>
+
+            <div class="bullets" aria-label="Highlights">
+              <span><i class="dot" aria-hidden="true"></i>Buyer inspections, pre-listing inspections, and maintenance checks</span>
+              <span><i class="dot" aria-hidden="true"></i>Photo-documented reports designed for quick decision-making</span>
+              <span><i class="dot" aria-hidden="true"></i>Call/text <a href="tel:+12703498237" style="text-decoration:underline; text-underline-offset:4px;">(270) 349-8237</a> or request online 24/7</span>
             </div>
 
             <div class="ctaRow">
@@ -480,14 +602,83 @@
           <aside class="contactStack anchor" id="contact" aria-label="Contact">
             <div class="name">Kyle Wilkins • StoneMark Inspections</div>
             <div class="msg">Call or text anytime to schedule an inspection.</div>
-            <div class="phone"><a href="tel:+12703498237" style="color:inherit;">(270) 349-8237</a></div>
+            <div class="phone">
+              <a href="tel:+12703498237" style="color:inherit;">(270) 349-8237</a>
+            </div>
             <div class="mini">Online requests available 24/7 via the request form.</div>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- FULL-BLEED CREDENTIALS WALL -->
+    <!-- SERVICES (SEO-heavy, but still clean) -->
+    <section class="contentBand anchor" id="services">
+      <div class="contentShell">
+        <div class="credTop" style="margin-bottom:14px;">
+          <h2>Inspection Services</h2>
+          <p>Clear, professional home inspections with a premium client experience from booking to delivery.</p>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Buyer’s Home Inspection</h3>
+            <p>System-by-system evaluation of accessible components with photo documentation and clear findings for homebuyers.</p>
+          </div>
+          <div class="card">
+            <h3>Pre-Listing Inspection</h3>
+            <p>Identify concerns before you list, reduce surprises during negotiations, and support a smoother transaction.</p>
+          </div>
+          <div class="card">
+            <h3>Maintenance Check</h3>
+            <p>A practical snapshot for homeowners with prioritized observations and straightforward next steps.</p>
+          </div>
+        </div>
+
+        <div class="stack">
+          <div class="card">
+            <h3>What a home inspection covers</h3>
+            <p>
+              A home inspection is a visual evaluation of accessible systems and components (structure, roof, exterior,
+              plumbing, electrical, HVAC, interior, insulation/ventilation) and is designed to help you understand
+              condition, safety concerns, and major deficiencies.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Requesting an inspection is simple</h3>
+            <p>Use the online request form anytime, or call/text for scheduling, questions, and availability.</p>
+            <div class="ctaRow" style="margin-top:12px;">
+              <a class="btn primary" href="request.html">Request Inspection</a>
+              <a class="btn" href="tel:+12703498237">Call/Text</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE AREA (SEO) -->
+    <section class="contentBand anchor" id="areas">
+      <div class="contentShell">
+        <div class="credTop" style="margin-bottom:14px;">
+          <h2>Service Area</h2>
+          <p>Based in Western Kentucky and serving the Paducah area and surrounding communities.</p>
+        </div>
+
+        <div class="pillRow" aria-label="Service areas">
+          <span class="pill">Paducah, KY</span>
+          <span class="pill">McCracken County</span>
+          <span class="pill">Marshall County</span>
+          <span class="pill">Graves County</span>
+          <span class="pill">Western Kentucky</span>
+        </div>
+
+        <div class="ctaRow" style="margin-top:14px;">
+          <a class="btn primary" href="request.html">Request Inspection</a>
+          <a class="btn" href="tel:+12703498237">Call/Text (270) 349-8237</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDENTIALS -->
     <section class="credBand anchor" id="credentials">
       <div class="credShell">
         <div class="credTop">
@@ -497,6 +688,7 @@
 
         <div class="nachiStage">
           <script src="https://www.nachi.org/webseals/legacy/education?nachiid=NACHI26011311&include_universal=1"></script>
+
           <div class="nachiNote">
             Certifications acquired through
             <a href="https://www.nachi.org/education.htm">home inspector training</a>
@@ -511,51 +703,26 @@
       </div>
     </section>
 
-    <!-- FULL-BLEED SERVICES -->
-    <section class="contentBand anchor" id="services">
-      <div class="contentShell">
-        <div class="credTop" style="margin-bottom:14px;">
-          <h2>Services</h2>
-          <p>Simple options. Premium execution. Clean deliverables.</p>
-        </div>
-
-        <div class="grid3">
-          <div class="card">
-            <h3>Buyer’s Inspection</h3>
-            <p>Thorough evaluation of accessible systems and components with photo documentation and clear organization.</p>
-          </div>
-          <div class="card">
-            <h3>Pre-Listing Inspection</h3>
-            <p>Identify concerns before going to market, reduce surprises, and improve the transaction flow.</p>
-          </div>
-          <div class="card">
-            <h3>Maintenance Check</h3>
-            <p>A condition snapshot for homeowners with clear priorities and qualified follow-up guidance.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FULL-BLEED REPORTS -->
+    <!-- REPORTS -->
     <section class="contentBand anchor" id="reports">
       <div class="contentShell">
         <div class="credTop" style="margin-bottom:14px;">
-          <h2>Reports</h2>
-          <p>Built to be read quickly and understood immediately.</p>
+          <h2>Inspection Reports</h2>
+          <p>Built to be read quickly and understood immediately—organized, photo-supported, and direct.</p>
         </div>
 
         <div class="grid3">
           <div class="card">
             <h3>Photo-Documented</h3>
-            <p>Photos are embedded where they add clarity—supporting observations without drowning the reader.</p>
+            <p>Photos appear where they add clarity—supporting observations without overwhelming the reader.</p>
           </div>
           <div class="card">
             <h3>Plain Language</h3>
-            <p>No theatrics. No filler. Findings written for clients and agents, not just contractors.</p>
+            <p>Findings are written for clients and agents—clear, calm, and actionable without theatrics.</p>
           </div>
           <div class="card">
             <h3>Clear Next Steps</h3>
-            <p>Who to contact to address possible defects.</p>
+            <p>Recommendations focus on appropriate professional evaluation when conditions warrant it.</p>
           </div>
         </div>
 
