@@ -20,7 +20,6 @@
   <!-- Performance -->
   <link rel="preconnect" href="https://www.nachi.org" crossorigin>
 
-  <!-- ===== Minimal, clean “premium dark” system ===== -->
   <style>
     :root{
       --bg0:#050607;
@@ -82,7 +81,7 @@
       position: fixed; inset:0; z-index:-1; pointer-events:none;
       background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-      opacity: 0.16;
+      opacity: 0.14;
       mix-blend-mode: overlay;
     }
 
@@ -138,7 +137,7 @@
       gap: 14px;
     }
 
-    /* Brand (fixes “empty block” by making the mark intentional) */
+    /* Brand */
     .brand{
       display:flex;
       align-items:center;
@@ -226,9 +225,7 @@
 
     /* Layout helpers */
     main{ width:100%; }
-    .section{
-      padding: 18px var(--edge) 26px;
-    }
+    .section{ padding: 18px var(--edge) 26px; }
     .shell{
       border-radius: calc(var(--r) + 10px);
       border: 1px solid rgba(255,255,255,0.12);
@@ -252,13 +249,11 @@
       max-width: 78ch;
     }
 
-    /* ===== HERO (owns the fold; no peeking next section) ===== */
+    /* HERO (service tiles live above the fold) */
     .hero{
-      padding-top: 18px;
-      padding-bottom: 18px;
-      min-height: calc(100vh - var(--headerH));
-      display:flex;
-      align-items:center;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      min-height: auto; /* key change: no giant empty space */
     }
     .heroShell{
       width: 100%;
@@ -272,38 +267,56 @@
       padding: clamp(16px, 2vw, 22px);
       overflow:hidden;
     }
-
     .heroGrid{
       display:grid;
       grid-template-columns: 1.05fr 0.95fr;
-      gap: 18px;
-      align-items:center;
+      gap: 16px;
+      align-items:start;
     }
 
-    .logoPanel{
-      border-radius: 26px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.30);
-      padding: clamp(14px, 1.8vw, 18px);
-      box-shadow: 0 26px 90px rgba(0,0,0,0.62);
-      max-height: 62vh;
+    .heroBrandRow{
       display:flex;
       align-items:center;
-      justify-content:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 8px 8px 14px;
     }
-    .logoPanel img{
-      width: 100%;
-      max-height: 56vh;
+    .heroLogoMini{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .heroLogoMini img{
+      width: 54px;
+      height: 54px;
       object-fit: contain;
-      filter: drop-shadow(0 28px 90px rgba(0,0,0,0.78));
+      filter: drop-shadow(0 18px 60px rgba(0,0,0,0.70));
+      border-radius: 12px;
+    }
+    .heroLogoMini .t1{
+      font-weight: 950;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.92rem;
+      line-height: 1.05;
+      color: rgba(255,255,255,0.92);
+    }
+    .heroLogoMini .t2{
+      margin-top: 2px;
+      font-style: normal;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.50);
     }
 
     h1{
-      font-size: clamp(2.0rem, 3.2vw, 3.2rem);
+      font-size: clamp(2.05rem, 3.2vw, 3.3rem);
       line-height: 1.06;
       font-weight: 950;
       letter-spacing: 0.01em;
-      color: rgba(255,255,255,0.95);
+      color: rgba(255,255,255,0.96);
     }
     .sub{
       margin-top: 10px;
@@ -336,150 +349,149 @@
       font-size: 0.92rem;
     }
 
-    .contactCard{
-      margin-top: 14px;
+    /* Service tiles in HERO */
+    .tilesWrap{
       border-radius: 26px;
-      border: 1px solid rgba(194,168,117,0.30);
-      background: rgba(194,168,117,0.10);
-      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.22);
+      padding: 14px;
+      box-shadow: 0 26px 90px rgba(0,0,0,0.55);
     }
-/* ===== Services Grid (SEO pages) ===== */
-.servicesGrid{
-  display:grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 14px;
-  margin-top: 14px;
-}
+    .tilesHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      margin-bottom: 12px;
+    }
+    .tilesHead .k{
+      font-weight: 950;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.84);
+    }
+    .tilesHead .s{
+      color: rgba(255,255,255,0.56);
+      font-size: 0.92rem;
+    }
 
-.serviceCard{
-  grid-column: span 4;
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background:
-    radial-gradient(600px 240px at 20% 0%, rgba(194,168,117,0.14), transparent 55%),
-    rgba(0,0,0,0.22);
-  padding: 18px;
-  position: relative;
-  overflow:hidden;
-  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
-  min-height: 180px;
-  display:flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+    .tiles{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
 
-.serviceCard:hover{
-  transform: translateY(-2px);
-  border-color: rgba(194,168,117,0.32);
-  background:
-    radial-gradient(600px 240px at 20% 0%, rgba(194,168,117,0.18), transparent 55%),
-    rgba(0,0,0,0.26);
-}
+    .tile{
+      position: relative;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        radial-gradient(520px 220px at 20% 0%, rgba(194,168,117,0.16), transparent 55%),
+        rgba(0,0,0,0.18);
+      overflow:hidden;
+      min-height: 112px;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+    .tile:hover{
+      transform: translateY(-2px);
+      border-color: rgba(194,168,117,0.34);
+      background:
+        radial-gradient(520px 220px at 20% 0%, rgba(194,168,117,0.20), transparent 55%),
+        rgba(0,0,0,0.22);
+    }
 
-.serviceTop{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap: 12px;
-}
+    .tileMedia{
+      position:absolute;
+      inset:0;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.02) contrast(1.03);
+      opacity: 0.80;
+    }
+    .tileMedia::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
+        radial-gradient(260px 160px at 20% 10%, rgba(194,168,117,0.22), transparent 65%);
+    }
 
-.serviceIcon{
-  width: 44px;
-  height: 44px;
-  border-radius: 16px;
-  border: 1px solid rgba(194,168,117,0.34);
-  background:
-    radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,0.18), transparent 60%),
-    linear-gradient(135deg, rgba(194,168,117,0.60), rgba(194,168,117,0.10));
-  box-shadow: 0 18px 60px rgba(0,0,0,0.55);
-  flex: 0 0 auto;
-}
+    .tileInner{
+      position:relative;
+      z-index:1;
+      padding: 14px;
+      display:flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .tileTitle{
+      font-weight: 950;
+      font-size: 1.02rem;
+      color: rgba(255,255,255,0.94);
+      line-height: 1.12;
+    }
+    .tileSub{
+      color: rgba(255,255,255,0.66);
+      font-size: 0.93rem;
+      line-height: 1.35;
+      max-width: 34ch;
+    }
+    .tileArrow{
+      margin-top: 2px;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      font-size: 0.80rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.78);
+    }
+    .tile a{
+      position:absolute;
+      inset:0;
+      border-radius: 18px;
+    }
 
-.serviceTitle{
-  font-size: 1.12rem;
-  font-weight: 950;
-  color: rgba(255,255,255,0.92);
-  line-height: 1.15;
-  margin-top: 2px;
-}
-
-.serviceTag{
-  margin-top: 10px;
-  color: rgba(255,255,255,0.64);
-  font-size: 0.98rem;
-  line-height: 1.55;
-}
-
-.serviceMeta{
-  margin-top: 12px;
-  display:flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.badge{
-  padding: 8px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(0,0,0,0.18);
-  color: rgba(255,255,255,0.66);
-  font-size: 0.80rem;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-}
-
-.serviceActions{
-  margin-top: 14px;
-  display:flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.serviceActions .btn{
-  flex: 1 1 190px;
-  justify-content:center;
-}
-
-/* Make the “card” itself clickable without killing accessibility */
-.serviceCard a.cardLink{
-  position:absolute;
-  inset: 0;
-  border-radius: 24px;
-}
-.serviceCard a.cardLink:focus-visible{
-  box-shadow: var(--focus);
-}
-
-/* Responsive */
-@media (max-width: 980px){
-  .serviceCard{ grid-column: span 12; min-height: 0; }
-}
-    .contactCard .name{
+    /* Slim contact panel (no big block) */
+    .contactSlim{
+      margin-top: 14px;
+      border-radius: 22px;
+      border: 1px solid rgba(194,168,117,0.26);
+      background: rgba(194,168,117,0.08);
+      padding: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .contactSlim .left{
+      min-width: 240px;
+    }
+    .contactSlim .name{
       font-weight: 950;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      font-size: 0.92rem;
-      color: rgba(255,255,255,0.90);
+      font-size: 0.86rem;
+      color: rgba(255,255,255,0.88);
     }
-    .contactCard .msg{
-      margin-top: 10px;
-      color: rgba(255,255,255,0.72);
-      font-size: 1.02rem;
-      line-height: 1.45;
+    .contactSlim .msg{
+      margin-top: 6px;
+      color: rgba(255,255,255,0.70);
+      font-size: 0.98rem;
+      line-height: 1.4;
     }
-    .contactCard .phone{
-      margin-top: 12px;
+    .contactSlim .phone{
       font-weight: 950;
-      font-size: 1.55rem;
-      letter-spacing: 0.01em;
-    }
-    .contactCard .mini{
-      margin-top: 10px;
-      color: rgba(255,255,255,0.62);
-      font-size: 0.95rem;
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.94);
+      white-space: nowrap;
     }
 
-    /* Cards */
+    /* Cards / lower sections */
     .grid3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -546,8 +558,6 @@
       text-decoration: underline;
       text-underline-offset: 4px;
     }
-
-    /* IMPORTANT: ensure buttons in nachi stage keep correct colors */
     .nachiStage .btn{ color: rgba(255,255,255,0.90); }
     .nachiStage .btn.primary{ color: rgba(0,0,0,0.92) !important; }
 
@@ -584,15 +594,12 @@
       .mobileBar{ display:block; }
       footer{ padding-bottom: 88px; }
 
-      .hero{ align-items:flex-start; }
+      :root{ --headerH: 70px; }
       .heroGrid{ grid-template-columns: 1fr; }
-      .logoPanel{ max-height: 46vh; }
-      .logoPanel img{ max-height: 40vh; }
-
+      .tiles{ grid-template-columns: 1fr; }
       .grid3{ grid-template-columns: 1fr; }
       .twoCol{ grid-template-columns: 1fr; }
       .brand{ min-width: 190px; }
-      :root{ --headerH: 70px; }
     }
   </style>
 
@@ -649,20 +656,27 @@
   </header>
 
   <main id="main">
-    <!-- ===== HERO (owns the fold) ===== -->
+    <!-- ===== HERO (buttons live here) ===== -->
     <section class="section hero" id="top">
       <div class="heroShell">
-        <div class="heroGrid">
-          <!-- LEFT: logo -->
-          <div class="logoPanel" aria-label="StoneMark logo">
-            <img src="logo.PNG" alt="StoneMark Inspections logo">
-          </div>
 
-          <!-- RIGHT: copy / CTA -->
+        <div class="heroBrandRow" aria-label="StoneMark summary">
+          <div class="heroLogoMini">
+            <img src="logo.PNG" alt="StoneMark Inspections logo">
+            <div>
+              <div class="t1">StoneMark</div>
+              <div class="t2">Home Inspections</div>
+            </div>
+          </div>
+          <a class="btn primary" href="request.html" aria-label="Request an inspection online">Request Inspection</a>
+        </div>
+
+        <div class="heroGrid">
+          <!-- LEFT: message + CTA -->
           <div>
             <h1>Home inspections in Paducah, KY &amp; Western Kentucky.</h1>
             <p class="sub">
-              Photo-documented, plain-language home inspection reports designed for quick decisions.
+              Photo-documented, plain-language inspection reports designed for quick decisions.
               Verified InterNACHI credentials. Schedule fast by call/text or request online 24/7.
             </p>
 
@@ -674,219 +688,167 @@
             <div class="trustRow" aria-label="Trust highlights">
               <span class="pill">InterNACHI Verified</span>
               <span class="pill">Photo-Documented Reports</span>
-              <span class="pill">Western Kentucky</span>
+              <span class="pill">Plain-Language Findings</span>
             </div>
 
-            <div class="contactCard anchor" id="contact" aria-label="Contact">
-              <div class="name">Kyle Wilkins • StoneMark Inspections</div>
-              <div class="msg">Call or text anytime to schedule an inspection.</div>
+            <div class="contactSlim anchor" id="contact" aria-label="Contact">
+              <div class="left">
+                <div class="name">Kyle Wilkins • StoneMark Inspections</div>
+                <div class="msg">Call or text to schedule. Online requests available 24/7.</div>
+              </div>
               <div class="phone"><a href="tel:+12703498237" style="color:inherit;">(270) 349-8237</a></div>
-              <div class="mini">Online requests available 24/7 via the request form.</div>
             </div>
           </div>
+
+          <!-- RIGHT: service tiles (above the fold) -->
+          <aside class="tilesWrap" aria-label="Inspection service links">
+            <div class="tilesHead">
+              <div>
+                <div class="k">Services</div>
+                <div class="s">Tap a service for details.</div>
+              </div>
+              <a class="btn" href="#services" aria-label="Jump to services section">All Services</a>
+            </div>
+
+            <div class="tiles">
+              <!-- NOTE:
+                Put images here if you want:
+                /img/services/home.jpg
+                /img/services/radon.jpg
+                /img/services/mold.jpg
+                /img/services/air.jpg
+                /img/services/pool.jpg
+                /img/services/thermal.jpg
+                /img/services/borescope.jpg
+              -->
+
+              <div class="tile">
+                <div class="tileMedia" style="background-image:url('img/services/home.jpg');"></div>
+                <a href="home-inspection.html" aria-label="Home Inspection page"></a>
+                <div class="tileInner">
+                  <div class="tileTitle">Home Inspection</div>
+                  <div class="tileSub">Full system-by-system evaluation.</div>
+                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
+                </div>
+              </div>
+
+              <div class="tile">
+                <div class="tileMedia" style="background-image:url('img/services/radon.jpg');"></div>
+                <a href="radon-testing.html" aria-label="Radon Testing page"></a>
+                <div class="tileInner">
+                  <div class="tileTitle">Radon Testing</div>
+                  <div class="tileSub">The EPA recommends every home be tested.</div>
+                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
+                </div>
+              </div>
+
+              <div class="tile">
+                <div class="tileMedia" style="background-image:url('img/services/mold.jpg');"></div>
+                <a href="mold-inspection.html" aria-label="Mold Inspection page"></a>
+                <div class="tileInner">
+                  <div class="tileTitle">Mold Inspection</div>
+                  <div class="tileSub">Moisture + visible growth assessment.</div>
+                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
+                </div>
+              </div>
+
+              <div class="tile">
+                <div class="tileMedia" style="background-image:url('img/services/air.jpg');"></div>
+                <a href="air-quality.html" aria-label="Indoor Air Quality page"></a>
+                <div class="tileInner">
+                  <div class="tileTitle">Indoor Air Quality</div>
+                  <div class="tileSub">Allergens and environmental concerns.</div>
+                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
+                </div>
+              </div>
+
+              <div class="tile">
+                <div class="tileMedia" style="background-image:url('img/services/pool.jpg');"></div>
+                <a href="pool-spa-inspection.html" aria-label="Pool and Spa Inspection page"></a>
+                <div class="tileInner">
+                  <div class="tileTitle">Pool &amp; Spa</div>
+                  <div class="tileSub">Visible equipment, safety, condition.</div>
+                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
+                </div>
+              </div>
+
+              <div class="tile">
+                <div class="tileMedia" style="background-image:url('img/services/thermal.jpg');"></div>
+                <a href="thermal-imaging.html" aria-label="Thermal Imaging page"></a>
+                <div class="tileInner">
+                  <div class="tileTitle">Thermal Imaging</div>
+                  <div class="tileSub">Infrared scan for hidden anomalies.</div>
+                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
+                </div>
+              </div>
+
+              <div class="tile">
+                <div class="tileMedia" style="background-image:url('img/services/borescope.jpg');"></div>
+                <a href="borescope.html" aria-label="Borescope and Endoscope page"></a>
+                <div class="tileInner">
+                  <div class="tileTitle">Borescope / Endoscope</div>
+                  <div class="tileSub">Camera verification in tight spaces.</div>
+                  <div class="tileArrow">Learn More <span aria-hidden="true">→</span></div>
+                </div>
+              </div>
+
+              <div class="tile">
+                <div class="tileMedia" style="background-image:url('img/services/request.jpg');"></div>
+                <a href="request.html" aria-label="Request an Inspection"></a>
+                <div class="tileInner">
+                  <div class="tileTitle">Request Online</div>
+                  <div class="tileSub">24/7 request form — fast response.</div>
+                  <div class="tileArrow">Request <span aria-hidden="true">→</span></div>
+                </div>
+              </div>
+
+            </div>
+          </aside>
         </div>
       </div>
     </section>
-<!-- ===== SERVICES ===== -->
-<section class="section anchor" id="services">
-  <div class="shell">
-    <div class="kicker">Inspection Services</div>
-    <p class="lead">
-      Choose a service below to learn more. Each page explains what’s included, who it’s for, and how to schedule.
-    </p>
 
-    <div class="servicesGrid" aria-label="Inspection service pages">
+    <!-- ===== SERVICES (deeper info, still kept) ===== -->
+    <section class="section anchor" id="services">
+      <div class="shell">
+        <div class="kicker">Inspection Services</div>
+        <p class="lead">
+          Detailed service pages help buyers, sellers, and homeowners understand what’s included and what to expect.
+        </p>
 
-      <!-- Home Inspection -->
-      <div class="serviceCard">
-        <a class="cardLink" href="home-inspection.html" aria-label="Home Inspection details"></a>
-        <div>
-          <div class="serviceTop">
-            <div class="serviceIcon" aria-hidden="true"></div>
-            <div style="flex:1;">
-              <div class="serviceTitle">Home Inspection</div>
-              <div class="serviceTag">
-                System-by-system evaluation with photo documentation and plain-language reporting.
-              </div>
-              <div class="serviceMeta" aria-label="Home Inspection highlights">
-                <span class="badge">Buyers</span>
-                <span class="badge">Pre-Listing</span>
-                <span class="badge">Maintenance</span>
-              </div>
-            </div>
+        <div class="grid3" aria-label="Service summaries">
+          <div class="card">
+            <h3><a href="home-inspection.html">Home Inspection</a></h3>
+            <p>System-by-system evaluation of accessible components with photo documentation and clear findings.</p>
+          </div>
+          <div class="card">
+            <h3><a href="radon-testing.html">Radon Testing</a></h3>
+            <p>The EPA recommends testing every home for radon. Add testing to your inspection or schedule separately.</p>
+          </div>
+          <div class="card">
+            <h3><a href="mold-inspection.html">Mold Inspection</a></h3>
+            <p>Identify visible growth and moisture conditions that may support microbial activity.</p>
+          </div>
+          <div class="card">
+            <h3><a href="air-quality.html">Indoor Air Quality</a></h3>
+            <p>Assess indoor air concerns including allergens, particles, and environmental conditions.</p>
+          </div>
+          <div class="card">
+            <h3><a href="thermal-imaging.html">Thermal Imaging</a></h3>
+            <p>Non-invasive infrared scanning to help identify anomalies not visible to the naked eye.</p>
+          </div>
+          <div class="card">
+            <h3><a href="borescope.html">Borescope / Endoscope</a></h3>
+            <p>Targeted camera inspection when visual confirmation matters in limited-access areas.</p>
           </div>
         </div>
 
-        <div class="serviceActions">
-          <a class="btn" href="home-inspection.html" aria-label="Learn more about Home Inspection">Learn More</a>
-          <a class="btn primary" href="request.html" aria-label="Request a Home Inspection">Request</a>
+        <div class="ctaRow" style="margin-top:14px;">
+          <a class="btn primary" href="request.html">Request Inspection</a>
+          <a class="btn" href="tel:+12703498237">Call/Text (270) 349-8237</a>
         </div>
       </div>
-
-      <!-- Radon -->
-      <div class="serviceCard">
-        <a class="cardLink" href="radon-testing.html" aria-label="Radon Testing details"></a>
-        <div>
-          <div class="serviceTop">
-            <div class="serviceIcon" aria-hidden="true"></div>
-            <div style="flex:1;">
-              <div class="serviceTitle">Radon Testing</div>
-              <div class="serviceTag">
-                The EPA recommends that every home be tested for radon.
-              </div>
-              <div class="serviceMeta" aria-label="Radon Testing highlights">
-                <span class="badge">Real Estate</span>
-                <span class="badge">Lab Results</span>
-                <span class="badge">Calibrated</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="serviceActions">
-          <a class="btn" href="radon-testing.html" aria-label="Learn more about Radon Testing">Learn More</a>
-          <a class="btn primary" href="request.html" aria-label="Request Radon Testing">Request</a>
-        </div>
-      </div>
-
-      <!-- Mold -->
-      <div class="serviceCard">
-        <a class="cardLink" href="mold-inspection.html" aria-label="Mold Inspection details"></a>
-        <div>
-          <div class="serviceTop">
-            <div class="serviceIcon" aria-hidden="true"></div>
-            <div style="flex:1;">
-              <div class="serviceTitle">Mold Inspection</div>
-              <div class="serviceTag">
-                Identify visible growth and moisture conditions that can support microbial activity.
-              </div>
-              <div class="serviceMeta" aria-label="Mold highlights">
-                <span class="badge">Moisture</span>
-                <span class="badge">Attic</span>
-                <span class="badge">Crawlspace</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="serviceActions">
-          <a class="btn" href="mold-inspection.html" aria-label="Learn more about Mold Inspection">Learn More</a>
-          <a class="btn primary" href="request.html" aria-label="Request a Mold Inspection">Request</a>
-        </div>
-      </div>
-
-      <!-- Indoor Air Quality -->
-      <div class="serviceCard">
-        <a class="cardLink" href="air-quality.html" aria-label="Indoor Air Quality details"></a>
-        <div>
-          <div class="serviceTop">
-            <div class="serviceIcon" aria-hidden="true"></div>
-            <div style="flex:1;">
-              <div class="serviceTitle">Indoor Air Quality</div>
-              <div class="serviceTag">
-                Assess indoor air concerns including allergens, particles, and environmental conditions.
-              </div>
-              <div class="serviceMeta" aria-label="Air quality highlights">
-                <span class="badge">Allergens</span>
-                <span class="badge">Comfort</span>
-                <span class="badge">Health</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="serviceActions">
-          <a class="btn" href="air-quality.html" aria-label="Learn more about Indoor Air Quality">Learn More</a>
-          <a class="btn primary" href="request.html" aria-label="Request Indoor Air Quality">Request</a>
-        </div>
-      </div>
-
-      <!-- Pool & Spa -->
-      <div class="serviceCard">
-        <a class="cardLink" href="pool-spa-inspection.html" aria-label="Pool and Spa Inspection details"></a>
-        <div>
-          <div class="serviceTop">
-            <div class="serviceIcon" aria-hidden="true"></div>
-            <div style="flex:1;">
-              <div class="serviceTitle">Pool &amp; Spa Inspection</div>
-              <div class="serviceTag">
-                Evaluate visible equipment, safety items, and general condition of pool/spa systems.
-              </div>
-              <div class="serviceMeta" aria-label="Pool and Spa highlights">
-                <span class="badge">Equipment</span>
-                <span class="badge">Safety</span>
-                <span class="badge">Condition</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="serviceActions">
-          <a class="btn" href="pool-spa-inspection.html" aria-label="Learn more about Pool and Spa Inspection">Learn More</a>
-          <a class="btn primary" href="request.html" aria-label="Request Pool & Spa Inspection">Request</a>
-        </div>
-      </div>
-
-      <!-- Thermal Imaging -->
-      <div class="serviceCard">
-        <a class="cardLink" href="thermal-imaging.html" aria-label="Thermal Imaging Inspection details"></a>
-        <div>
-          <div class="serviceTop">
-            <div class="serviceIcon" aria-hidden="true"></div>
-            <div style="flex:1;">
-              <div class="serviceTitle">Thermal Imaging</div>
-              <div class="serviceTag">
-                Non-invasive infrared scanning to help identify anomalies not visible to the naked eye.
-              </div>
-              <div class="serviceMeta" aria-label="Thermal imaging highlights">
-                <span class="badge">Moisture</span>
-                <span class="badge">Insulation</span>
-                <span class="badge">Electrical</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="serviceActions">
-          <a class="btn" href="thermal-imaging.html" aria-label="Learn more about Thermal Imaging">Learn More</a>
-          <a class="btn primary" href="request.html" aria-label="Request Thermal Imaging">Request</a>
-        </div>
-      </div>
-
-      <!-- Borescope -->
-      <div class="serviceCard">
-        <a class="cardLink" href="borescope.html" aria-label="Borescope / Endoscope Inspection details"></a>
-        <div>
-          <div class="serviceTop">
-            <div class="serviceIcon" aria-hidden="true"></div>
-            <div style="flex:1;">
-              <div class="serviceTitle">Borescope / Endoscope</div>
-              <div class="serviceTag">
-                Targeted camera inspection in limited-access areas when visual confirmation matters.
-              </div>
-              <div class="serviceMeta" aria-label="Borescope highlights">
-                <span class="badge">Cavities</span>
-                <span class="badge">Chases</span>
-                <span class="badge">Verification</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="serviceActions">
-          <a class="btn" href="borescope.html" aria-label="Learn more about Borescope / Endoscope">Learn More</a>
-          <a class="btn primary" href="request.html" aria-label="Request Borescope / Endoscope">Request</a>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="ctaRow" style="margin-top:14px;">
-      <a class="btn primary" href="request.html">Request Inspection</a>
-      <a class="btn" href="tel:+12703498237">Call/Text (270) 349-8237</a>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- ===== SERVICE AREA ===== -->
     <section class="section anchor" id="area">
@@ -984,7 +946,7 @@
     // Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Fix: Safari sometimes restores scroll position; force landing page to show hero at top
+    // Optional: keep the landing experience consistent on Safari
     (function () {
       try { history.scrollRestoration = "manual"; } catch (e) {}
       function goTop(){ window.scrollTo(0,0); }
