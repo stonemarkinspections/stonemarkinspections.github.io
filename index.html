@@ -217,7 +217,7 @@
     /* Portrait: BIG, no box, with soft fade */
    .portrait{
   position:relative;
-  height: 680px;              /* keep or adjust */
+  height: 1000px;              /* keep or adjust */
   display:flex;
   align-items:flex-end;
   justify-content:flex-start;
@@ -233,14 +233,14 @@
       content:"";
       position:absolute;
       inset:-40px -80px -40px -80px;
-      background: radial-gradient(640px 520px at 42% 52%, transparent 42%, rgba(0,0,0,.76) 78%);
+      background: radial-gradient(680px 520px at 42% 52%, transparent 42%, rgba(0,0,0,.76) 78%);
       pointer-events:none;
     }
 .portrait img{
-  height: 680px;
+  height: 1000px;
   width:auto;
   display:block;
-  filter: drop-shadow(0 28px 62px rgba(0,0,0,.75)) saturate(1.02) contrast(1.02);
+  filter: drop-shadow(0 35px 75px rgba(0,0,0,.75)) saturate(1.02) contrast(1.02);
 
   /* NEW: wider/stronger fade */
   -webkit-mask-image: radial-gradient(circle at 44% 44%, #000 70%, transparent 92%);
