@@ -3,818 +3,511 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- ===== Primary SEO ===== -->
   <title>StoneMark Inspections | Home Inspector in Paducah, KY & Western Kentucky</title>
-  <meta name="description" content="StoneMark Inspections provides professional home inspections in Paducah, KY and across Western Kentucky. Photo-documented, plain-language reports. Verified InterNACHI credentials. Call/text (270) 349-8237 or request online 24/7." />
-  <link rel="canonical" href="https://stonemarkinspections.com/" />
+  <meta name="description" content="StoneMark Inspections provides licensed, insured home inspections across Paducah and Western Kentucky. Clear, photo-documented reports delivered fast." />
 
-  <!-- ===== Social ===== -->
+  <!-- Open Graph (optional but good for sharing) -->
+  <meta property="og:title" content="StoneMark Inspections" />
+  <meta property="og:description" content="Home Inspector in Paducah, KY & Western Kentucky" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="StoneMark Inspections | Home Inspector in Paducah, KY & Western Kentucky" />
-  <meta property="og:description" content="Professional home inspections across Western Kentucky with verified InterNACHI credentials. Request online or call/text (270) 349-8237." />
-  <meta property="og:url" content="https://stonemarkinspections.com/" />
-  <meta property="og:image" content="https://stonemarkinspections.com/logo1.png" />
-  <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Performance -->
-  <link rel="preconnect" href="https://www.nachi.org" crossorigin>
-
-  <!-- ===== Minimal landing / SEO below fold ===== -->
   <style>
     :root{
-      --bg0:#050607;
-      --bg1:#090b0e;
-      --bg2:#0e1116;
+      --bg:#000;
+      --gold:#c2a875;
+      --gold2:#d8bf85;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,0.72);
 
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.68);
-      --muted2: rgba(255,255,255,0.52);
-      --line: rgba(255,255,255,0.12);
+      --glass:rgba(0,0,0,0.52);
+      --glass2:rgba(0,0,0,0.35);
+      --stroke:rgba(194,168,117,0.20);
+      --stroke2:rgba(194,168,117,0.32);
 
-      --accent:#c2a875;
-      --accent2:#d5c190;
-      --accentSoft: rgba(194,168,117,0.16);
+      --shadow: 0 18px 55px rgba(0,0,0,0.68);
+      --shadow2: 0 10px 35px rgba(0,0,0,0.55);
+      --radius: 18px;
+      --radius2: 22px;
 
-      --shadow: 0 26px 120px rgba(0,0,0,0.70);
-      --r: 22px;
-      --edge: clamp(14px, 2.4vw, 34px);
-
-      --headerH: 76px;
-      --focus: 0 0 0 3px rgba(194,168,117,0.35);
+      --max: 1400px;
     }
 
     *{ box-sizing:border-box; margin:0; padding:0; }
-    html, body{ height:100%; background: var(--bg0); }
+    html,body{ height:100%; background:var(--bg); color:var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif; }
+    a{ color:inherit; text-decoration:none; }
+    img{ display:block; max-width:100%; }
+
+    /* ====== PAGE BACKGROUND ====== */
     body{
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display","SF Pro Text",
-                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       overflow-x:hidden;
     }
-    a{ color: inherit; text-decoration:none; }
-    img{ max-width:100%; height:auto; display:block; }
-    :focus-visible{ outline:none; box-shadow: var(--focus); border-radius: 12px; }
-
-    /* Skip link */
-    .skip{
-      position:absolute; left:-999px; top:10px;
-      background: rgba(0,0,0,0.86);
-      border: 1px solid rgba(255,255,255,0.16);
-      padding: 10px 12px;
-      border-radius: 12px;
-      z-index: 999;
-    }
-    .skip:focus{ left: var(--edge); }
-
-    /* Background */
     .bg{
-      position: fixed; inset:0; z-index:-2;
+      position:fixed; inset:0; z-index:-3;
       background:
-        radial-gradient(1200px 900px at 10% 12%, rgba(194,168,117,0.18), transparent 62%),
-        radial-gradient(1200px 900px at 92% 10%, rgba(255,255,255,0.06), transparent 60%),
-        radial-gradient(1200px 900px at 50% 112%, rgba(255,255,255,0.05), transparent 62%),
-        linear-gradient(180deg, var(--bg0) 0%, var(--bg2) 58%, var(--bg0) 100%);
+        radial-gradient(1200px 700px at 70% 35%, rgba(194,168,117,0.10), transparent 55%),
+        radial-gradient(900px 600px at 20% 70%, rgba(194,168,117,0.08), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,0.88), rgba(0,0,0,0.95));
     }
-    .grain{
-      position: fixed; inset:0; z-index:-1; pointer-events:none;
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-      opacity: 0.14;
+    .bg::before{
+      content:"";
+      position:absolute; inset:0;
+      /* Optional: add a stone texture image to get it closer to your screenshot.
+         Put file at: assets/bg-stone.webp (or .jpg/.png) and uncomment the next line. */
+      /* background: url("assets/bg-stone.webp") center/cover no-repeat; */
+      opacity:0.45;
+      filter: contrast(1.05) saturate(0.9);
       mix-blend-mode: overlay;
     }
-
-    /* Buttons */
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 999px;
-      font-size: 0.84rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.05);
-      color: rgba(255,255,255,0.90);
-      user-select:none;
-      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, opacity 160ms ease;
-      white-space: nowrap;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(255,255,255,0.20);
-    }
-    .btn.primary{
-      color: rgba(0,0,0,0.92);
-      border-color: rgba(194,168,117,0.32);
-      background: linear-gradient(180deg, rgba(194,168,117,1), rgba(194,168,117,0.86));
-      box-shadow: 0 18px 70px rgba(194,168,117,0.10), 0 28px 100px rgba(0,0,0,0.55);
+    .bg::after{
+      content:"";
+      position:absolute; inset:-30%;
+      background: radial-gradient(closest-side, rgba(255,255,255,0.06), transparent 55%);
+      opacity:0.25;
+      transform: translate3d(0,0,0);
+      pointer-events:none;
     }
 
-    /* Header */
+    /* ====== HEADER ====== */
     header{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      height: var(--headerH);
-      display:flex;
-      align-items:center;
-      background: rgba(5,6,7,0.74);
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(0,0,0,0.82), rgba(0,0,0,0.50));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    .topbar{
-      width: 100%;
-      padding: 0 var(--edge);
+    .navwrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap: 14px;
     }
-
-    /* Brand */
     .brand{
       display:flex;
       align-items:center;
       gap: 12px;
-      min-width: 240px;
+      min-width: 230px;
     }
-    .mark{
-      width: 42px; height: 42px;
-      border-radius: 14px;
-      display:grid;
-      place-items:center;
-      background:
-        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,0.16), transparent 60%),
-        linear-gradient(135deg, rgba(194,168,117,0.65), rgba(194,168,117,0.10));
-      border: 1px solid rgba(194,168,117,0.48);
-      box-shadow: 0 16px 50px rgba(0,0,0,0.60);
-      position: relative;
-      overflow:hidden;
-      flex: 0 0 auto;
+    .brand img{
+      height: 34px;
+      width:auto;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.45));
     }
-    .mark::after{
-      content:"";
-      position:absolute; inset:-30%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.20), transparent 55%);
-      transform: rotate(18deg);
-      opacity: 0.9;
-      pointer-events:none;
+    /* If you don't have a logo file yet, this text fallback will look good */
+    .brand .brandText{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
     }
-    .mark span{
-      font-weight: 950;
-      letter-spacing: 0.12em;
-      font-size: 0.76rem;
-      color: rgba(0,0,0,0.86);
-      text-transform: uppercase;
-      z-index:1;
-      transform: translateX(1px);
+    .brand .brandText .top{
+      letter-spacing:0.20em;
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
     }
-    .brandText strong{
-      display:block;
-      font-weight: 950;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 0.92rem;
-      line-height: 1.05;
-    }
-    .brandText em{
-      display:block;
-      margin-top: 2px;
-      font-style: normal;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.50);
+    .brand .brandText .bottom{
+      font-weight: 650;
+      letter-spacing:0.08em;
+      font-size: 13px;
+      color: rgba(255,255,255,0.72);
+      margin-top:3px;
     }
 
     nav{
       display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      align-items:center;
+      gap: 26px;
+      flex-wrap:wrap;
       justify-content:center;
+      flex: 1;
     }
     nav a{
-      font-size: 0.80rem;
-      letter-spacing: 0.16em;
+      font-size: 12px;
+      letter-spacing: 0.26em;
+      color: rgba(255,255,255,0.72);
+      transition: color .18s ease;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.68);
-      padding: 10px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease;
+      padding: 10px 0;
     }
-    nav a:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.14);
-      color: rgba(255,255,255,0.92);
-    }
+    nav a:hover{ color: rgba(255,255,255,0.95); }
 
-    .actions{
+    .navCTAs{
       display:flex;
       align-items:center;
-      gap: 10px;
+      gap: 12px;
+      min-width: 280px;
       justify-content:flex-end;
     }
-
-    /* Layout helpers */
-    main{ width:100%; }
-    .section{
-      padding: 18px var(--edge) 26px;
-    }
-    .shell{
-      border-radius: calc(var(--r) + 10px);
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.03);
-      box-shadow: 0 24px 90px rgba(0,0,0,0.50);
-      padding: clamp(16px, 2vw, 22px);
-      overflow:hidden;
-    }
-    .kicker{
-      font-weight: 950;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.84);
-    }
-    .lead{
-      margin-top: 10px;
-      color: rgba(255,255,255,0.64);
-      font-size: 1.02rem;
-      line-height: 1.6;
-      max-width: 78ch;
-    }
-
-    /* ===== HERO: minimal copy ===== */
-    .hero{
-      padding-top: 14px;
-      padding-bottom: 14px;
-      min-height: auto; /* no forced empty space */
-    }
-    .heroShell{
-      width: 100%;
-      border-radius: calc(var(--r) + 12px);
-      border: 1px solid rgba(255,255,255,0.12);
-      background:
-        radial-gradient(1400px 560px at 16% 0%, rgba(194,168,117,0.22), transparent 62%),
-        radial-gradient(1200px 560px at 92% 0%, rgba(255,255,255,0.07), transparent 62%),
-        rgba(255,255,255,0.03);
-      box-shadow: var(--shadow);
-      padding: clamp(16px, 2vw, 22px);
-      overflow:hidden;
-    }
-
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 16px;
-      align-items:center;
-    }
-
-    .logoPanel{
-      border-radius: 26px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.30);
-      padding: clamp(14px, 1.8vw, 18px);
-      box-shadow: 0 26px 90px rgba(0,0,0,0.62);
-      max-height: 66vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-    }
-    .logoPanel img{
-      width: 100%;
-      max-height: 60vh;
-      object-fit: contain;
-      filter: drop-shadow(0 28px 90px rgba(0,0,0,0.78));
-    }
-
-    .ctaRow{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 0 0 12px;
-    }
-    .ctaRow .btn{ flex: 1 1 220px; }
-
-    .trustRow{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 0 0 12px;
-    }
     .pill{
-      padding: 10px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.20);
-      color: rgba(255,255,255,0.68);
-      font-size: 0.92rem;
+      padding: 10px 16px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: 1px solid rgba(194,168,117,0.30);
+      background: rgba(0,0,0,0.35);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      white-space: nowrap;
+    }
+    .pill:hover{
+      transform: translateY(-1px);
+      border-color: rgba(194,168,117,0.45);
+      background: rgba(0,0,0,0.45);
+    }
+    .pill.gold{
+      border-color: rgba(194,168,117,0.55);
+      background: linear-gradient(180deg, rgba(194,168,117,0.40), rgba(194,168,117,0.18));
+      color: rgba(0,0,0,0.92);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+    .pill.gold:hover{
+      border-color: rgba(216,191,133,0.72);
+      background: linear-gradient(180deg, rgba(216,191,133,0.48), rgba(194,168,117,0.22));
+      transform: translateY(-1px);
     }
 
-    /* ===== Minimal Hero Service Tiles ===== */
-    .heroTiles{
-      margin-top: 0;
+    /* ====== HERO LAYOUT ====== */
+    main{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 26px 18px 42px;
+    }
+    .hero{
+      position:relative;
+      min-height: calc(100vh - 86px);
       display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 26px;
+      align-items:center;
+      padding-top: 10px;
+    }
+
+    /* Left portrait */
+    .portraitWrap{
+      position:relative;
+      min-height: 560px;
+      border-radius: 26px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+    .portraitWrap::before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(120% 120% at 55% 35%, transparent 35%, rgba(0,0,0,0.78) 75%);
+      z-index:2;
+      pointer-events:none;
+    }
+    .portraitWrap::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.55), transparent 60%);
+      z-index:2;
+      pointer-events:none;
+    }
+    .portrait{
+      position:absolute; inset:0;
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      object-position: 35% 30%;
+      filter: contrast(1.02) saturate(0.92);
+      transform: scale(1.02);
+    }
+
+    /* Right button panel (floating, no card container like screenshot) */
+    .panel{
+      display:flex;
+      flex-direction:column;
+      gap: 18px;
+      align-items:flex-end;
+      justify-content:center;
+      padding-right: 6px;
+    }
+
+    .grid{
+      width: min(680px, 100%);
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
     }
 
     .tile{
-      position: relative;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.12);
-      overflow:hidden;
-      min-height: 112px;
-      background: rgba(0,0,0,0.20);
+      position:relative;
       display:flex;
-      align-items:flex-end;
-      padding: 12px;
-      transition: transform 160ms ease, border-color 160ms ease;
-      isolation: isolate;
+      align-items:center;
+      gap: 16px;
+      padding: 18px 18px;
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, var(--glass), var(--glass2));
+      border: 1px solid rgba(194,168,117,0.22);
+      box-shadow: var(--shadow2);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      overflow:hidden;
     }
-
+    .tile::before{
+      content:"";
+      position:absolute; inset:-1px;
+      border-radius: inherit;
+      background:
+        radial-gradient(600px 180px at 20% 0%, rgba(194,168,117,0.12), transparent 60%),
+        radial-gradient(600px 180px at 80% 100%, rgba(194,168,117,0.10), transparent 60%);
+      opacity: 0.9;
+      pointer-events:none;
+    }
     .tile:hover{
       transform: translateY(-2px);
-      border-color: rgba(194,168,117,0.34);
+      border-color: rgba(194,168,117,0.40);
+      background: linear-gradient(180deg, rgba(0,0,0,0.62), rgba(0,0,0,0.40));
     }
 
-    .tileMedia{
-      position:absolute;
-      inset:0;
-      background-size: cover;
-      background-position:center;
-      opacity: 0.82;
-      filter: saturate(1.02) contrast(1.03);
-      z-index: -1;
+    .tileIcon{
+      width: 78px;
+      height: 78px;
+      flex: 0 0 78px;
+      border-radius: 16px;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(194,168,117,0.10);
     }
-
-    .tileMedia::after{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.78)),
-        radial-gradient(260px 160px at 20% 10%, rgba(194,168,117,0.22), transparent 65%);
+    .tileIcon img{
+      width: 78px;
+      height: 78px;
+      object-fit: cover; /* icons are full tiles */
+      filter: drop-shadow(0 0 10px rgba(194,168,117,0.18));
     }
 
     .tileText{
-      position: relative;
-      z-index: 1;
-      font-weight: 950;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 0.90rem;
-      color: rgba(255,255,255,0.94);
+      display:flex;
+      flex-direction:column;
+      line-height:1.0;
+      gap: 6px;
+      position:relative;
+      z-index:1;
     }
-
-    .tileNote{
-      position:absolute;
-      left:12px;
-      bottom:12px;
-      transform: translateY(22px);
-      opacity: 0;
-      transition: opacity 160ms ease, transform 160ms ease;
-      z-index: 2;
-      max-width: 92%;
-      color: rgba(255,255,255,0.72);
-      font-size: 0.85rem;
-      line-height: 1.25;
-      pointer-events:none;
-    }
-
-    .tile:hover .tileNote{
-      opacity: 1;
-      transform: translateY(0px);
-    }
-
-    /* Accessible "hero identity" but visually minimal */
-    h1{
-      position:absolute !important;
-      width: 1px !important;
-      height: 1px !important;
-      padding: 0 !important;
-      margin: -1px !important;
-      overflow: hidden !important;
-      clip: rect(0,0,0,0) !important;
-      white-space: nowrap !important;
-      border: 0 !important;
-    }
-
-    /* Cards */
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 14px;
-    }
-    .card{
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.20);
-      padding: 18px;
-    }
-    .card h3{
-      font-size: 1.10rem;
-      font-weight: 950;
+    .tileTitle{
+      font-size: 22px;
+      font-weight: 650;
       color: rgba(255,255,255,0.92);
-      margin-bottom: 8px;
+      letter-spacing: 0.02em;
     }
-    .card p{
-      color: rgba(255,255,255,0.66);
-      font-size: 1.00rem;
-      line-height: 1.55;
+    .tileSub{
+      font-size: 18px;
+      font-weight: 520;
+      color: rgba(194,168,117,0.95);
+      letter-spacing: 0.02em;
+    }
+    .tileSmall{
+      font-size: 16px;
+      color: rgba(255,255,255,0.80);
+      letter-spacing: 0.02em;
     }
 
-    .twoCol{
-      display:grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 14px;
-      margin-top: 14px;
+    /* Two special top tiles in screenshot style */
+    .tile.request .tileSub{ color: rgba(194,168,117,0.95); }
+    .tile.call .tileTitle{ font-size: 20px; }
+    .tile.call .tileSub{ font-size: 16px; color: rgba(255,255,255,0.80); }
+
+    /* Footer microtext under grid (optional) */
+    .micro{
+      width:min(680px, 100%);
+      margin-top: 8px;
+      color: rgba(255,255,255,0.55);
+      font-size: 12px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      text-align:right;
     }
 
-    /* Credentials / InterNACHI */
-    .nachiStage{
-      margin-top: 14px;
-      border-radius: 26px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.22);
-      padding: 18px;
-      text-align:center;
-      overflow: visible;
-    }
-    .nachiStage img{
-      display:inline-block !important;
-      max-width: 270px !important;
-      width: auto !important;
-      height: auto !important;
-      margin: 14px 16px !important;
-      filter: drop-shadow(0 14px 38px rgba(0,0,0,0.55));
-    }
-    .nachiStage table{
-      margin-left:auto !important;
-      margin-right:auto !important;
-    }
-    .nachiNote{
-      margin-top: 12px;
-      color: rgba(255,255,255,0.58);
-      font-size: 0.95rem;
-    }
-    .nachiNote a{
-      color: var(--accent);
-      text-decoration:none;
-    }
-    .nachiNote a:hover{
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-    .nachiStage .btn{ color: rgba(255,255,255,0.90); }
-    .nachiStage .btn.primary{ color: rgba(0,0,0,0.92) !important; }
-
-    /* Anchors */
-    .anchor{ scroll-margin-top: calc(var(--headerH) + 16px); }
-
-    footer{
-      width: 100%;
-      padding: 26px var(--edge) 42px;
-      color: rgba(255,255,255,0.56);
-      border-top: 1px solid rgba(255,255,255,0.10);
-      text-align: center;
-    }
-    footer a{ color: var(--accent); }
-
-    /* Mobile CTA bar */
-    .mobileBar{
-      display:none;
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      z-index: 80;
-      background: rgba(5,6,7,0.86);
-      border-top: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      padding: 10px var(--edge);
-    }
-    .mobileBar .row{ display:flex; gap: 10px; }
-    .mobileBar .btn{ width: 100%; }
-
+    /* ====== RESPONSIVE ====== */
     @media (max-width: 980px){
-      nav{ display:none; }
-      .actions{ display:none; }
-      .mobileBar{ display:block; }
-      footer{ padding-bottom: 88px; }
+      nav{ display:none; } /* keep header clean on smaller screens */
+      .navwrap{ padding: 12px 14px; }
+      .hero{
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 14px;
+      }
+      .portraitWrap{
+        min-height: 420px;
+      }
+      .panel{
+        align-items:stretch;
+        padding-right:0;
+      }
+      .grid{
+        width:100%;
+      }
+      .micro{ text-align:left; }
+    }
 
-      .heroGrid{ grid-template-columns: 1fr; align-items:start; }
-      .logoPanel{ max-height: 46vh; }
-      .logoPanel img{ max-height: 40vh; }
-
-      .heroTiles{ grid-template-columns: 1fr; }
-      .grid3{ grid-template-columns: 1fr; }
-      .twoCol{ grid-template-columns: 1fr; }
-      .brand{ min-width: 190px; }
-      :root{ --headerH: 70px; }
+    @media (max-width: 560px){
+      .grid{ grid-template-columns: 1fr; }
+      .tileTitle{ font-size: 20px; }
+      .tileSub{ font-size: 16px; }
+      .tileIcon{ width: 70px; height: 70px; flex-basis:70px; }
+      .tileIcon img{ width: 70px; height: 70px; }
+      .navCTAs .pill{ padding: 9px 12px; font-size: 11px; }
     }
   </style>
-
-  <!-- LocalBusiness schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HomeAndConstructionBusiness",
-    "name": "StoneMark Inspections",
-    "url": "https://stonemarkinspections.com/",
-    "telephone": "+1-270-349-8237",
-    "image": "https://stonemarkinspections.com/logo1.png",
-    "description": "Professional home inspections in Paducah, KY and across Western Kentucky. Photo-documented, plain-language reports and verified InterNACHI credentials.",
-    "areaServed": [
-      "Paducah KY",
-      "McCracken County KY",
-      "Marshall County KY",
-      "Graves County KY",
-      "Western Kentucky"
-    ]
-  }
-  </script>
 </head>
 
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-
   <div class="bg" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
 
   <header>
-    <div class="topbar">
-      <a class="brand" href="#top" aria-label="StoneMark Inspections home">
-        <div class="mark" aria-hidden="true"><span>SM</span></div>
+    <div class="navwrap">
+      <a class="brand" href="index.html" aria-label="StoneMark Inspections Home">
+        <!-- If you have a real logo file, put it at assets/stonemark-logo.png and uncomment this image -->
+        <!-- <img src="assets/stonemark-logo.png" alt="StoneMark Inspections Logo"> -->
+
+        <!-- Text fallback (looks good until you upload the real logo) -->
         <div class="brandText">
-          <strong>StoneMark</strong>
-          <em>Home Inspections</em>
+          <div class="top">STONEMARK</div>
+          <div class="bottom">HOME INSPECTIONS</div>
         </div>
       </a>
 
-      <nav aria-label="Primary navigation">
-        <a href="#services">Services</a>
-        <a href="#area">Service Area</a>
-        <a href="#credentials">Credentials</a>
-        <a href="#reports">Reports</a>
-        <a href="#contact">Contact</a>
+      <nav aria-label="Primary">
+        <a href="services.html">Services</a>
+        <a href="service-area.html">Service Area</a>
+        <a href="credentials.html">Credentials</a>
+        <a href="reports.html">Reports</a>
+        <a href="contact.html">Contact</a>
       </nav>
 
-      <div class="actions">
-        <a class="btn" href="tel:+12703498237" aria-label="Call or text (270) 349-8237">Call/Text</a>
-        <a class="btn primary" href="request.html" aria-label="Request an inspection online">Request Inspection</a>
+      <div class="navCTAs">
+        <a class="pill" href="tel:2703498237">Call/Text</a>
+        <a class="pill gold" href="request.html">Request Inspection</a>
       </div>
     </div>
   </header>
 
-  <main id="main">
-    <!-- Hidden H1 for SEO while keeping landing page minimal -->
-    <h1>StoneMark Inspections — Home Inspector in Paducah, KY & Western Kentucky</h1>
+  <main>
+    <section class="hero">
+      <!-- LEFT: Portrait -->
+      <div class="portraitWrap">
+        <!-- Your uploaded image of you -->
+        <img class="portrait" src="logo1.png" alt="StoneMark Inspector Portrait" />
+      </div>
 
-    <!-- ===== HERO: logo + tiles, minimal text ===== -->
-    <section class="section hero" id="top" aria-label="StoneMark landing">
-      <div class="heroShell">
-        <div class="heroGrid">
+      <!-- RIGHT: Tiles -->
+      <div class="panel">
+        <div class="grid">
 
-          <!-- LEFT: big logo -->
-          <div class="logoPanel" aria-label="StoneMark logo">
-            <img src="logo1.png" alt="StoneMark Inspections logo">
-          </div>
-
-          <!-- RIGHT: CTAs + tiles -->
-          <div>
-            <div class="ctaRow" aria-label="Primary actions">
-              <a class="btn primary" href="request.html">Request Inspection</a>
-              <a class="btn" href="tel:+12703498237">Call/Text (270) 349-8237</a>
+          <!-- Request Inspection -->
+          <a class="tile request" href="request.html">
+            <div class="tileIcon">
+              <img src="assets/icons/icon-request.webp" alt="Request Inspection Icon">
             </div>
-
-            <div class="trustRow" aria-label="Quick facts">
-              <span class="pill">Paducah, KY</span>
-              <span class="pill">Western Kentucky</span>
-              <span class="pill">InterNACHI Verified</span>
+            <div class="tileText">
+              <div class="tileTitle">Request</div>
+              <div class="tileSub">Inspection</div>
             </div>
+          </a>
 
-            <div class="heroTiles" aria-label="Inspection services">
-              <a class="tile" href="home-inspection.html" aria-label="Home Inspection">
-                <span class="tileMedia" style="background-image:url('img/services/home.jpg')"></span>
-                <span class="tileText">Home Inspection</span>
-              </a>
-
-              <a class="tile" href="radon-testing.html" aria-label="Radon Testing">
-                <span class="tileMedia" style="background-image:url('img/services/radon.jpg')"></span>
-                <span class="tileText">Radon Testing</span>
-                <span class="tileNote">The EPA recommends that every home be tested for radon.</span>
-              </a>
-
-              <a class="tile" href="mold-inspection.html" aria-label="Mold Inspection">
-                <span class="tileMedia" style="background-image:url('img/services/mold.jpg')"></span>
-                <span class="tileText">Mold</span>
-              </a>
-
-              <a class="tile" href="air-quality.html" aria-label="Indoor Air Quality">
-                <span class="tileMedia" style="background-image:url('img/services/air.jpg')"></span>
-                <span class="tileText">Air Quality</span>
-              </a>
-
-              <a class="tile" href="pool-spa-inspection.html" aria-label="Pool and Spa Inspection">
-                <span class="tileMedia" style="background-image:url('img/services/pool.jpg')"></span>
-                <span class="tileText">Pool &amp; Spa</span>
-              </a>
-
-              <a class="tile" href="thermal-imaging.html" aria-label="Thermal Imaging Inspection">
-                <span class="tileMedia" style="background-image:url('img/services/thermal.jpg')"></span>
-                <span class="tileText">Thermal Imaging</span>
-              </a>
-
-              <a class="tile" href="borescope.html" aria-label="Borescope / Endoscope">
-                <span class="tileMedia" style="background-image:url('img/services/borescope.jpg')"></span>
-                <span class="tileText">Borescope</span>
-              </a>
-
-              <a class="tile" href="request.html" aria-label="Request Inspection Online">
-                <span class="tileMedia" style="background-image:url('img/services/request.jpg')"></span>
-                <span class="tileText">Request Online</span>
-              </a>
+          <!-- Call/Text -->
+          <a class="tile call" href="tel:2703498237">
+            <div class="tileIcon">
+              <img src="assets/icons/icon-phone.webp" alt="Call Text Icon">
             </div>
+            <div class="tileText">
+              <div class="tileTitle">Call/Text</div>
+              <div class="tileSub">(270) 349-8237</div>
+            </div>
+          </a>
 
-            <!-- Invisible anchor target for nav -->
-            <div id="contact" class="anchor" style="height:1px;"></div>
-          </div>
+          <!-- Home Inspection -->
+          <a class="tile" href="services.html#home-inspection">
+            <div class="tileIcon">
+              <img src="assets/icons/icon-home.webp" alt="Home Inspection Icon">
+            </div>
+            <div class="tileText">
+              <div class="tileTitle">Home</div>
+              <div class="tileSub">Inspection</div>
+            </div>
+          </a>
 
+          <!-- Radon Testing -->
+          <a class="tile" href="services.html#radon">
+            <div class="tileIcon">
+              <img src="assets/icons/icon-radon.webp" alt="Radon Testing Icon">
+            </div>
+            <div class="tileText">
+              <div class="tileTitle">Radon</div>
+              <div class="tileSub">Testing</div>
+            </div>
+          </a>
+
+          <!-- Mold Inspection -->
+          <a class="tile" href="services.html#mold">
+            <div class="tileIcon">
+              <img src="assets/icons/icon-mold.webp" alt="Mold Inspection Icon">
+            </div>
+            <div class="tileText">
+              <div class="tileTitle">Mold</div>
+              <div class="tileSub">Inspection</div>
+            </div>
+          </a>
+
+          <!-- Indoor Air Quality -->
+          <a class="tile" href="services.html#iaq">
+            <div class="tileIcon">
+              <img src="assets/icons/icon-airquality.webp" alt="Indoor Air Quality Icon">
+            </div>
+            <div class="tileText">
+              <div class="tileTitle">Indoor</div>
+              <div class="tileSub">Air Quality</div>
+            </div>
+          </a>
+
+          <!-- Pool & Spa -->
+          <a class="tile" href="services.html#pool-spa">
+            <div class="tileIcon">
+              <img src="assets/icons/icon-pool.webp" alt="Pool and Spa Icon">
+            </div>
+            <div class="tileText">
+              <div class="tileTitle">Pool &amp; Spa</div>
+              <div class="tileSub">Inspection</div>
+            </div>
+          </a>
+
+          <!-- Thermal Imaging -->
+          <a class="tile" href="services.html#thermal">
+            <div class="tileIcon">
+              <img src="assets/icons/icon-thermal.webp" alt="Thermal Imaging Icon">
+            </div>
+            <div class="tileText">
+              <div class="tileTitle">Thermal</div>
+              <div class="tileSub">Imaging</div>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="micro">
+          Licensed • Insured • Photo-Documented Reports
         </div>
       </div>
     </section>
-
-    <!-- ===== SERVICES (SEO below fold) ===== -->
-    <section class="section anchor" id="services">
-      <div class="shell">
-        <div class="kicker">Inspection Services</div>
-        <p class="lead">
-          StoneMark Inspections provides professional home inspections and specialty inspections in Paducah, KY and
-          across Western Kentucky. Select a service for full details.
-        </p>
-
-        <div class="grid3" aria-label="Service pages">
-          <div class="card">
-            <h3><a href="home-inspection.html">Home Inspection</a></h3>
-            <p>System-by-system evaluation with photo documentation and plain-language reporting for buyers, sellers, and homeowners.</p>
-          </div>
-          <div class="card">
-            <h3><a href="radon-testing.html">Radon Testing</a></h3>
-            <p>The EPA recommends testing every home for radon. Add radon testing to a real estate transaction or schedule separately.</p>
-          </div>
-          <div class="card">
-            <h3><a href="mold-inspection.html">Mold Inspection</a></h3>
-            <p>Focused evaluation of visible growth and moisture conditions that can support microbial activity.</p>
-          </div>
-          <div class="card">
-            <h3><a href="air-quality.html">Indoor Air Quality</a></h3>
-            <p>Assess indoor air concerns including allergens, particles, and general environmental conditions.</p>
-          </div>
-          <div class="card">
-            <h3><a href="pool-spa-inspection.html">Pool &amp; Spa Inspection</a></h3>
-            <p>Evaluate visible equipment, safety items, and general condition of pool and spa systems.</p>
-          </div>
-          <div class="card">
-            <h3><a href="thermal-imaging.html">Thermal Imaging</a></h3>
-            <p>Non-invasive infrared scanning to help identify anomalies not visible to the naked eye.</p>
-          </div>
-          <div class="card">
-            <h3><a href="borescope.html">Borescope / Endoscope</a></h3>
-            <p>Targeted camera inspection in limited-access areas when visual confirmation matters.</p>
-          </div>
-          <div class="card">
-            <h3><a href="request.html">Request an Inspection</a></h3>
-            <p>Use the online request form 24/7 or call/text for fast scheduling in Paducah and Western Kentucky.</p>
-          </div>
-          <div class="card">
-            <h3>Service Area</h3>
-            <p>Paducah, McCracken County, Marshall County, Graves County, and surrounding Western Kentucky communities.</p>
-          </div>
-        </div>
-
-        <div class="ctaRow" style="margin-top:14px;">
-          <a class="btn primary" href="request.html">Request Inspection</a>
-          <a class="btn" href="tel:+12703498237">Call/Text (270) 349-8237</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== SERVICE AREA ===== -->
-    <section class="section anchor" id="area">
-      <div class="shell">
-        <div class="kicker">Service Area</div>
-        <p class="lead">
-          Serving Paducah, McCracken County, and surrounding communities across Western Kentucky.
-          If you’re nearby, reach out—scheduling is often flexible.
-        </p>
-
-        <div class="trustRow" aria-label="Service areas" style="margin-top:14px;">
-          <span class="pill">Paducah, KY</span>
-          <span class="pill">McCracken County</span>
-          <span class="pill">Marshall County</span>
-          <span class="pill">Graves County</span>
-          <span class="pill">Western Kentucky</span>
-        </div>
-
-        <div class="ctaRow" style="margin-top:14px;">
-          <a class="btn primary" href="request.html">Request Inspection</a>
-          <a class="btn" href="tel:+12703498237">Call/Text (270) 349-8237</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CREDENTIALS ===== -->
-    <section class="section anchor" id="credentials">
-      <div class="shell">
-        <div class="kicker">Credentials &amp; Certifications</div>
-        <p class="lead">These seals are loaded directly from InterNACHI. Click any logo to verify.</p>
-
-        <div class="nachiStage">
-          <script src="https://www.nachi.org/webseals/legacy/education?nachiid=NACHI26011311&include_universal=1"></script>
-
-          <div class="nachiNote">
-            Certifications acquired through
-            <a href="https://www.nachi.org/education.htm">home inspector training</a>
-            from InterNACHI&reg;.
-          </div>
-
-          <div class="ctaRow" style="margin-top:14px;">
-            <a class="btn" href="tel:+12703498237">Call/Text to Book</a>
-            <a class="btn primary" href="request.html">Request Inspection</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== REPORTS ===== -->
-    <section class="section anchor" id="reports">
-      <div class="shell">
-        <div class="kicker">Inspection Reports</div>
-        <p class="lead">
-          Organized, photo-supported, and written in plain language—so clients and agents can understand findings quickly.
-        </p>
-
-        <div class="grid3">
-          <div class="card">
-            <h3>Photo-Documented</h3>
-            <p>Photos appear where they add clarity—supporting observations without overwhelming the reader.</p>
-          </div>
-          <div class="card">
-            <h3>Plain Language</h3>
-            <p>Clear, calm writing designed for clients and agents—no theatrics, no filler.</p>
-          </div>
-          <div class="card">
-            <h3>Clear Next Steps</h3>
-            <p>Recommendations focus on appropriate professional evaluation when conditions warrant it.</p>
-          </div>
-        </div>
-
-        <div class="ctaRow" style="margin-top:14px;">
-          <a class="btn primary" href="request.html">Request Inspection</a>
-          <a class="btn" href="tel:+12703498237">Call/Text (270) 349-8237</a>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      © <span id="year"></span> StoneMark Inspections •
-      <a href="request.html">Request Inspection</a> •
-      <a href="tel:+12703498237">(270) 349-8237</a>
-    </footer>
   </main>
 
-  <!-- Mobile fixed CTA bar -->
-  <div class="mobileBar" aria-label="Quick actions">
-    <div class="row">
-      <a class="btn" href="tel:+12703498237">Call/Text</a>
-      <a class="btn primary" href="request.html">Request</a>
-    </div>
-  </div>
-
+  <!-- OPTIONAL: If you want smooth anchor scrolling -->
   <script>
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Fix: Safari sometimes restores scroll position; force landing page to show top
-    (function () {
-      try { history.scrollRestoration = "manual"; } catch (e) {}
-      function goTop(){ window.scrollTo(0,0); }
-      window.addEventListener("load", () => {
-        goTop();
-        requestAnimationFrame(goTop);
-        setTimeout(goTop, 60);
-        setTimeout(goTop, 250);
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if(!el) return;
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'start'});
       });
-    })();
+    });
   </script>
 </body>
 </html>
