@@ -215,23 +215,20 @@
     }
 
     /* Portrait: BIG, no box, with soft fade */
-    .portrait{
-      position:relative;
-      height: 1000px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:flex-start;
-      overflow:visible;
-    }
-    .portrait img{
-      height: 1000px;
-      width:auto;
-      display:block;
-      filter: drop-shadow(0 40px 80px rgba(0,0,0,.75)) saturate(1.02) contrast(1.02);
-      /* soft edge fade like the render */
-      -webkit-mask-image: radial-gradient(circle at 42% 42%, #000 66%, transparent 88%);
-              mask-image: radial-gradient(circle at 42% 42%, #000 66%, transparent 88%);
-    }
+   .portrait{
+  position:relative;
+  height: 680px;              /* keep or adjust */
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-start;
+  overflow:visible;
+
+  /* NEW: extra canvas for fade before the edge shows */
+  width: calc(100% + 180px);
+  margin-left: -180px;
+  padding-left: 180px;
+}
+   
     .portrait::after{
       content:"";
       position:absolute;
@@ -239,7 +236,16 @@
       background: radial-gradient(640px 520px at 42% 52%, transparent 42%, rgba(0,0,0,.76) 78%);
       pointer-events:none;
     }
+.portrait img{
+  height: 680px;
+  width:auto;
+  display:block;
+  filter: drop-shadow(0 28px 62px rgba(0,0,0,.75)) saturate(1.02) contrast(1.02);
 
+  /* NEW: wider/stronger fade */
+  -webkit-mask-image: radial-gradient(circle at 44% 44%, #000 70%, transparent 92%);
+          mask-image: radial-gradient(circle at 44% 44%, #000 70%, transparent 92%);
+}
     /* Tiles */
     .actions{
       display:flex;
