@@ -343,6 +343,117 @@
       background: rgba(194,168,117,0.10);
       padding: 18px;
     }
+    /* ===== Services Grid (SEO pages) ===== */
+.servicesGrid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.serviceCard{
+  grid-column: span 4;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background:
+    radial-gradient(600px 240px at 20% 0%, rgba(194,168,117,0.14), transparent 55%),
+    rgba(0,0,0,0.22);
+  padding: 18px;
+  position: relative;
+  overflow:hidden;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+  min-height: 180px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.serviceCard:hover{
+  transform: translateY(-2px);
+  border-color: rgba(194,168,117,0.32);
+  background:
+    radial-gradient(600px 240px at 20% 0%, rgba(194,168,117,0.18), transparent 55%),
+    rgba(0,0,0,0.26);
+}
+
+.serviceTop{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 12px;
+}
+
+.serviceIcon{
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  border: 1px solid rgba(194,168,117,0.34);
+  background:
+    radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,0.18), transparent 60%),
+    linear-gradient(135deg, rgba(194,168,117,0.60), rgba(194,168,117,0.10));
+  box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+  flex: 0 0 auto;
+}
+
+.serviceTitle{
+  font-size: 1.12rem;
+  font-weight: 950;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.15;
+  margin-top: 2px;
+}
+
+.serviceTag{
+  margin-top: 10px;
+  color: rgba(255,255,255,0.64);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.serviceMeta{
+  margin-top: 12px;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge{
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.18);
+  color: rgba(255,255,255,0.66);
+  font-size: 0.80rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.serviceActions{
+  margin-top: 14px;
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.serviceActions .btn{
+  flex: 1 1 190px;
+  justify-content:center;
+}
+
+/* Make the “card” itself clickable without killing accessibility */
+.serviceCard a.cardLink{
+  position:absolute;
+  inset: 0;
+  border-radius: 24px;
+}
+.serviceCard a.cardLink:focus-visible{
+  box-shadow: var(--focus);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .serviceCard{ grid-column: span 12; min-height: 0; }
+}
     .contactCard .name{
       font-weight: 950;
       text-transform: uppercase;
@@ -576,51 +687,207 @@
         </div>
       </div>
     </section>
+<!-- ===== SERVICES ===== -->
+<section class="section anchor" id="services">
+  <div class="shell">
+    <div class="kicker">Inspection Services</div>
+    <p class="lead">
+      Choose a service below to learn more. Each page explains what’s included, who it’s for, and how to schedule.
+    </p>
 
-    <!-- ===== SERVICES ===== -->
-    <section class="section anchor" id="services">
-      <div class="shell">
-        <div class="kicker">Inspection Services</div>
-        <p class="lead">
-          StoneMark Inspections provides professional home inspections with clear communication, clean deliverables, and
-          premium execution across Paducah and Western Kentucky.
-        </p>
+    <div class="servicesGrid" aria-label="Inspection service pages">
 
-        <div class="grid3">
-          <div class="card">
-            <h3>Buyer’s Home Inspection</h3>
-            <p>System-by-system evaluation of accessible components with photo documentation and clear findings for homebuyers.</p>
-          </div>
-          <div class="card">
-            <h3>Pre-Listing Inspection</h3>
-            <p>Identify concerns before you list, reduce surprises during negotiations, and support a smoother transaction.</p>
-          </div>
-          <div class="card">
-            <h3>Maintenance Check</h3>
-            <p>A practical snapshot for homeowners with prioritized observations and straightforward next steps.</p>
-          </div>
-        </div>
-
-        <div class="twoCol">
-          <div class="card">
-            <h3>What a home inspection covers</h3>
-            <p>
-              A home inspection is a visual evaluation of accessible systems and components—typically including structure,
-              roof, exterior, plumbing, electrical, HVAC, interior, and insulation/ventilation—intended to help you understand
-              observed conditions, safety concerns, and major deficiencies.
-            </p>
-          </div>
-          <div class="card">
-            <h3>Scheduling is easy</h3>
-            <p>Use the request form anytime, or call/text for availability and questions. Fast response, clean process.</p>
-            <div class="ctaRow" style="margin-top:12px;">
-              <a class="btn primary" href="request.html">Request Inspection</a>
-              <a class="btn" href="tel:+12703498237">Call/Text</a>
+      <!-- Home Inspection -->
+      <div class="serviceCard">
+        <a class="cardLink" href="home-inspection.html" aria-label="Home Inspection details"></a>
+        <div>
+          <div class="serviceTop">
+            <div class="serviceIcon" aria-hidden="true"></div>
+            <div style="flex:1;">
+              <div class="serviceTitle">Home Inspection</div>
+              <div class="serviceTag">
+                System-by-system evaluation with photo documentation and plain-language reporting.
+              </div>
+              <div class="serviceMeta" aria-label="Home Inspection highlights">
+                <span class="badge">Buyers</span>
+                <span class="badge">Pre-Listing</span>
+                <span class="badge">Maintenance</span>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="serviceActions">
+          <a class="btn" href="home-inspection.html" aria-label="Learn more about Home Inspection">Learn More</a>
+          <a class="btn primary" href="request.html" aria-label="Request a Home Inspection">Request</a>
+        </div>
       </div>
-    </section>
+
+      <!-- Radon -->
+      <div class="serviceCard">
+        <a class="cardLink" href="radon-testing.html" aria-label="Radon Testing details"></a>
+        <div>
+          <div class="serviceTop">
+            <div class="serviceIcon" aria-hidden="true"></div>
+            <div style="flex:1;">
+              <div class="serviceTitle">Radon Testing</div>
+              <div class="serviceTag">
+                The EPA recommends that every home be tested for radon.
+              </div>
+              <div class="serviceMeta" aria-label="Radon Testing highlights">
+                <span class="badge">Real Estate</span>
+                <span class="badge">Lab Results</span>
+                <span class="badge">Calibrated</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="serviceActions">
+          <a class="btn" href="radon-testing.html" aria-label="Learn more about Radon Testing">Learn More</a>
+          <a class="btn primary" href="request.html" aria-label="Request Radon Testing">Request</a>
+        </div>
+      </div>
+
+      <!-- Mold -->
+      <div class="serviceCard">
+        <a class="cardLink" href="mold-inspection.html" aria-label="Mold Inspection details"></a>
+        <div>
+          <div class="serviceTop">
+            <div class="serviceIcon" aria-hidden="true"></div>
+            <div style="flex:1;">
+              <div class="serviceTitle">Mold Inspection</div>
+              <div class="serviceTag">
+                Identify visible growth and moisture conditions that can support microbial activity.
+              </div>
+              <div class="serviceMeta" aria-label="Mold highlights">
+                <span class="badge">Moisture</span>
+                <span class="badge">Attic</span>
+                <span class="badge">Crawlspace</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="serviceActions">
+          <a class="btn" href="mold-inspection.html" aria-label="Learn more about Mold Inspection">Learn More</a>
+          <a class="btn primary" href="request.html" aria-label="Request a Mold Inspection">Request</a>
+        </div>
+      </div>
+
+      <!-- Indoor Air Quality -->
+      <div class="serviceCard">
+        <a class="cardLink" href="air-quality.html" aria-label="Indoor Air Quality details"></a>
+        <div>
+          <div class="serviceTop">
+            <div class="serviceIcon" aria-hidden="true"></div>
+            <div style="flex:1;">
+              <div class="serviceTitle">Indoor Air Quality</div>
+              <div class="serviceTag">
+                Assess indoor air concerns including allergens, particles, and environmental conditions.
+              </div>
+              <div class="serviceMeta" aria-label="Air quality highlights">
+                <span class="badge">Allergens</span>
+                <span class="badge">Comfort</span>
+                <span class="badge">Health</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="serviceActions">
+          <a class="btn" href="air-quality.html" aria-label="Learn more about Indoor Air Quality">Learn More</a>
+          <a class="btn primary" href="request.html" aria-label="Request Indoor Air Quality">Request</a>
+        </div>
+      </div>
+
+      <!-- Pool & Spa -->
+      <div class="serviceCard">
+        <a class="cardLink" href="pool-spa-inspection.html" aria-label="Pool and Spa Inspection details"></a>
+        <div>
+          <div class="serviceTop">
+            <div class="serviceIcon" aria-hidden="true"></div>
+            <div style="flex:1;">
+              <div class="serviceTitle">Pool &amp; Spa Inspection</div>
+              <div class="serviceTag">
+                Evaluate visible equipment, safety items, and general condition of pool/spa systems.
+              </div>
+              <div class="serviceMeta" aria-label="Pool and Spa highlights">
+                <span class="badge">Equipment</span>
+                <span class="badge">Safety</span>
+                <span class="badge">Condition</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="serviceActions">
+          <a class="btn" href="pool-spa-inspection.html" aria-label="Learn more about Pool and Spa Inspection">Learn More</a>
+          <a class="btn primary" href="request.html" aria-label="Request Pool & Spa Inspection">Request</a>
+        </div>
+      </div>
+
+      <!-- Thermal Imaging -->
+      <div class="serviceCard">
+        <a class="cardLink" href="thermal-imaging.html" aria-label="Thermal Imaging Inspection details"></a>
+        <div>
+          <div class="serviceTop">
+            <div class="serviceIcon" aria-hidden="true"></div>
+            <div style="flex:1;">
+              <div class="serviceTitle">Thermal Imaging</div>
+              <div class="serviceTag">
+                Non-invasive infrared scanning to help identify anomalies not visible to the naked eye.
+              </div>
+              <div class="serviceMeta" aria-label="Thermal imaging highlights">
+                <span class="badge">Moisture</span>
+                <span class="badge">Insulation</span>
+                <span class="badge">Electrical</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="serviceActions">
+          <a class="btn" href="thermal-imaging.html" aria-label="Learn more about Thermal Imaging">Learn More</a>
+          <a class="btn primary" href="request.html" aria-label="Request Thermal Imaging">Request</a>
+        </div>
+      </div>
+
+      <!-- Borescope -->
+      <div class="serviceCard">
+        <a class="cardLink" href="borescope.html" aria-label="Borescope / Endoscope Inspection details"></a>
+        <div>
+          <div class="serviceTop">
+            <div class="serviceIcon" aria-hidden="true"></div>
+            <div style="flex:1;">
+              <div class="serviceTitle">Borescope / Endoscope</div>
+              <div class="serviceTag">
+                Targeted camera inspection in limited-access areas when visual confirmation matters.
+              </div>
+              <div class="serviceMeta" aria-label="Borescope highlights">
+                <span class="badge">Cavities</span>
+                <span class="badge">Chases</span>
+                <span class="badge">Verification</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="serviceActions">
+          <a class="btn" href="borescope.html" aria-label="Learn more about Borescope / Endoscope">Learn More</a>
+          <a class="btn primary" href="request.html" aria-label="Request Borescope / Endoscope">Request</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ctaRow" style="margin-top:14px;">
+      <a class="btn primary" href="request.html">Request Inspection</a>
+      <a class="btn" href="tel:+12703498237">Call/Text (270) 349-8237</a>
+    </div>
+  </div>
+</section>
+    
 
     <!-- ===== SERVICE AREA ===== -->
     <section class="section anchor" id="area">
