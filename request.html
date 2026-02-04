@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Order a Home Inspection | StoneMark Inspections</title>
+  <title>Request an Inspection | StoneMark Inspections (Paducah, KY)</title>
+  <meta name="description" content="Request a home inspection in Paducah, KY and Western Kentucky. Add-ons available: radon, mold, indoor air quality, pool & spa. Call/text (270) 349-8237." />
 
   <style>
     :root{
@@ -12,8 +13,12 @@
       --sandstone-soft:rgba(194,168,117,0.22);
       --sandstone-focus:rgba(194,168,117,0.30);
       --sandstone-border:rgba(194,168,117,0.28);
+      --panel: rgba(255,255,255,0.04);
+      --panel2: rgba(255,255,255,0.06);
+
       --text-main:#ffffff;
       --text-muted:rgba(255,255,255,0.65);
+      --text-faint:rgba(255,255,255,0.52);
     }
 
     *{ box-sizing:border-box; margin:0; padding:0; }
@@ -27,25 +32,55 @@
       text-align:center;
     }
 
+    .wrap{
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
     h1{
       color: var(--sandstone);
       font-size: clamp(2.0rem, 3.5vw, 2.6rem);
       margin-bottom: 14px;
-      font-weight: 600;
+      font-weight: 650;
+      letter-spacing: 0.02em;
     }
 
     .subhead{
-      max-width: 640px;
-      margin: 0 auto 36px;
+      max-width: 680px;
+      margin: 0 auto 24px;
       color: var(--text-muted);
       line-height: 1.7;
       font-size: 1.02rem;
     }
 
+    .quick{
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 18px auto 30px;
+    }
+    .pill{
+      border: 1px solid var(--sandstone-border);
+      background: rgba(255,255,255,0.02);
+      color: rgba(255,255,255,0.88);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-size: 0.84rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+    .pill a{ color: var(--sandstone); text-decoration:none; }
+    .pill a:hover{ text-decoration: underline; text-underline-offset: 4px; }
+
     form{
-      max-width: 560px;
+      max-width: 640px;
       margin: 0 auto;
       text-align:left;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: var(--panel);
+      padding: 20px;
     }
 
     .grid{
@@ -54,22 +89,32 @@
       gap: 18px;
     }
 
+    .sectionTitle{
+      margin-top: 6px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.78);
+    }
+
     label{
       display:block;
       font-size: 0.9rem;
       letter-spacing: 0.03em;
-      color: rgba(255,255,255,0.85);
+      color: rgba(255,255,255,0.86);
       margin: 0 0 6px 2px;
     }
 
     .hint{
       display:block;
       margin-top: 6px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
+      line-height: 1.5;
     }
 
-    input, textarea{
+    input, textarea, select{
       width:100%;
       padding: 13px 14px;
       border-radius: 10px;
@@ -87,7 +132,8 @@
     }
 
     input:focus,
-    textarea:focus{
+    textarea:focus,
+    select:focus{
       background: var(--sandstone-focus);
       border-color: rgba(194,168,117,0.55);
     }
@@ -109,9 +155,60 @@
       gap: 18px;
     }
 
+    /* Add-ons */
+    .addons{
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: var(--panel2);
+      padding: 14px;
+    }
+
+    .addonGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 14px;
+      margin-top: 10px;
+    }
+
+    .check{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.18);
+    }
+
+    .check input{
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--sandstone);
+      border-radius: 6px;
+    }
+
+    .check strong{
+      display:block;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .check span{
+      display:block;
+      margin-top: 4px;
+      font-size: 0.86rem;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.4;
+    }
+
+    .addonNotes{
+      margin-top: 12px;
+    }
+
     /* Floating text submit */
     .submit-row{
-      margin-top: 28px;
+      margin-top: 26px;
       text-align:center;
     }
 
@@ -150,88 +247,169 @@
       line-height: 1.6;
     }
 
-    @media (max-width: 640px){
-      .row-2, .row-3{
-        grid-template-columns: 1fr;
-      }
+    .fineprint a{ color: var(--sandstone); }
+    .fineprint a:hover{ text-decoration: underline; text-underline-offset: 4px; }
+
+    /* Hidden helper for formspree */
+    .hidden{ display:none; }
+
+    @media (max-width: 740px){
+      form{ padding: 16px; }
+      .row-2, .row-3{ grid-template-columns: 1fr; }
+      .addonGrid{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <h1>Request an Inspection</h1>
 
-  <h1>Order a Home Inspection</h1>
+    <p class="subhead">
+      Send a request and I’ll follow up to confirm availability, pricing, and property details.
+      If you don’t have every detail yet, that’s completely fine—fill in what you know.
+    </p>
 
-  <p class="subhead">
-    Send a request and I’ll follow up to confirm availability, pricing, and property details.
-    If you don’t have every detail yet, that’s completely fine. Just fill in what you know.
-  </p>
-
-  <form action="https://formspree.io/f/mojjvebp" method="POST">
-    <div class="grid">
-
-      <div>
-        <label>Full Name</label>
-        <input type="text" name="Name" placeholder="Full Name" required />
-      </div>
-
-      <div class="row-2">
-        <div>
-          <label>Phone Number</label>
-          <input type="tel" name="Phone" placeholder="Phone Number" required />
-        </div>
-        <div>
-          <label>Email Address</label>
-          <input type="email" name="Email" placeholder="Email Address" required />
-        </div>
-      </div>
-
-      <div>
-        <label>Property Address</label>
-        <input type="text" name="Address" placeholder="Property Address" />
-      </div>
-
-      <div>
-        <label>Requested Inspection Date (or Range)</label>
-        <input type="text" name="Timeline" placeholder="e.g., Jan 22–24 or next week" />
-      </div>
-
-      <div class="row-3">
-        <div>
-          <label>Sq. Footage (if known)</label>
-          <input type="text" name="SquareFootage" placeholder="e.g., 2,150" />
-          <span class="hint">It’s okay if you don’t know this yet.</span>
-        </div>
-        <div>
-          <label>Bedrooms (if known)</label>
-          <input type="text" name="Bedrooms" placeholder="e.g., 3" />
-          <span class="hint">It’s okay if you don’t know this yet.</span>
-        </div>
-        <div>
-          <label>Year Built (if known)</label>
-          <input type="text" name="YearBuilt" placeholder="e.g., 1998" />
-          <span class="hint">It’s okay if you don’t know this yet.</span>
-        </div>
-      </div>
-
-      <div>
-        <label>Comments / Message</label>
-        <textarea name="Message" placeholder="Anything helpful — access notes, concerns, timeline, etc."></textarea>
-      </div>
-
+    <div class="quick" aria-label="Quick contact">
+      <div class="pill">Call/Text: <a href="tel:+12703498237">(270) 349-8237</a></div>
+      <div class="pill">Paducah, KY • Western Kentucky</div>
     </div>
 
-    <input type="hidden" name="_redirect" value="https://stonemarkinspections.com/thanks.html" />
+    <form action="https://formspree.io/f/mojjvebp" method="POST">
+      <!-- Helps Formspree show a nice email subject -->
+      <input class="hidden" type="text" name="_subject" value="New StoneMark Inspection Request" />
 
-    <div class="submit-row">
-      <button type="submit">Submit Request</button>
-    </div>
+      <div class="grid">
+        <div class="sectionTitle">Contact</div>
 
-    <div class="fineprint">
-      Missing details are completely fine — I’ll verify with the listing.
-    </div>
-  </form>
+        <div>
+          <label for="name">Full Name</label>
+          <input id="name" type="text" name="Name" placeholder="Full Name" required />
+        </div>
 
+        <div class="row-2">
+          <div>
+            <label for="phone">Phone Number</label>
+            <input id="phone" type="tel" name="Phone" placeholder="Phone Number" required />
+          </div>
+          <div>
+            <label for="email">Email Address</label>
+            <input id="email" type="email" name="Email" placeholder="Email Address" required />
+          </div>
+        </div>
+
+        <div class="sectionTitle">Property</div>
+
+        <div>
+          <label for="address">Property Address</label>
+          <input id="address" type="text" name="Address" placeholder="Property Address" />
+        </div>
+
+        <div class="row-2">
+          <div>
+            <label for="timeline">Requested Date (or Range)</label>
+            <input id="timeline" type="text" name="Timeline" placeholder="e.g., Feb 12–14 or next week" />
+          </div>
+          <div>
+            <label for="occupancy">Property Type</label>
+            <select id="occupancy" name="PropertyType">
+              <option value="" selected>Choose one (optional)</option>
+              <option>Single-family</option>
+              <option>Condo/Townhome</option>
+              <option>Multi-family</option>
+              <option>Manufactured</option>
+              <option>Other / Not sure</option>
+            </select>
+            <span class="hint">Optional—helps me estimate timing.</span>
+          </div>
+        </div>
+
+        <div class="row-3">
+          <div>
+            <label for="sf">Sq. Footage (if known)</label>
+            <input id="sf" type="text" name="SquareFootage" placeholder="e.g., 2,150" inputmode="numeric" />
+            <span class="hint">It’s okay if you don’t know this yet.</span>
+          </div>
+          <div>
+            <label for="beds">Bedrooms (if known)</label>
+            <input id="beds" type="text" name="Bedrooms" placeholder="e.g., 3" inputmode="numeric" />
+            <span class="hint">It’s okay if you don’t know this yet.</span>
+          </div>
+          <div>
+            <label for="year">Year Built (if known)</label>
+            <input id="year" type="text" name="YearBuilt" placeholder="e.g., 1998" inputmode="numeric" />
+            <span class="hint">It’s okay if you don’t know this yet.</span>
+          </div>
+        </div>
+
+        <div class="sectionTitle">Add-ons (optional)</div>
+
+        <div class="addons" aria-label="Optional add-on services">
+          <div class="hint" style="margin-top:0;">
+            Select any add-ons you’d like included. If you’re unsure, check what you’re considering and I’ll confirm what’s appropriate for the property.
+          </div>
+
+          <div class="addonGrid">
+            <label class="check" for="addon-radon">
+              <input id="addon-radon" type="checkbox" name="AddOns[]" value="Radon test" />
+              <div>
+                <strong>Radon Test</strong>
+                <span>Short-term measurement for real estate transactions (where applicable).</span>
+              </div>
+            </label>
+
+            <label class="check" for="addon-mold">
+              <input id="addon-mold" type="checkbox" name="AddOns[]" value="Mold assessment/testing" />
+              <div>
+                <strong>Mold</strong>
+                <span>Moisture/mold concerns—sampling options depend on site conditions.</span>
+              </div>
+            </label>
+
+            <label class="check" for="addon-iaq">
+              <input id="addon-iaq" type="checkbox" name="AddOns[]" value="Indoor Air Quality (IAQ)" />
+              <div>
+                <strong>Indoor Air Quality</strong>
+                <span>General IAQ screening (scope varies by property and concern).</span>
+              </div>
+            </label>
+
+            <label class="check" for="addon-pool">
+              <input id="addon-pool" type="checkbox" name="AddOns[]" value="Pool & Spa inspection" />
+              <div>
+                <strong>Pool &amp; Spa</strong>
+                <span>Visual evaluation of accessible pool/spa components and safety items.</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="addonNotes">
+            <label for="addons-notes">Add-on Notes (optional)</label>
+            <textarea id="addons-notes" name="AddOnNotes" placeholder="If relevant: pool type (vinyl/gunite), spa/hot tub, visible mold concern area, radon timeline, etc."></textarea>
+            <span class="hint">Optional. If you don’t know, leave it blank.</span>
+          </div>
+        </div>
+
+        <div class="sectionTitle">Message</div>
+
+        <div>
+          <label for="msg">Comments / Message</label>
+          <textarea id="msg" name="Message" placeholder="Anything helpful — access notes, concerns, timeline, agents involved, lockbox, etc."></textarea>
+        </div>
+      </div>
+
+      <!-- Redirect after submit -->
+      <input type="hidden" name="_redirect" value="https://stonemarkinspections.com/thanks.html" />
+
+      <div class="submit-row">
+        <button type="submit">Submit Request</button>
+      </div>
+
+      <div class="fineprint">
+        Missing details are completely fine — I’ll verify with the listing.
+        If it’s urgent, call/text <a href="tel:+12703498237">(270) 349-8237</a>.
+      </div>
+    </form>
+  </div>
 </body>
 </html>
-
