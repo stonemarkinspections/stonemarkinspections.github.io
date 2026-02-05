@@ -275,64 +275,55 @@
       gap: 18px;
     }
     .tiles{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      width: 100%;
-      max-width: 760px;
-    }
-    /* Image-tile buttons (match the render) */
-/* === IMAGE BUTTONS: no container bubble, PNG is the button === */
-.tiles{
-  max-width: 920px;   /* wider grid = bigger buttons */
+  max-width: 920px;
   gap: 26px;
 }
 
+/* the clickable button */
 .tile.img{
-  /* kill the bubble */
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
   padding: 0 !important;
 
-  /* make them bigger */
   height: 190px;
+  width: 100%;
 
-  /* let the image be the shape */
-  border-radius: 0;
+  /* THIS makes the image “fit the button” */
+  border-radius: 24px;
   overflow: hidden;
 
   display: block;
   position: relative;
-  transform: translateZ(0);
-}
 
-.tile.img::before{
-  display: none !important;
-}
-
-.tile.img img{
-  width: 100%;
-  height: 100%;
-
-  /* choose ONE: cover = fills tile, contain = never crops */
-  object-fit: cover;
-
-  display: block;
-
-  /* this is now the “button” look */
-  border-radius: 24px;
+  /* move the shadow here so it doesn't get clipped */
   filter: drop-shadow(0 22px 55px rgba(0,0,0,.65));
   transition: transform .15s ease, filter .15s ease;
 }
 
-.tile.img:hover img{
+.tile.img::before{ display:none !important; }
+
+/* the PNG fills the button */
+.tile.img img{
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: cover;          /* now that aspect ratios match, this is correct */
+  object-position: center;    /* keep centered */
+
+  border-radius: 0;           /* IMPORTANT: avoid double-rounded edges */
+  transform: scale(1.02);     /* tiny scale removes any 1px edge artifacts */
+  transition: transform .15s ease;
+}
+
+.tile.img:hover{
   transform: translateY(-3px);
   filter: drop-shadow(0 28px 70px rgba(0,0,0,.72));
 }
-/* Optional: slightly stronger hover for the big tiles */
-.tile.img:hover{
-  transform: translateY(-3px);
+
+.tile.img:hover img{
+  transform: scale(1.05);
 }
     .tile{
       position:relative;
