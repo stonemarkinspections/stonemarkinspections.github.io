@@ -590,6 +590,80 @@
 @media (max-width: 420px){
   .hero{ max-width: 94vw !important; }
   .tile.img{ height: 155px !important; }
+  /* --- MOBILE HEADER: fix jumble --- */
+header{
+  height: auto !important;
+}
+
+.nav-wrap{
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  grid-template-areas:
+    "brand ctas" !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 12px 0 !important;
+}
+
+.brand{
+  grid-area: brand !important;
+  justify-self: start !important;
+}
+
+.nav-ctas{
+  grid-area: ctas !important;
+  justify-self: end !important;
+  margin-left: 0 !important;
+  display: flex !important;
+  gap: 10px !important;
+}
+
+.pill{
+  height: 36px !important;
+  padding: 0 12px !important;
+  font-size: 11px !important;
+  letter-spacing: 1.2px !important;
+}
+
+/* If it still feels tight, stack CTAs under brand */
+@media (max-width: 420px){
+  .nav-wrap{
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "brand"
+      "ctas" !important;
+  }
+  .brand{ justify-self: center !important; }
+  .nav-ctas{ justify-self: center !important; }
+}
+
+/* --- BELOW SECTION: actually center everything --- */
+.below{
+  padding: 26px 0 70px !important;
+}
+
+.below .wrap{
+  width: calc(100% - 28px) !important;
+  max-width: 560px !important;
+  margin: 0 auto !important;
+
+  grid-template-columns: 1fr !important;
+  justify-items: center !important;
+}
+
+.panel{
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.cred{
+  width: 100% !important;
+}
+
+.cred iframe{
+  width: 100% !important;
+  display: block !important;
+}
 }
 </style>
 
