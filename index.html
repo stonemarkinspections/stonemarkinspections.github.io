@@ -277,10 +277,33 @@
     .tiles{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 22px;
       width: 100%;
-      max-width: 610px;
+      max-width: 760px;
     }
+    /* Image-tile buttons (match the render) */
+.tile.img{
+  padding: 0;
+  height: 132px;              /* BIGGER buttons */
+  overflow: hidden;
+}
+
+.tile.img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* fills the tile cleanly */
+  display: block;
+}
+
+/* Remove glow overlay on image tiles so the PNG stays true */
+.tile.img::before{
+  opacity: 0;
+}
+
+/* Optional: slightly stronger hover for the big tiles */
+.tile.img:hover{
+  transform: translateY(-3px);
+}
     .tile{
       position:relative;
       display:flex;
@@ -505,108 +528,24 @@
       <!-- RIGHT: action tiles -->
       <div class="actions">
         <div class="tiles">
-
-          <a class="tile" href="request.html" aria-label="Request Inspection">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M16 2H8a2 2 0 0 0-2 2v1H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V4a2 2 0 0 0-2-2zm0 3H8V4h8v1zM8.6 16.6l-1.2-1.2L6 16.8l2.6 2.6L18 10l-1.4-1.4-8 8z"/>
-              </svg>
-            </div>
-            <div class="ttext">
-              <div class="top">Request</div>
-              <div class="sub">Inspection</div>
-            </div>
-          </a>
-
-          <a class="tile" href="tel:+12703498237" aria-label="Call or Text StoneMark Inspections">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M6.6 10.8c1.7 3.1 3.5 4.9 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.7 3.9.7.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.1 22 2 13.9 2 3c0-.6.4-1 1-1h3.8c.6 0 1 .4 1 1 0 1.4.2 2.7.7 3.9.1.4 0 .8-.3 1.1l-2.3 2.8z"/>
-              </svg>
-            </div>
-            <div class="ttext">
-              <div class="top">Call/Text</div>
-              <div class="sub">(270) 349-8237</div>
-            </div>
-          </a>
-
-          <a class="tile" href="services.html#home" aria-label="Home Inspection services">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 3l9 8h-3v10h-5v-6H11v6H6V11H3l9-8z"/>
-              </svg>
-            </div>
-            <div class="ttext">
-              <div class="top">Home</div>
-              <div class="sub">Inspection</div>
-            </div>
-          </a>
-
-          <a class="tile" href="services.html#radon" aria-label="Radon Testing">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 2l10 18H2L12 2zm0 4.2L5.6 18h12.8L12 6.2z"/>
-                <path d="M10 10h3.2c1.5 0 2.6 1 2.6 2.5 0 1.4-1.1 2.5-2.6 2.5H12v2h-2v-7zm2 1.7v1.6h1.2c.6 0 1-.3 1-.8s-.4-.8-1-.8H12z" />
-              </svg>
-            </div>
-            <div class="ttext">
-              <div class="top">Radon</div>
-              <div class="sub">Testing</div>
-            </div>
-          </a>
-
-          <a class="tile" href="services.html#mold" aria-label="Mold Inspection and screening">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M7 14a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm10 2a3 3 0 1 1 0-6 3 3 0 0 1 0 6zM12 21a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-10a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
-              </svg>
-            </div>
-            <div class="ttext">
-              <div class="top">Mold</div>
-              <div class="sub">Inspection</div>
-            </div>
-          </a>
-
-          <a class="tile" href="services.html#iaq" aria-label="Indoor Air Quality screening">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm7.5 1c-2.1 0-3.8-1-4.8-2.2.5-.9.8-1.9.8-2.8 0-2-1.5-3.5-3.5-3.5-1 0-2 .3-2.9.8C8.9 4.3 7.9 2.5 6 2.5 3.8 2.5 2 4.3 2 6.5c0 2.1 1 3.8 2.2 4.8-.5.9-.8 1.9-.8 2.9 0 2 1.5 3.5 3.5 3.5 1 0 2-.3 2.9-.8 1 1.2 2.7 2.2 4.8 2.2 2.2 0 4-1.8 4-4s-1.8-4-4-4z"/>
-              </svg>
-            </div>
-            <div class="ttext">
-              <div class="top">Indoor</div>
-              <div class="sub">Air Quality</div>
-            </div>
-          </a>
-
-          <a class="tile" href="services.html#pool-spa" aria-label="Pool and Spa Inspection">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M3 14c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2 2.5-2 5-2v2c-2.5 0-2.5 2-5 2s-2.5-2-5-2-2.5 2-5 2-2.5-2-5-2v-2z"/>
-                <path d="M3 18c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2 2.5-2 5-2v2c-2.5 0-2.5 2-5 2s-2.5-2-5-2-2.5 2-5 2-2.5-2-5-2v-2z"/>
-                <path d="M7 2h2v8H7V2zm4 0h2v8h-2V2zm4 0h2v8h-2V2z"/>
-              </svg>
-            </div>
-            <div class="ttext">
-              <div class="top">Pool &amp; Spa</div>
-              <div class="sub">Inspection</div>
-            </div>
-          </a>
-
-          <a class="tile" href="services.html#thermal" aria-label="Thermal Imaging">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M4 6h12a2 2 0 0 1 2 2v8H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm16 4h2v6h-2v-6z"/>
-                <path d="M7 9h6v4H7V9zm1.5 1.2v1.6h3V10.2h-3z"/>
-              </svg>
-            </div>
-            <div class="ttext">
-              <div class="top">Thermal</div>
-              <div class="sub">Imaging</div>
-            </div>
-          </a>
-
-        </div>
+<a class="tile img" href="services.html#home" aria-label="Home Inspection services">
+  <img src="assets/buttons/home-inspection.png" alt="Home Inspection" loading="lazy" />
+</a>
+<a class="tile img" href="services.html#radon" aria-label="Radon Testing">
+  <img src="assets/buttons/radon-testing.png" alt="Radon Testing" loading="lazy" />
+</a>
+<a class="tile img" href="services.html#mold" aria-label="Mold Inspection and screening">
+  <img src="assets/buttons/mold-inspection.png" alt="Mold Inspection" loading="lazy" />
+</a>
+<a class="tile img" href="services.html#iaq" aria-label="Indoor Air Quality screening">
+  <img src="assets/buttons/indoor-air-quality.png" alt="Indoor Air Quality" loading="lazy" />
+</a>
+<a class="tile img" href="services.html#pool-spa" aria-label="Pool and Spa Inspection">
+  <img src="assets/buttons/pool-spa-inspection.png" alt="Pool and Spa Inspection" loading="lazy" />
+</a>
+<a class="tile img" href="services.html#thermal" aria-label="Thermal Imaging">
+  <img src="assets/buttons/thermal-imaging.png" alt="Thermal Imaging" loading="lazy" />
+</a>
 
         <div class="micro">LICENSED • INSURED • PHOTO-DOCUMENTED REPORTS</div>
       </div>
