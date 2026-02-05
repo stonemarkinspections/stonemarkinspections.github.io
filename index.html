@@ -227,6 +227,7 @@
   width: calc(100% + 220px);
   margin-left: -220px;
   padding-left: 220px;
+     transform: translateX(-70px);
 }
 
 /* Keep this, but it should sit BEHIND the image, not over it */
@@ -275,6 +276,8 @@
       gap: 18px;
     }
     .tiles{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   max-width: 920px;
   gap: 26px;
 }
