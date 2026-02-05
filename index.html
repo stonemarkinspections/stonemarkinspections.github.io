@@ -128,25 +128,37 @@
       text-decoration:none;
       color:inherit;
     }
-    .brand-mark{
-      width:46px;height:46px;border-radius:999px;
-      border:1px solid rgba(194,168,117,.22);
-      background: radial-gradient(circle at 30% 30%, rgba(194,168,117,.25), rgba(0,0,0,.15));
-      display:grid;place-items:center;
-      box-shadow: 0 10px 25px rgba(0,0,0,.45);
-      overflow:hidden;
-      flex:0 0 46px;
-    }
-    .brand-mark span{
-      font-weight:800;
-      letter-spacing:.8px;
-      color:rgba(194,168,117,.95);
-      font-size:12px;
-    }
-    .brand-text{ line-height:1.05; letter-spacing:.6px; }
-    .brand-text .top{ font-weight:800; font-size:15px; }
-    .brand-text .sub{ font-size:10.5px; color: var(--muted2); letter-spacing: 1.8px; margin-top:4px; }
+    .brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width: 280px;
+  text-decoration:none;
+  color:inherit;
+}
 
+.brand-logo{
+  width: 30px;     /* tiny logo */
+  height: 30px;
+  display:block;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,.55));
+  opacity: .98;
+}
+
+.brand-wordmark{
+  height: 18px;    /* letters only */
+  width: auto;
+  display:block;
+  flex: 0 1 auto;
+  opacity: .92;
+}
+
+/* keep it crisp on retina and prevent weird stretching */
+.brand-logo,
+.brand-wordmark{
+  image-rendering: -webkit-optimize-contrast;
+}
     nav{
       flex:1;
       display:flex;
