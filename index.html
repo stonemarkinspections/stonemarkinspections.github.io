@@ -296,11 +296,11 @@
   padding: 0 !important;
 
   /* make them bigger */
-  height: 170px;
+  height: 190px;
 
   /* let the image be the shape */
   border-radius: 0;
-  overflow: visible;
+  overflow: hidden;
 
   display: block;
   position: relative;
@@ -316,7 +316,7 @@
   height: 100%;
 
   /* choose ONE: cover = fills tile, contain = never crops */
-  object-fit: contain;
+  object-fit: cover;
 
   display: block;
 
@@ -327,7 +327,7 @@
 }
 
 .tile.img:hover img{
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   filter: drop-shadow(0 28px 70px rgba(0,0,0,.72));
 }
 /* Optional: slightly stronger hover for the big tiles */
