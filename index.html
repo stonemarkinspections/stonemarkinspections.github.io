@@ -508,6 +508,9 @@
 @media (max-width: 900px){
 
   html, body { overflow-x: hidden; }
+  .brand{ min-width: 0 !important; }
+.brand-wordmark{ height: 16px !important; }
+.brand-logo{ width: 28px !important; height: 28px !important; }
 
   /* center the whole hero area */
   .hero{
@@ -599,7 +602,10 @@
   }
 }
 
-@media (max-width: 420px){
+@media (max-width: 420px)
+.brand{ gap: 10px !important; }
+.brand-wordmark{ height: 15px !important; }
+{
   .hero{ max-width: 94vw !important; }
   .tile.img{ height: 155px !important; }
   /* --- MOBILE HEADER: fix jumble --- */
