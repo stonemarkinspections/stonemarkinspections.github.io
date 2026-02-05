@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Request Indoor Air Quality Screening | StoneMark Inspections (Paducah, KY)</title>
+  <meta name="description" content="Request indoor air quality (IAQ) screening in Paducah, KY and Western Kentucky. Document indoor air concerns and identify contributing building conditions." />
+
+  <style>
+    :root{
+      --bg:#000000;
+      --sandstone:#c2a875;
+      --sandstone-soft:rgba(194,168,117,0.22);
+      --sandstone-focus:rgba(194,168,117,0.30);
+      --sandstone-border:rgba(194,168,117,0.28);
+      --panel: rgba(255,255,255,0.04);
+      --panel2: rgba(255,255,255,0.06);
+
+      --text-main:#ffffff;
+      --text-muted:rgba(255,255,255,0.65);
+      --text-faint:rgba(255,255,255,0.52);
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+
+    body{
+      min-height:100vh;
+      padding: 48px 18px 64px;
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      text-align:center;
+    }
+
+    .wrap{
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    h1{
+      color: var(--sandstone);
+      font-size: clamp(2.0rem, 3.5vw, 2.6rem);
+      margin-bottom: 14px;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+    }
+
+    .subhead{
+      max-width: 680px;
+      margin: 0 auto 24px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 1.02rem;
+    }
+
+    .quick{
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 18px auto 30px;
+    }
+
+    .pill{
+      border: 1px solid var(--sandstone-border);
+      background: rgba(255,255,255,0.02);
+      color: rgba(255,255,255,0.88);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-size: 0.84rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+
+    .pill a{ color: var(--sandstone); text-decoration:none; }
+    .pill a:hover{ text-decoration: underline; text-underline-offset: 4px; }
+
+    form{
+      max-width: 640px;
+      margin: 0 auto;
+      text-align:left;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: var(--panel);
+      padding: 20px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .sectionTitle{
+      margin-top: 6px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.78);
+    }
+
+    label{
+      display:block;
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.86);
+      margin: 0 0 6px 2px;
+    }
+
+    .hint{
+      display:block;
+      margin-top: 6px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    input, textarea, select{
+      width:100%;
+      padding: 13px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--sandstone-border);
+      background: var(--sandstone-soft);
+      color: var(--text-main);
+      font-size: 1rem;
+      outline: none;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder{
+      color: rgba(255,255,255,0.55);
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus{
+      background: var(--sandstone-focus);
+      border-color: rgba(194,168,117,0.55);
+    }
+
+    textarea{
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .row-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .addons{
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: var(--panel2);
+      padding: 14px;
+    }
+
+    .addonGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 14px;
+      margin-top: 10px;
+    }
+
+    .check{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.18);
+    }
+
+    .check input{
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--sandstone);
+    }
+
+    .check strong{
+      display:block;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .check span{
+      display:block;
+      margin-top: 4px;
+      font-size: 0.86rem;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.4;
+    }
+
+    .submit-row{
+      margin-top: 26px;
+      text-align:center;
+    }
+
+    button{
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sandstone);
+      padding: 10px 0;
+      transition: opacity 0.2s ease, letter-spacing 0.2s ease;
+    }
+
+    button:hover{
+      opacity: 0.75;
+      letter-spacing: 0.16em;
+    }
+
+    .fineprint{
+      margin-top: 18px;
+      text-align:center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .hidden{ display:none; }
+
+    @media (max-width: 740px){
+      form{ padding: 16px; }
+      .row-2, .addonGrid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1>Request IAQ Screening</h1>
+
+    <p class="subhead">
+      Submit a request for indoor air quality screening.
+      I’ll follow up to confirm scope, pricing, and what’s appropriate based on the concern and the property.
+    </p>
+
+    <div class="quick">
+      <div class="pill">Call/Text: <a href="tel:+12703498237">(270) 349-8237</a></div>
+      <div class="pill">Paducah, KY • Western Kentucky</div>
+    </div>
+
+    <form action="https://formspree.io/f/mojjvebp" method="POST">
+      <input class="hidden" type="text" name="_subject" value="New StoneMark IAQ Screening Request" />
+
+      <div class="grid">
+        <div class="sectionTitle">Contact</div>
+
+        <div>
+          <label>Full Name</label>
+          <input type="text" name="Name" placeholder="Full Name" required />
+        </div>
+
+        <div class="row-2">
+          <div>
+            <label>Phone Number</label>
+            <input type="tel" name="Phone" placeholder="Phone Number" required />
+          </div>
+          <div>
+            <label>Email Address</label>
+            <input type="email" name="Email" placeholder="Email Address" required />
+          </div>
+        </div>
+
+        <div class="sectionTitle">Property</div>
+
+        <div>
+          <label>Property Address</label>
+          <input type="text" name="Address" placeholder="Property Address" />
+        </div>
+
+        <div class="row-2">
+          <div>
+            <label>Requested Date / Timeline</label>
+            <input type="text" name="Timeline" placeholder="e.g., before closing, this week, flexible" />
+          </div>
+          <div>
+            <label>Main Area of Concern</label>
+            <select name="ConcernArea">
+              <option value="" selected>Choose one (optional)</option>
+              <option>Basement</option>
+              <option>Crawl space</option>
+              <option>Living areas</option>
+              <option>Bedrooms</option>
+              <option>HVAC / mechanical</option>
+              <option>Whole house</option>
+              <option>Not sure</option>
+            </select>
+            <span class="hint">Optional—helps plan screening.</span>
+          </div>
+        </div>
+
+        <div class="sectionTitle">Concern Type (optional)</div>
+
+        <div class="addons">
+          <div class="hint" style="margin-top:0;">
+            Select anything that applies. If unsure, leave blank and describe below.
+          </div>
+
+          <div class="addonGrid">
+            <label class="check">
+              <input type="checkbox" name="Concern[]" value="Odors" />
+              <div>
+                <strong>Odors</strong>
+                <span>Musty, chemical, or persistent smells.</span>
+              </div>
+            </label>
+
+            <label class="check">
+              <input type="checkbox" name="Concern[]" value="Humidity issues" />
+              <div>
+                <strong>Humidity</strong>
+                <span>Condensation, damp feeling, sweating surfaces.</span>
+              </div>
+            </label>
+
+            <label class="check">
+              <input type="checkbox" name="Concern[]" value="Allergy sensitivity" />
+              <div>
+                <strong>Allergy / Sensitivity</strong>
+                <span>Symptoms suspected to be related to indoor air.</span>
+              </div>
+            </label>
+
+            <label class="check">
+              <input type="checkbox" name="Concern[]" value="Recent renovation" />
+              <div>
+                <strong>Recent Renovation</strong>
+                <span>Paints, flooring, materials, or remodel work.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="sectionTitle">Message</div>
+
+        <div>
+          <label>Describe the Concern (optional)</label>
+          <textarea name="Message" placeholder="What you’re noticing, when it occurs, how long it’s been present, access notes, etc."></textarea>
+          <span class="hint">Optional. I’ll confirm scope during follow-up.</span>
+        </div>
+      </div>
+
+      <input type="hidden" name="_redirect" value="https://stonemarkinspections.com/thanks.html" />
+
+      <div class="submit-row">
+        <button type="submit">Submit Request</button>
+      </div>
+
+      <div class="fineprint">
+        IAQ screening focuses on building conditions and documentation.
+        For urgent concerns, call/text <a href="tel:+12703498237">(270) 349-8237</a>.
+      </div>
+    </form>
+  </div>
+</body>
+</html>
