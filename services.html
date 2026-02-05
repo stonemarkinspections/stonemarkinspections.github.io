@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Services | StoneMark Inspections</title>
+  <meta name="description" content="Explore StoneMark Inspections services in Paducah, KY & Western Kentucky: home inspections, radon testing, mold screening, indoor air quality, pool & spa inspections, and thermal imaging. Request any service online." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://stonemarkinspections.com/services.html" />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Services | StoneMark Inspections" />
+  <meta property="og:description" content="Home inspections + add-ons: radon, mold/IAQ, pool & spa, thermal imaging. Request online or call/text." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://stonemarkinspections.com/services.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#000000;
+      --sand:#c2a875;
+      --sand-soft:rgba(194,168,117,.18);
+      --sand-border:rgba(194,168,117,.26);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
+
+      --nav-h:78px;
+      --max:1320px;
+
+      --panel: rgba(0,0,0,.54);
+      --panel2: rgba(0,0,0,.66);
+      --border: rgba(194,168,117,.18);
+      --shadow: 0 22px 60px rgba(0,0,0,.62);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x: clip;
+    }
+
+    /* Cinematic background */
+    .page-bg{
+      position:fixed; inset:0;
+      background:
+        radial-gradient(1100px 650px at 34% 55%, rgba(194,168,117,.14), transparent 60%),
+        radial-gradient(900px 540px at 70% 40%, rgba(194,168,117,.10), transparent 62%),
+        linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.86));
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.02);
+      z-index:-3;
+    }
+    .vignette{
+      position:fixed; inset:0;
+      background:
+        radial-gradient(1200px 700px at 40% 55%, transparent 35%, rgba(0,0,0,.58) 72%, rgba(0,0,0,.82) 100%);
+      z-index:-2;
+      pointer-events:none;
+    }
+
+    /* Header */
+    header{
+      height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:linear-gradient(to bottom, rgba(0,0,0,.76), rgba(0,0,0,.22));
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-wrap{
+      width:min(var(--max), calc(100% - 48px));
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    /* Logo-only brand centered between nav and CTAs */
+    .brand{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex: 1;
+      text-decoration:none;
+      min-width:0;
+    }
+    .brand-logo{
+      width:46px;height:46px;
+      display:block;
+      filter: drop-shadow(0 10px 25px rgba(0,0,0,.55));
+    }
+
+    nav{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      gap:28px;
+    }
+    nav a{
+      text-decoration:none;
+      color: rgba(255,255,255,.62);
+      font-size:12px;
+      letter-spacing:2.6px;
+      text-transform:uppercase;
+      padding:10px 6px;
+      transition: color .2s ease;
+    }
+    nav a:hover{color:#fff}
+    nav a.active{ color:#fff; }
+
+    .nav-ctas{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-left:auto;
+    }
+    .pill{
+      height:38px;
+      padding:0 18px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      font-size:12px;
+      letter-spacing:1.7px;
+      text-transform:uppercase;
+      border:1px solid rgba(194,168,117,.24);
+      box-shadow: 0 12px 30px rgba(0,0,0,.45);
+      white-space:nowrap;
+    }
+    .pill.dark{
+      color: rgba(255,255,255,.82);
+      background: rgba(0,0,0,.38);
+    }
+    .pill.gold{
+      color:#1b1408;
+      background: linear-gradient(135deg, rgba(194,168,117,.96), rgba(214,189,137,.92));
+      border-color: rgba(194,168,117,.40);
+    }
+
+    /* Layout */
+    main{ display:flex; justify-content:center; }
+    .wrap{
+      width:min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 34px 0 90px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 26px;
+      align-items: start;
+      margin-bottom: 24px;
+    }
+
+    .headline{
+      padding: 26px 28px;
+      border-radius: 26px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.035), rgba(0,0,0,.42));
+      border: 1px solid rgba(194,168,117,.14);
+      box-shadow: var(--shadow);
+    }
+    .headline h1{
+      font-family: "Cinzel", ui-serif, Georgia, serif;
+      font-size: 34px;
+      letter-spacing: .6px;
+      line-height: 1.12;
+      margin-bottom: 10px;
+      color: rgba(255,255,255,.94);
+    }
+    .headline p{
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 15.8px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.78);
+    }
+    .headline .micro{
+      margin-top: 14px;
+      font-size:10.5px;
+      letter-spacing:2.3px;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.42);
+    }
+
+    .quick{
+      border-radius: 26px;
+      padding: 26px 28px;
+      background: linear-gradient(to bottom, var(--panel), var(--panel2));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .quick h2{
+      font-family: "Cinzel", ui-serif, Georgia, serif;
+      font-size: 22px;
+      letter-spacing: .5px;
+      margin-bottom: 10px;
+      color: rgba(255,255,255,.92);
+    }
+    .quick p{
+      font-size: 14.8px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.76);
+      margin-bottom: 14px;
+    }
+    .quick .row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top: 8px;
+    }
+    .btn{
+      height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      font-size: 12px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      border: 1px solid rgba(194,168,117,.24);
+      box-shadow: 0 12px 30px rgba(0,0,0,.45);
+      white-space: nowrap;
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(194,168,117,.45);
+      box-shadow: 0 18px 46px rgba(0,0,0,.58);
+    }
+    .btn.gold{
+      color:#1b1408;
+      background: linear-gradient(135deg, rgba(194,168,117,.96), rgba(214,189,137,.92));
+      border-color: rgba(194,168,117,.40);
+    }
+    .btn.dark{
+      color: rgba(255,255,255,.84);
+      background: rgba(0,0,0,.35);
+    }
+
+    /* Services grid */
+    .services{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .card{
+      position:relative;
+      border-radius: var(--radius);
+      background: linear-gradient(to bottom, var(--panel), var(--panel2));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 20px 20px 18px;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      border-radius: var(--radius);
+      background: radial-gradient(260px 160px at 18% 28%, rgba(194,168,117,.14), transparent 62%);
+      pointer-events:none;
+    }
+    .card h3{
+      position:relative;
+      font-size: 16px;
+      letter-spacing:.2px;
+      margin-bottom: 8px;
+      font-weight: 800;
+      color: rgba(255,255,255,.92);
+    }
+    .card p{
+      position:relative;
+      font-size: 14.2px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.74);
+      margin-bottom: 14px;
+    }
+    .card .tag{
+      position:relative;
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      font-size: 10.5px;
+      letter-spacing: 2.1px;
+      text-transform: uppercase;
+      color: rgba(194,168,117,.92);
+      margin-bottom: 12px;
+    }
+    .card .actions{
+      position:relative;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    /* Section anchors (for SEO + internal links) */
+    .anchor{
+      position:relative;
+      top: -90px; /* offset for sticky header */
+      visibility:hidden;
+    }
+
+    /* Footer band */
+    .footer-band{
+      margin-top: 22px;
+      border-radius: 26px;
+      padding: 22px 24px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.45));
+      border: 1px solid rgba(194,168,117,.14);
+      box-shadow: var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .footer-band .left{
+      color: rgba(255,255,255,.76);
+      font-size: 14.6px;
+      line-height: 1.6;
+    }
+    .footer-band .left strong{ color: rgba(255,255,255,.92); }
+
+    /* Mobile */
+    @media (max-width: 980px){
+      nav{ display:none; }
+      .hero{ grid-template-columns: 1fr; }
+      .services{ grid-template-columns: 1fr; }
+      .wrap{ width: calc(100% - 28px); }
+      header{ height:auto; }
+      .nav-wrap{
+        width: calc(100% - 24px);
+        padding: 12px 0;
+      }
+      .brand{ justify-content:flex-start; flex: 1; }
+      .brand-logo{ width: 42px; height: 42px; }
+    }
+    @media (max-width: 420px){
+      .nav-wrap{
+        display:grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .brand{ justify-content:center; }
+      .nav-ctas{ justify-content:center; margin-left: 0; }
+      .pill{ height: 36px; padding: 0 12px; font-size: 11px; letter-spacing: 1.2px; }
+      .headline h1{ font-size: 28px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-bg"></div>
+  <div class="vignette"></div>
+
+  <header>
+    <div class="nav-wrap">
+      <a class="brand" href="index.html" aria-label="StoneMark Home">
+        <!-- Update the src/extension to match your upload -->
+        <img class="brand-logo" src="logonolabel.png" alt="StoneMark Inspections logo" />
+      </a>
+
+      <nav aria-label="Primary">
+        <a href="services.html" class="active">Services</a>
+        <a href="service-area.html">Service Area</a>
+        <a href="credentials.html">Credentials</a>
+        <a href="reports.html">Reports</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-ctas">
+        <a class="pill dark" href="tel:+12703498237">CALL/TEXT</a>
+        <a class="pill gold" href="request.html">REQUEST</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" aria-label="Service overview">
+        <div class="headline">
+          <h1>Inspection Services</h1>
+          <p>
+            StoneMark Inspections provides thorough, photo-documented inspections in <strong>Paducah, KY</strong> and throughout
+            <strong>Western Kentucky</strong>. Choose a core inspection or add specialized services to fit your property and your goals.
+          </p>
+          <div class="micro">LICENSED • INSURED • CLEAR FINDINGS • FAST COMMUNICATION</div>
+        </div>
+
+        <aside class="quick" aria-label="Quick actions">
+          <h2>Request Any Service</h2>
+          <p>
+            Use the request form and select what you need. If you’re not sure, request an inspection and note your questions—we’ll guide you.
+          </p>
+          <div class="row">
+            <a class="btn gold" href="request.html?service=home-inspection">Request Home Inspection</a>
+            <a class="btn dark" href="request.html?service=radon">Request Radon</a>
+            <a class="btn dark" href="request.html?service=mold">Request Mold / IAQ</a>
+            <a class="btn dark" href="request.html?service=pool-spa">Request Pool &amp; Spa</a>
+            <a class="btn dark" href="request.html?service=thermal">Request Thermal</a>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Services Grid -->
+      <section class="services" aria-label="All services">
+        <span id="home" class="anchor"></span>
+        <article class="card">
+          <div class="tag">CORE SERVICE</div>
+          <h3>Home Inspection</h3>
+          <p>
+            A comprehensive evaluation of the home’s visible and accessible systems—documented with clear photos and practical context,
+            designed for confident decisions.
+          </p>
+          <div class="actions">
+            <a class="btn gold" href="request.html?service=home-inspection">Request Home Inspection</a>
+            <a class="btn dark" href="reports.html">See Report Style</a>
+          </div>
+        </article>
+
+        <span id="radon" class="anchor"></span>
+        <article class="card">
+          <div class="tag">ADD-ON</div>
+          <h3>Radon Testing</h3>
+          <p>
+            Professional radon measurement to help you understand risk and next steps. Ideal for home purchases and peace of mind.
+          </p>
+          <div class="actions">
+            <a class="btn gold" href="request.html?service=radon">Request Radon Testing</a>
+            <a class="btn dark" href="contact.html">Ask a Question</a>
+          </div>
+        </article>
+
+        <span id="mold" class="anchor"></span>
+        <article class="card">
+          <div class="tag">ADD-ON</div>
+          <h3>Mold Screening</h3>
+          <p>
+            Targeted screening when conditions suggest moisture concerns or potential mold. We focus on practical findings and clear options.
+          </p>
+          <div class="actions">
+            <a class="btn gold" href="request.html?service=mold">Request Mold Screening</a>
+            <a class="btn dark" href="request.html?service=home-inspection">Bundle With Inspection</a>
+          </div>
+        </article>
+
+        <span id="iaq" class="anchor"></span>
+        <article class="card">
+          <div class="tag">ADD-ON</div>
+          <h3>Indoor Air Quality</h3>
+          <p>
+            IAQ screening for buyers and homeowners who want deeper insight into the indoor environment—especially after renovations or water events.
+          </p>
+          <div class="actions">
+            <a class="btn gold" href="request.html?service=iaq">Request IAQ Screening</a>
+            <a class="btn dark" href="contact.html">Discuss Symptoms/Concerns</a>
+          </div>
+        </article>
+
+        <span id="pool-spa" class="anchor"></span>
+        <article class="card">
+          <div class="tag">SPECIALTY</div>
+          <h3>Pool &amp; Spa Inspection</h3>
+          <p>
+            Specialty inspection for pool/spa components, safety considerations, and visible conditions. Great for purchases or seasonal decision-making.
+          </p>
+          <div class="actions">
+            <a class="btn gold" href="request.html?service=pool-spa">Request Pool &amp; Spa</a>
+            <a class="btn dark" href="request.html?service=home-inspection">Add to Home Inspection</a>
+          </div>
+        </article>
+
+        <span id="thermal" class="anchor"></span>
+        <article class="card">
+          <div class="tag">SPECIALTY</div>
+          <h3>Thermal Imaging</h3>
+          <p>
+            Infrared scanning to help identify temperature anomalies that can suggest moisture intrusion, insulation gaps, or electrical concerns—when conditions permit.
+          </p>
+          <div class="actions">
+            <a class="btn gold" href="request.html?service=thermal">Request Thermal Imaging</a>
+            <a class="btn dark" href="request.html?service=home-inspection">Bundle With Inspection</a>
+          </div>
+        </article>
+      </section>
+
+      <!-- Footer CTA band -->
+      <section class="footer-band" aria-label="Schedule and contact">
+        <div class="left">
+          <strong>Not sure what you need?</strong> Request an inspection and tell us what you’re buying (or troubleshooting). We’ll recommend the right service mix.
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn gold" href="request.html">Request Service</a>
+          <a class="btn dark" href="tel:+12703498237">Call/Text (270) 349-8237</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Optional tiny script: highlight service links if you jump with #anchors -->
+  <script>
+    // If someone links to services.html#radon etc, scroll properly under sticky header
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+    }
+  </script>
+</body>
+</html>
