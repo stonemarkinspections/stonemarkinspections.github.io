@@ -489,6 +489,96 @@
   background: rgba(0,0,0,.18);
   box-shadow: 0 24px 70px rgba(0,0,0,.62);
 }
+/* =========================
+   MOBILE LAYOUT FIX
+   ========================= */
+@media (max-width: 768px){
+
+  /* Stack everything */
+  .hero{
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 24px 0 32px;
+  }
+
+  /* Portrait: center, shrink, no overflow tricks */
+  .portrait{
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .portrait::after{
+    display: none; /* kill cinematic overlay on mobile */
+  }
+
+  .portrait img{
+    height: auto;
+    max-height: 520px;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    transform: none;
+    mask-image: none;
+    -webkit-mask-image: none;
+    filter: drop-shadow(0 20px 45px rgba(0,0,0,.65));
+  }
+
+  /* Center actions */
+  .actions{
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Buttons: single column, full width */
+  .tiles{
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    width: 100%;
+    gap: 18px;
+    margin: 0;
+  }
+
+  .tile.img{
+    height: 160px;
+    width: 100%;
+  }
+
+  .tile.img img{
+    padding: 12px 14px;
+    transform: none;
+  }
+
+  /* Nav spacing */
+  header{
+    height: auto;
+  }
+
+  nav{
+    display: none; /* hide desktop nav */
+  }
+
+  .nav-ctas{
+    gap: 8px;
+  }
+
+  .pill{
+    height: 36px;
+    font-size: 11px;
+    padding: 0 14px;
+  }
+
+  /* Micro text */
+  .micro{
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+}
+
 </style>
 
 </head>
