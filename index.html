@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17945107974"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17945107974"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17945107974');
+  </script>
 
-  gtag('config', 'AW-17945107974');
-</script>  <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
   <!-- Primary SEO -->
@@ -23,7 +24,6 @@
   <meta property="og:description" content="Licensed, insured home inspections with photo-documented reporting. Radon, mold/IAQ, pool & spa, thermal imaging." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://stonemarkinspections.com/" />
-  <!-- Optional: set a real image URL once you have it -->
   <!-- <meta property="og:image" content="https://stonemarkinspections.com/og.jpg" /> -->
 
   <meta name="theme-color" content="#000000" />
@@ -54,9 +54,11 @@
     ]
   }
   </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#000000;
@@ -64,8 +66,6 @@
       --sand-soft:rgba(194,168,117,.18);
       --sand-border:rgba(194,168,117,.26);
       --text:#ffffff;
-      --muted:rgba(255,255,255,.70);
-      --muted2:rgba(255,255,255,.55);
 
       --nav-h:78px;
       --max:1320px;
@@ -75,6 +75,13 @@
       --tile-border:rgba(194,168,117,.22);
       --tile-shadow:0 18px 50px rgba(0,0,0,.60);
       --tile-radius:22px;
+
+      /* Parallax vars (set by JS) */
+      --scrollY: 0px;
+      --p1: 0px;
+      --p2: 0px;
+      --p3: 0px;
+      --p4: 0px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -86,27 +93,68 @@
       overflow-x:hidden;
     }
 
-    /* Cinematic background like the render */
-    .page-bg{
-      position:fixed; inset:0;
+    /* =========================
+       PARALLAX BACKGROUND STACK
+       ========================= */
+    .parallax{
+      position:fixed;
+      inset:0;
+      z-index:-5;
+      pointer-events:none;
+      overflow:hidden;
+    }
+
+    /* Base cinematic wash */
+    .parallax .layer{
+      position:absolute;
+      inset:-18%;
+      will-change: transform;
+      transform: translate3d(0, var(--p1), 0) scale(1.06);
+    }
+
+    /* Layer 1: deep vignette + base gradient */
+    .parallax .layer.l1{
+      background:
+        radial-gradient(1200px 700px at 40% 55%, transparent 35%, rgba(0,0,0,.58) 72%, rgba(0,0,0,.82) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,.40), rgba(0,0,0,.92));
+      opacity:1;
+      transform: translate3d(0, var(--p1), 0) scale(1.08);
+    }
+
+    /* Layer 2: warm sand glows */
+    .parallax .layer.l2{
       background:
         radial-gradient(1100px 650px at 34% 55%, rgba(194,168,117,.14), transparent 60%),
-        radial-gradient(900px 540px at 70% 40%, rgba(194,168,117,.10), transparent 62%),
-        linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.86)),
-        /* if you later add a hero photo background, set it here and keep the gradients above it */
-        /* url("hero-bg.jpg") */
-        ;
-      background-size:cover;
-      background-position:center;
-      transform:scale(1.02);
-      z-index:-3;
+        radial-gradient(900px 540px at 70% 40%, rgba(194,168,117,.10), transparent 62%);
+      opacity:.95;
+      transform: translate3d(0, var(--p2), 0) scale(1.08);
+      mix-blend-mode: screen;
     }
-    .vignette{
-      position:fixed; inset:0;
+
+    /* Layer 3: subtle “grain” / texture */
+    .parallax .layer.l3{
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.035), transparent 38%),
+        radial-gradient(circle at 78% 44%, rgba(255,255,255,.03), transparent 44%),
+        radial-gradient(circle at 60% 78%, rgba(255,255,255,.02), transparent 52%),
+        linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.25));
+      opacity:.6;
+      transform: translate3d(0, var(--p3), 0) scale(1.08);
+      filter: blur(.2px);
+    }
+
+    /* Layer 4: faint light sweep */
+    .parallax .layer.l4{
       background:
-        radial-gradient(1200px 700px at 40% 55%, transparent 35%, rgba(0,0,0,.58) 72%, rgba(0,0,0,.82) 100%);
-      z-index:-2;
-      pointer-events:none;
+        linear-gradient(115deg,
+          rgba(255,255,255,0) 0%,
+          rgba(255,255,255,.04) 24%,
+          rgba(255,255,255,0) 48%,
+          rgba(255,255,255,.02) 66%,
+          rgba(255,255,255,0) 100%);
+      opacity:.65;
+      transform: translate3d(0, var(--p4), 0) scale(1.08);
+      mix-blend-mode: overlay;
     }
 
     /* Top Nav */
@@ -118,8 +166,8 @@
       position:sticky;
       top:0;
       z-index:50;
-      background:linear-gradient(to bottom, rgba(0,0,0,.76), rgba(0,0,0,.22));
-      backdrop-filter: blur(6px);
+      background:linear-gradient(to bottom, rgba(0,0,0,.78), rgba(0,0,0,.18));
+      backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(255,255,255,.06);
     }
     .nav-wrap{
@@ -136,37 +184,24 @@
       text-decoration:none;
       color:inherit;
     }
-    .brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  min-width: 280px;
-  text-decoration:none;
-  color:inherit;
-}
+    .brand-logo{
+      width: 90px;
+      height: 90px;
+      display:block;
+      flex: 0 0 auto;
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,.55));
+      opacity: .98;
+      image-rendering: -webkit-optimize-contrast;
+    }
+    .brand-wordmark{
+      height: 18px;
+      width: auto;
+      display:block;
+      flex: 0 1 auto;
+      opacity: .92;
+      image-rendering: -webkit-optimize-contrast;
+    }
 
-.brand-logo{
-  width: 90px;     /* tiny logo */
-  height: 90px;
-  display:block;
-  flex: 0 0 auto;
-  filter: drop-shadow(0 10px 22px rgba(0,0,0,.55));
-  opacity: .98;
-}
-
-.brand-wordmark{
-  height: 1px;    /* letters only */
-  width: auto;
-  display:block;
-  flex: 0 1 auto;
-  opacity: .92;
-}
-
-/* keep it crisp on retina and prevent weird stretching */
-.brand-logo,
-.brand-wordmark{
-  image-rendering: -webkit-optimize-contrast;
-}
     nav{
       flex:1;
       display:flex;
@@ -237,171 +272,122 @@
       overflow:hidden;clip:rect(0,0,0,0);
       white-space:nowrap;border:0;
     }
-.portrait{
-  position: relative;
-  height: 1000px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;   /* center the container */
-  overflow: visible;         /* allow vignette/shadow */
-  width: 100%;               /* IMPORTANT: no calc(100% + …) */
-  margin: 0;                 /* IMPORTANT: no negative margins */
-  padding: 0;
-}
 
-/* sits BEHIND */
-.portrait::after{
-  content:"";
-  position:absolute;
-  inset:-60px -120px -120px -120px;
-  background: radial-gradient(720px 560px at 44% 40%, rgba(0,0,0,0), rgba(0,0,0,.65) 70%, rgba(0,0,0,0) 90%);
-  pointer-events:none;
-  z-index: 0;
-}
+    /* Portrait with parallax micro-shift */
+    .portrait{
+      position: relative;
+      height: 1000px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: visible;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
 
-.portrait img{
-  height: 1000px;
-  width: auto;
-  display: block;
-  position: relative;
-  z-index: 1;
+    .portrait::after{
+      content:"";
+      position:absolute;
+      inset:-60px -120px -120px -120px;
+      background: radial-gradient(720px 560px at 44% 40%, rgba(0,0,0,0), rgba(0,0,0,.65) 70%, rgba(0,0,0,0) 90%);
+      pointer-events:none;
+      z-index: 0;
+      transform: translate3d(0, calc(var(--scrollY) * 0.02), 0);
+      will-change: transform;
+    }
 
-  /* “art direction” without changing layout width */
-  transform: translateX(clamp(-140px, -8vw, -70px)) translateY(100px);
+    .portrait img{
+      height: 1000px;
+      width: auto;
+      display: block;
+      position: relative;
+      z-index: 1;
 
-  filter: drop-shadow(0 35px 75px rgba(0,0,0,.75)) saturate(1.02) contrast(1.02);
+      /* “art direction” + parallax */
+      transform:
+        translateX(clamp(-140px, -8vw, -70px))
+        translateY(100px)
+        translate3d(0, calc(var(--scrollY) * -0.03), 0);
 
-  -webkit-mask-image:
-    radial-gradient(circle at 44% 38%, #000 68%, transparent 90%),
-    linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%),
-    linear-gradient(to bottom, #000 0%, #000 78%, transparent 96%);
-  -webkit-mask-composite: source-in;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%;
+      filter: drop-shadow(0 35px 75px rgba(0,0,0,.75)) saturate(1.02) contrast(1.02);
 
-          mask-image:
-    radial-gradient(circle at 44% 38%, #000 68%, transparent 90%),
-    linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%),
-    linear-gradient(to bottom, #000 0%, #000 78%, transparent 96%);
-  mask-composite: intersect;
-  mask-repeat: no-repeat;
-  mask-size: 100% 100%;
-}
+      -webkit-mask-image:
+        radial-gradient(circle at 44% 38%, #000 68%, transparent 90%),
+        linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%),
+        linear-gradient(to bottom, #000 0%, #000 78%, transparent 96%);
+      -webkit-mask-composite: source-in;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+
+      mask-image:
+        radial-gradient(circle at 44% 38%, #000 68%, transparent 90%),
+        linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%),
+        linear-gradient(to bottom, #000 0%, #000 78%, transparent 96%);
+      mask-composite: intersect;
+      mask-repeat: no-repeat;
+      mask-size: 100% 100%;
+
+      will-change: transform;
+    }
 
     /* Tiles */
     .actions{
       display:flex;
       flex-direction:column;
       align-items:flex-start;
-      
       gap: 18px;
     }
+
     .tiles{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
       width: 100%;
-  max-width: 860px;
-  margin: 0 auto;
+      max-width: 860px;
+      margin: 0 auto;
       gap: 26px;
-}
-
-/* the clickable button */
-.tile.img{
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-
-  height: 190px;
-  width: 100%;
-
-  /* THIS makes the image “fit the button” */
-  border-radius: 24px;
-  overflow: hidden;
-
-  display: block;
-  position: relative;
-
-  /* move the shadow here so it doesn't get clipped */
-  filter: drop-shadow(0 22px 55px rgba(0,0,0,.65));
-  transition: transform .15s ease, filter .15s ease;
-}
-
-.tile.img::before{ display:none !important; }
-
-/* the PNG fills the button */
-.tile.img img{
-  width: 100%;
-  height: 100%;
-  display: block;
-
-  object-fit: contain;          /* now that aspect ratios match, this is correct */
-  object-position: center;    /* keep centered */
-
-  border-radius: 0;           /* IMPORTANT: avoid double-rounded edges */
-  transform: scale(1.02);     /* tiny scale removes any 1px edge artifacts */
-  transition: transform .15s ease;
-}
-
-.tile.img:hover{
-  transform: translateY(-3px);
-  filter: drop-shadow(0 28px 70px rgba(0,0,0,.72));
-}
-
-.tile.img:hover img{
-  transform: scale(1.05);
-}
-    .tile{
-      position:relative;
-      display:flex;
-      gap:16px;
-      align-items:center;
-      padding: 20px 22px;
-      border-radius: var(--tile-radius);
-      background: linear-gradient(to bottom, var(--tile-bg), var(--tile-bg2));
-      border: 1px solid var(--tile-border);
-      box-shadow: var(--tile-shadow);
-      text-decoration:none;
-      color:inherit;
-      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
-    }
-    .tile:hover{
-      transform: translateY(-2px);
-      border-color: rgba(194,168,117,.40);
-      box-shadow: 0 22px 60px rgba(0,0,0,.62);
-    }
-    .tile::before{
-      content:"";
-      position:absolute; inset:0;
-      border-radius: var(--tile-radius);
-      background: radial-gradient(240px 140px at 18% 30%, rgba(194,168,117,.14), transparent 60%);
-      pointer-events:none;
     }
 
-    .icon{
-      width:56px;height:56px;
-      flex:0 0 56px;
-      display:grid;
-      place-items:center;
-      filter: drop-shadow(0 10px 18px rgba(194,168,117,.16));
+    /* the clickable button */
+    .tile.img{
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+
+      height: 190px;
+      width: 100%;
+
+      border-radius: 24px;
+      overflow: hidden;
+
+      display: block;
+      position: relative;
+
+      filter: drop-shadow(0 22px 55px rgba(0,0,0,.65));
+      transition: transform .15s ease, filter .15s ease;
     }
-    .icon svg{
-      width:56px;height:56px;
-      fill: var(--sand);
-      opacity:.95;
+    .tile.img::before{ display:none !important; }
+
+    /* the PNG fills the button */
+    .tile.img img{
+      width: 100%;
+      height: 100%;
+      display: block;
+
+      object-fit: contain;
+      object-position: center;
+
+      border-radius: 0;
+      transform: scale(1.02);
+      transition: transform .15s ease;
     }
-    .ttext{ line-height:1.06; }
-    .ttext .top{
-      font-size:18px;
-      font-weight:800;
-      letter-spacing:.2px;
-      margin-bottom:6px;
+
+    .tile.img:hover{
+      transform: translateY(-3px);
+      filter: drop-shadow(0 28px 70px rgba(0,0,0,.72));
     }
-    .ttext .sub{
-      font-size:14px;
-      color: rgba(194,168,117,.92);
-      letter-spacing:.2px;
-    }
+    .tile.img:hover img{ transform: scale(1.05); }
 
     .micro{
       margin-top: 8px;
@@ -415,296 +401,240 @@
       max-width: 610px;
     }
 
-    /* Below-the-fold SEO content (looks premium, not spammy) */
-  /* BELOW-THE-FOLD — premium, bigger hierarchy */
-.below{
-  display:flex;
-  justify-content:center;
-  padding: 34px 0 90px;
-}
+    /* Below-the-fold SEO content (premium) */
+    .below{
+      display:flex;
+      justify-content:center;
+      padding: 34px 0 90px;
+    }
+    .below .wrap{
+      width:min(var(--max), calc(100% - 48px));
+      display:grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items:stretch;
+    }
 
-.below .wrap{
-  width:min(var(--max), calc(100% - 48px));
-  display:grid;
-  grid-template-columns: 1.05fr 0.95fr;  /* slightly larger right panel */
-  gap: 34px;
-  align-items:stretch;
-}
+    .panel{
+      background: linear-gradient(to bottom, rgba(255,255,255,.035), rgba(0,0,0,.42));
+      border: 1px solid rgba(194,168,117,.14);
+      border-radius: 26px;
+      padding: 28px 30px;
+      box-shadow: 0 26px 70px rgba(0,0,0,.62);
+      transform: translate3d(0, calc(var(--scrollY) * 0.01), 0);
+      will-change: transform;
+    }
 
-/* Make the panels feel expensive */
-.panel{
-  background: linear-gradient(to bottom, rgba(255,255,255,.035), rgba(0,0,0,.42));
-  border: 1px solid rgba(194,168,117,.14);
-  border-radius: 26px;
-  padding: 28px 30px;
-  box-shadow: 0 26px 70px rgba(0,0,0,.62);
-}
+    .panel h2{
+      font-family: "Cinzel", ui-serif, Georgia, serif;
+      font-size: 26px;
+      letter-spacing: .6px;
+      line-height: 1.12;
+      margin-bottom: 12px;
+      color: rgba(255,255,255,.94);
+    }
 
-/* Hierarchy: headings feel like a brand, not default text */
-.panel h2{
-  font-family: "Cinzel", ui-serif, Georgia, serif;
-  font-size: 26px;
-  letter-spacing: .6px;
-  line-height: 1.12;
-  margin-bottom: 12px;
-  color: rgba(255,255,255,.94);
-}
+    .panel p{
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 15.5px;
+      line-height: 1.65;
+      color: rgba(255,255,255,.78);
+    }
+    .panel strong{ color: rgba(255,255,255,.92); }
 
-/* Body copy: clean, readable */
-.panel p{
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  font-size: 15.5px;
-  line-height: 1.65;
-  color: rgba(255,255,255,.78);
-}
+    .panel ul{ margin: 14px 0 0 18px; }
+    .panel li{
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(255,255,255,.74);
+      margin: 6px 0;
+    }
 
-.panel strong{ color: rgba(255,255,255,.92); }
+    .panel a{
+      color: rgba(214,189,137,.95);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(214,189,137,.25);
+    }
+    .panel a:hover{ border-bottom-color: rgba(214,189,137,.65); }
 
-.panel ul{
-  margin: 14px 0 0 18px;
-}
+    .cred{
+      margin-top: 18px;
+      padding: 18px 18px 16px;
+      border-radius: 22px;
+      background: rgba(0,0,0,.26);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .cred .hint{
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 2.8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.50);
+      margin-bottom: 12px;
+    }
+    .cred iframe{
+      width:100%;
+      min-height: 760px;
+      border: 1px solid rgba(194,168,117,.18);
+      border-radius: 20px;
+      background: rgba(0,0,0,.18);
+      box-shadow: 0 24px 70px rgba(0,0,0,.62);
+      display:block;
+    }
 
-.panel li{
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.65;
-  color: rgba(255,255,255,.74);
-  margin: 6px 0;
-}
+    /* =========================
+       RESPONSIVE (CLEAN + VALID)
+       ========================= */
 
-/* Links look premium (not bright web-blue) */
-.panel a{
-  color: rgba(214,189,137,.95);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(214,189,137,.25);
-}
-.panel a:hover{
-  border-bottom-color: rgba(214,189,137,.65);
-}
+    @media (max-width: 900px){
+      html, body { overflow-x: hidden; }
 
-/* Credentials area: make it feel like a feature, not a widget */
-.cred{
-  margin-top: 18px;
-  padding: 18px 18px 16px;
-  border-radius: 22px;
-  background: rgba(0,0,0,.26);
-  border: 1px solid rgba(255,255,255,.06);
-}
+      header{ height:auto; }
+      .nav-wrap{
+        width: calc(100% - 24px);
+        margin: 0 auto;
+        padding: 12px 0;
+      }
+      nav{ display:none; }
 
-.cred .hint{
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  font-size: 12px;
-  letter-spacing: 2.8px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.50);
-  margin-bottom: 12px;
-}
+      .brand{ min-width: 0; gap:10px; }
+      .brand-logo{ width: 28px; height: 28px; }
+      .brand-wordmark{ height: 16px; }
 
-/* The iframe itself needs to be big and “installed” */
-.cred iframe{
-  width:100%;
-  min-height: 760px; /* BIGGER */
-  border: 1px solid rgba(194,168,117,.18);
-  border-radius: 20px;
-  background: rgba(0,0,0,.18);
-  box-shadow: 0 24px 70px rgba(0,0,0,.62);
-}
-/* =========================
-   SINGLE MOBILE BLOCK (FINAL)
-   put this LAST in <style>
-   ========================= */
-@media (max-width: 900px){
+      .hero{
+        width: calc(100% - 28px);
+        max-width: 560px;
+        margin: 0 auto;
 
-  html, body { overflow-x: hidden; }
-  .brand{ min-width: 0 !important; }
-.brand-wordmark{ height: 16px !important; }
-.brand-logo{ width: 28px !important; height: 28px !important; }
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 14px 0 24px;
 
-  /* center the whole hero area */
-  .hero{
-    width: calc(100% - 28px) !important;
-    max-width: 560px !important;
-    margin: 0 auto !important;
+        justify-items: center;
+        text-align: center;
+      }
 
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-    padding: 14px 0 24px !important;
+      .portrait{
+        width: 100%;
+        height: auto;
+        display:flex;
+        justify-content:center;
+        align-items:flex-end;
+      }
 
-    justify-items: center !important;
-    text-align: center !important;
-  }
+      .portrait img{
+        width: min(520px, 92vw);
+        max-width: 92vw;
+        height: auto;
 
-  /* stop header/nav from forcing layout */
-  .nav-wrap{
-    width: calc(100% - 24px) !important;
-    margin: 0 auto !important;
-  }
-  nav{ display:none !important; }
-  .brand{ min-width: 0 !important; }
+        transform: none;
 
-  /* NUCLEAR RESET: remove all desktop left-shifts */
-  .portrait{
-    width: 100% !important;
-    height: auto !important;
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
 
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-    transform: none !important;
+      .actions{
+        width: 100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+      }
 
-    display: flex !important;
-    justify-content: center !important;
-    align-items: flex-end !important;
-  }
+      .tiles{
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto;
+        grid-template-columns: 1fr;
+        justify-items:center;
+        gap: 16px;
+      }
 
-  .actions{
-    width: 100% !important;
-    margin-left: 0 !important;
+      .tile.img{
+        width: 100%;
+        height: 170px;
+      }
+      .tile.img img{
+        object-fit: contain;
+        object-position: center;
+        transform:none;
+      }
 
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
+      .micro{
+        width: 100%;
+        margin: 8px auto 0;
+        text-align:center;
+      }
 
-  .tiles{
-    width: 100% !important;
-    max-width: 520px !important;
+      .below{
+        padding: 26px 0 70px;
+      }
+      .below .wrap{
+        width: calc(100% - 28px);
+        max-width: 560px;
+        margin: 0 auto;
 
-    margin: 0 auto !important;
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      .panel{ width:100%; }
+      .cred{ width:100%; }
+    }
 
-    grid-template-columns: 1fr !important;  /* ONE column on phone */
-    justify-items: center !important;
-    gap: 16px !important;
-  }
+    @media (max-width: 420px){
+      .brand-wordmark{ height: 15px; }
+      .tile.img{ height: 155px; }
 
-  /* portrait image sizing */
-  .portrait img{
-    width: min(520px, 92vw) !important;
-    max-width: 92vw !important;
-    height: auto !important;
+      /* Optional: stack CTAs under brand if tight */
+      .nav-wrap{
+        display:grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "brand"
+          "ctas";
+        align-items:center;
+        gap: 10px;
+      }
+      .brand{ grid-area: brand; justify-self:center; }
+      .nav-ctas{ grid-area: ctas; justify-self:center; margin-left:0; }
+      .pill{
+        height: 36px;
+        padding: 0 12px;
+        font-size: 11px;
+        letter-spacing: 1.2px;
+      }
+    }
 
-    transform: none !important;
-    margin: 0 auto !important;
-
-    -webkit-mask-image: none !important;
-            mask-image: none !important;
-  }
-
-  /* button sizing */
-  .tile.img{
-    width: 100% !important;
-    height: 170px !important;
-    margin: 0 auto !important;
-  }
-
-  .tile.img img{
-    object-fit: contain !important;
-    object-position: center !important;
-    transform: none !important;
-  }
-
-  .micro{
-    width: 100% !important;
-    margin: 8px auto 0 !important;
-    text-align: center !important;
-  }
-}
-
-@media (max-width: 420px)
-.brand{ gap: 10px !important; }
-.brand-wordmark{ height: 15px !important; }
-{
-  .hero{ max-width: 94vw !important; }
-  .tile.img{ height: 155px !important; }
-  /* --- MOBILE HEADER: fix jumble --- */
-header{
-  height: auto !important;
-}
-
-.nav-wrap{
-  display: grid !important;
-  grid-template-columns: 1fr auto !important;
-  grid-template-areas:
-    "brand ctas" !important;
-  align-items: center !important;
-  gap: 10px !important;
-  padding: 12px 0 !important;
-}
-
-.brand{
-  grid-area: brand !important;
-  justify-self: start !important;
-}
-
-.nav-ctas{
-  grid-area: ctas !important;
-  justify-self: end !important;
-  margin-left: 0 !important;
-  display: flex !important;
-  gap: 10px !important;
-}
-
-.pill{
-  height: 36px !important;
-  padding: 0 12px !important;
-  font-size: 11px !important;
-  letter-spacing: 1.2px !important;
-}
-
-/* If it still feels tight, stack CTAs under brand */
-@media (max-width: 420px){
-  .nav-wrap{
-    grid-template-columns: 1fr !important;
-    grid-template-areas:
-      "brand"
-      "ctas" !important;
-  }
-  .brand{ justify-self: center !important; }
-  .nav-ctas{ justify-self: center !important; }
-}
-
-/* --- BELOW SECTION: actually center everything --- */
-.below{
-  padding: 26px 0 70px !important;
-}
-
-.below .wrap{
-  width: calc(100% - 28px) !important;
-  max-width: 560px !important;
-  margin: 0 auto !important;
-
-  grid-template-columns: 1fr !important;
-  justify-items: center !important;
-}
-
-.panel{
-  width: 100% !important;
-  margin: 0 auto !important;
-}
-
-.cred{
-  width: 100% !important;
-}
-
-.cred iframe{
-  width: 100% !important;
-  display: block !important;
-}
-}
-</style>
-
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .parallax .layer,
+      .portrait::after,
+      .portrait img,
+      .panel{
+        transform:none !important;
+        transition:none !important;
+        animation:none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <div class="page-bg"></div>
-  <div class="vignette"></div>
+  <!-- Parallax background layers -->
+  <div class="parallax" aria-hidden="true">
+    <div class="layer l1"></div>
+    <div class="layer l2"></div>
+    <div class="layer l3"></div>
+    <div class="layer l4"></div>
+  </div>
 
   <header>
     <div class="nav-wrap">
       <a class="brand" href="index.html" aria-label="StoneMark Home">
-  <img class="brand-logo" src="/logonolabel.png" alt="StoneMark logo" />
-  <img class="brand-wordmark" src="/labelnologo.png" alt="StoneMark Inspections" />
-</a>
+        <img class="brand-logo" src="/logonolabel.png" alt="StoneMark logo" />
+        <img class="brand-wordmark" src="/labelnologo.png" alt="StoneMark Inspections" />
+      </a>
 
       <nav aria-label="Primary">
         <a href="services.html">Services</a>
@@ -725,7 +655,9 @@ header{
     <section class="hero" aria-label="StoneMark Inspections in Paducah KY and Western Kentucky">
       <!-- Hidden headings for SEO -->
       <h1 class="sr-only">Home Inspector in Paducah, KY & Western Kentucky | StoneMark Inspections</h1>
-      <p class="sr-only">Professional home inspections with photo-documented reports. Add-ons available: radon testing, mold/indoor air quality screening, pool & spa inspections, and thermal imaging.</p>
+      <p class="sr-only">
+        Professional home inspections with photo-documented reports. Add-ons available: radon testing, mold/indoor air quality screening, pool & spa inspections, and thermal imaging.
+      </p>
 
       <!-- LEFT: portrait -->
       <div class="portrait">
@@ -735,24 +667,24 @@ header{
       <!-- RIGHT: action tiles -->
       <div class="actions">
         <div class="tiles">
-<a class="tile img" href="/home.html" aria-label="Home Inspection services">
-  <img src="assets/buttons/home-inspection.png" alt="Home Inspection" loading="lazy" />
-</a>
-<a class="tile img" href="/radon.html" aria-label="Radon Testing">
-  <img src="assets/buttons/radon-testing.png" alt="Radon Testing" loading="lazy" />
-</a>
-<a class="tile img" href="/mold.html" aria-label="Mold Inspection and screening">
-  <img src="assets/buttons/mold-inspection.png" alt="Mold Inspection" loading="lazy" />
-</a>
-<a class="tile img" href="/iaq.html" aria-label="Indoor Air Quality screening">
-  <img src="assets/buttons/indoor-air-quality.png" alt="Indoor Air Quality" loading="lazy" />
-</a>
-<a class="tile img" href="/pool.html" aria-label="Pool and Spa Inspection">
-  <img src="assets/buttons/pool-spa-inspection.png" alt="Pool and Spa Inspection" loading="lazy" />
-</a>
-<a class="tile img" href="/thermal.html" aria-label="Thermal Imaging">
-  <img src="assets/buttons/thermal-imaging.png" alt="Thermal Imaging" loading="lazy" />
-</a>
+          <a class="tile img" href="/home.html" aria-label="Home Inspection services">
+            <img src="assets/buttons/home-inspection.png" alt="Home Inspection" loading="lazy" />
+          </a>
+          <a class="tile img" href="/radon.html" aria-label="Radon Testing">
+            <img src="assets/buttons/radon-testing.png" alt="Radon Testing" loading="lazy" />
+          </a>
+          <a class="tile img" href="/mold.html" aria-label="Mold Inspection and screening">
+            <img src="assets/buttons/mold-inspection.png" alt="Mold Inspection" loading="lazy" />
+          </a>
+          <a class="tile img" href="/iaq.html" aria-label="Indoor Air Quality screening">
+            <img src="assets/buttons/indoor-air-quality.png" alt="Indoor Air Quality" loading="lazy" />
+          </a>
+          <a class="tile img" href="/pool.html" aria-label="Pool and Spa Inspection">
+            <img src="assets/buttons/pool-spa-inspection.png" alt="Pool and Spa Inspection" loading="lazy" />
+          </a>
+          <a class="tile img" href="/thermal.html" aria-label="Thermal Imaging">
+            <img src="assets/buttons/thermal-imaging.png" alt="Thermal Imaging" loading="lazy" />
+          </a>
         </div>
 
         <div class="micro">LICENSED • INSURED • PHOTO-DOCUMENTED REPORTS</div>
@@ -760,7 +692,7 @@ header{
     </section>
   </main>
 
-  <!-- Below-the-fold content for SEO + credibility (scroll down to reach logos) -->
+  <!-- Below-the-fold content for SEO + credibility -->
   <section class="below" aria-label="Paducah KY home inspection details and credentials">
     <div class="wrap">
       <div class="panel">
@@ -784,9 +716,7 @@ header{
 
       <div class="panel">
         <h2>Book an Inspection</h2>
-        <p>
-          Ready to schedule? Use the request form or call/text directly.
-        </p>
+        <p>Ready to schedule? Use the request form or call/text directly.</p>
         <p style="margin-top:10px">
           <a href="request.html">Request Inspection</a> • <a href="tel:+12703498237">(270) 349-8237</a>
         </p>
@@ -799,5 +729,42 @@ header{
     </div>
   </section>
 
+  <script>
+    (function () {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      if (reduceMotion.matches) return;
+
+      let ticking = false;
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY || window.pageYOffset || 0;
+
+          // Expose scroll for a couple of subtle element transforms
+          document.documentElement.style.setProperty("--scrollY", y + "px");
+
+          // Background parallax layers (small, tasteful)
+          document.documentElement.style.setProperty("--p1", (y * 0.08) + "px");
+          document.documentElement.style.setProperty("--p2", (y * 0.12) + "px");
+          document.documentElement.style.setProperty("--p3", (y * 0.16) + "px");
+          document.documentElement.style.setProperty("--p4", (y * 0.22) + "px");
+
+          ticking = false;
+        });
+      }
+
+      // Run once + on scroll
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // If user toggles reduced-motion while open
+      reduceMotion.addEventListener?.("change", (e) => {
+        if (e.matches) window.removeEventListener("scroll", onScroll);
+      });
+    })();
+  </script>
 </body>
 </html>
