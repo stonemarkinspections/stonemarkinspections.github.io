@@ -347,7 +347,7 @@
       background-position: center;
       filter: saturate(1.02) contrast(1.02);
       /* Use band-relative scroll so it doesn't "start high then drop" */
-      transform: translate3d(0, calc(var(--bandY) * -0.18), 0) scale(1.10);
+      transform: translate3d(0, var(--bandPhotoOffset), 0) scale(1.10);
 
       /* feather edges so no obvious rectangle */
       -webkit-mask-image:
@@ -373,7 +373,7 @@
         radial-gradient(1000px 650px at 30% 45%, rgba(194,168,117,.16), transparent 60%),
         radial-gradient(900px 540px at 75% 35%, rgba(194,168,117,.10), transparent 62%),
         radial-gradient(1200px 800px at 45% 65%, rgba(0,0,0,.30), rgba(0,0,0,.88) 70%, rgba(0,0,0,.98) 100%);
-      transform: translate3d(0, calc(var(--bandY) * -0.08), 0) scale(1.08);
+      transform: translate3d(0, var(--bandGlowOffset), 0) scale(1.08);
       mix-blend-mode: screen;
       opacity:.95;
       z-index:1;
