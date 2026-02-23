@@ -67,10 +67,10 @@
       --nav-h:78px;
       --max:1320px;
 
-      --tile-radius:22px;
-
-      /* JS updates this */
+      /* JS updates these */
       --scrollY: 0px;
+      --bandY: 0px;      /* scroll relative to band start */
+      --bandProg: 0;     /* 0..1 progression through band */
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -80,57 +80,6 @@
       background:var(--bg);
       color:var(--text);
       overflow-x:hidden;
-    }
-
-    /* =========
-       BIG, OBVIOUS PARALLAX (like Home-Ed)
-       ========= */
-
-    /* Fixed “scene” behind everything */
-    .scene{
-      position:fixed;
-      inset:0;
-      z-index:-10;
-      pointer-events:none;
-      overflow:hidden;
-      background:#000;
-    }
-
-    /* This is the photo layer that drifts (the thing your eye notices) */
-    .scene .bg-photo{
-      position:absolute;
-      inset:-12%;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.88)),
-        url("/stonemark-hero.png");
-      background-size:cover;
-      background-position:center;
-      filter: saturate(1.02) contrast(1.02);
-      transform: translate3d(0, calc(var(--scrollY) * 0.18), 0) scale(1.10);
-      will-change: transform;
-    }
-
-    /* A second “glow” layer that moves differently (depth) */
-    .scene .bg-glow{
-      position:absolute;
-      inset:-18%;
-      background:
-        radial-gradient(1000px 650px at 30% 45%, rgba(194,168,117,.16), transparent 60%),
-        radial-gradient(900px 540px at 75% 35%, rgba(194,168,117,.10), transparent 62%),
-        radial-gradient(1200px 800px at 45% 65%, rgba(0,0,0,.35), rgba(0,0,0,.88) 70%, rgba(0,0,0,.98) 100%);
-      transform: translate3d(0, calc(var(--scrollY) * 0.08), 0) scale(1.08);
-      will-change: transform;
-      mix-blend-mode: screen;
-      opacity:.95;
-    }
-
-    /* Film vignette stays mostly “locked” (so motion feels premium, not wobbly) */
-    .scene .vignette{
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(1200px 700px at 40% 55%, transparent 35%, rgba(0,0,0,.60) 72%, rgba(0,0,0,.90) 100%);
-      opacity:1;
     }
 
     /* Top Nav */
@@ -238,6 +187,7 @@
       padding: 34px 0 40px;
     }
 
+    /* SEO: keep headings in DOM (visually hidden) */
     .sr-only{
       position:absolute;
       width:1px;height:1px;
@@ -246,7 +196,7 @@
       white-space:nowrap;border:0;
     }
 
-    /* Portrait gets a “foreground parallax” too (Home-Ed vibe) */
+    /* Portrait (keep the fade / no “box”) */
     .portrait{
       position: relative;
       height: 1000px;
@@ -261,11 +211,9 @@
       content:"";
       position:absolute;
       inset:-70px -130px -140px -130px;
-      background: radial-gradient(720px 560px at 44% 40%, rgba(0,0,0,0), rgba(0,0,0,.70) 70%, rgba(0,0,0,0) 90%);
+      background: radial-gradient(720px 560px at 44% 40%, rgba(0,0,0,0), rgba(0,0,0,.72) 70%, rgba(0,0,0,0) 90%);
       pointer-events:none;
       z-index: 0;
-      transform: translate3d(0, calc(var(--scrollY) * 0.06), 0);
-      will-change: transform;
     }
 
     .portrait img{
@@ -274,27 +222,21 @@
       display: block;
       position: relative;
       z-index: 1;
-
-      transform:
-        translateX(clamp(-140px, -8vw, -70px))
-        translateY(100px)
-        translate3d(0, calc(var(--scrollY) * -0.10), 0); /* NOTICEABLE */
-
-      filter: drop-shadow(0 40px 85px rgba(0,0,0,.80)) saturate(1.02) contrast(1.02);
-      will-change: transform;
+      transform: translateX(clamp(-140px, -8vw, -70px)) translateY(100px);
+      filter: drop-shadow(0 40px 85px rgba(0,0,0,.82)) saturate(1.02) contrast(1.02);
 
       -webkit-mask-image:
-        radial-gradient(circle at 44% 38%, #000 68%, transparent 90%),
-        linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%),
-        linear-gradient(to bottom, #000 0%, #000 78%, transparent 96%);
+        radial-gradient(circle at 44% 38%, #000 70%, transparent 92%),
+        linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
+        linear-gradient(to bottom, #000 0%, #000 80%, transparent 98%);
       -webkit-mask-composite: source-in;
       -webkit-mask-repeat: no-repeat;
       -webkit-mask-size: 100% 100%;
 
       mask-image:
-        radial-gradient(circle at 44% 38%, #000 68%, transparent 90%),
-        linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%),
-        linear-gradient(to bottom, #000 0%, #000 78%, transparent 96%);
+        radial-gradient(circle at 44% 38%, #000 70%, transparent 92%),
+        linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
+        linear-gradient(to bottom, #000 0%, #000 80%, transparent 98%);
       mask-composite: intersect;
       mask-repeat: no-repeat;
       mask-size: 100% 100%;
@@ -317,7 +259,6 @@
       gap: 26px;
     }
 
-    /* Clickable “image button” */
     .tile.img{
       background: transparent !important;
       border: none !important;
@@ -363,11 +304,111 @@
       max-width: 610px;
     }
 
+    /* ============================================================
+       PARALLAX BAND (NOT behind hero; appears under hero on scroll)
+       ============================================================ */
+
+    .parallax-band{
+      position: relative;
+      overflow: hidden;
+      background: #000;
+      padding: 0;
+      /* band height (desktop) */
+      height: 420px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    /* Soft top fade so it "appears" rather than hard cut */
+    .parallax-band::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,.40) 35%, rgba(0,0,0,.40) 65%, rgba(0,0,0,1) 100%);
+      pointer-events:none;
+      z-index:3;
+    }
+
+    .parallax-band .bg-photo,
+    .parallax-band .bg-glow,
+    .parallax-band .vignette{
+      position:absolute;
+      inset:-14%;
+      will-change: transform;
+      z-index:0;
+    }
+
+    /* The image layer that does the obvious parallax */
+    .parallax-band .bg-photo{
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.92)),
+        url("/stonemark-hero.png");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.02) contrast(1.02);
+      /* Use band-relative scroll so it doesn't "start high then drop" */
+      transform: translate3d(0, calc(var(--bandY) * -0.18), 0) scale(1.10);
+
+      /* feather edges so no obvious rectangle */
+      -webkit-mask-image:
+        radial-gradient(circle at 50% 45%, #000 62%, transparent 92%),
+        linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
+        linear-gradient(to bottom, #000 0%, #000 82%, transparent 98%);
+      -webkit-mask-composite: source-in;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+
+      mask-image:
+        radial-gradient(circle at 50% 45%, #000 62%, transparent 92%),
+        linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
+        linear-gradient(to bottom, #000 0%, #000 82%, transparent 98%);
+      mask-composite: intersect;
+      mask-repeat: no-repeat;
+      mask-size: 100% 100%;
+    }
+
+    .parallax-band .bg-glow{
+      inset:-18%;
+      background:
+        radial-gradient(1000px 650px at 30% 45%, rgba(194,168,117,.16), transparent 60%),
+        radial-gradient(900px 540px at 75% 35%, rgba(194,168,117,.10), transparent 62%),
+        radial-gradient(1200px 800px at 45% 65%, rgba(0,0,0,.30), rgba(0,0,0,.88) 70%, rgba(0,0,0,.98) 100%);
+      transform: translate3d(0, calc(var(--bandY) * -0.08), 0) scale(1.08);
+      mix-blend-mode: screen;
+      opacity:.95;
+      z-index:1;
+    }
+
+    .parallax-band .vignette{
+      inset:0;
+      background: radial-gradient(1200px 700px at 40% 55%, transparent 35%, rgba(0,0,0,.62) 72%, rgba(0,0,0,.92) 100%);
+      z-index:2;
+    }
+
+    /* Optional: a subtle “caption line” in the band (invisible to screen readers) */
+    .band-inner{
+      position: relative;
+      z-index:4;
+      height:100%;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      padding: 0 24px 22px;
+      pointer-events:none;
+    }
+    .band-inner .band-mark{
+      font-size: 10.5px;
+      letter-spacing: 2.8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.30);
+    }
+
     /* Below-the-fold */
     .below{
       display:flex;
       justify-content:center;
       padding: 34px 0 90px;
+      background: transparent;
     }
     .below .wrap{
       width:min(var(--max), calc(100% - 48px));
@@ -377,16 +418,12 @@
       align-items:stretch;
     }
 
-    /* Foreground “lift” on scroll (like those Spectra sections) */
     .panel{
       background: linear-gradient(to bottom, rgba(255,255,255,.035), rgba(0,0,0,.48));
       border: 1px solid rgba(194,168,117,.14);
       border-radius: 26px;
       padding: 28px 30px;
       box-shadow: 0 28px 80px rgba(0,0,0,.64);
-
-      transform: translate3d(0, calc(var(--scrollY) * -0.03), 0);
-      will-change: transform;
     }
 
     .panel h2{
@@ -471,11 +508,11 @@
         width: min(520px, 92vw);
         max-width: 92vw;
         height: auto;
-        transform: none;          /* disable foreground parallax on mobile */
+        transform: none;
         -webkit-mask-image:none;
         mask-image:none;
       }
-      .portrait::after{ transform:none; }
+      .portrait::after{ display:none; }
 
       .actions{ align-items:center; }
       .tiles{
@@ -483,8 +520,11 @@
         grid-template-columns: 1fr;
         gap: 16px;
       }
-
       .tile.img{ height: 170px; }
+
+      .parallax-band{
+        height: 320px;
+      }
 
       .below{ padding: 26px 0 70px; }
       .below .wrap{
@@ -492,30 +532,18 @@
         max-width: 560px;
         grid-template-columns: 1fr;
       }
-      .panel{ transform:none; }
     }
 
     @media (prefers-reduced-motion: reduce){
-      .scene .bg-photo,
-      .scene .bg-glow,
-      .portrait::after,
-      .portrait img,
-      .panel{
+      .parallax-band .bg-photo,
+      .parallax-band .bg-glow{
         transform:none !important;
-        transition:none !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- PARALLAX SCENE -->
-  <div class="scene" aria-hidden="true">
-    <div class="bg-photo"></div>
-    <div class="bg-glow"></div>
-    <div class="vignette"></div>
-  </div>
-
   <header>
     <div class="nav-wrap">
       <a class="brand" href="index.html" aria-label="StoneMark Home">
@@ -577,6 +605,16 @@
     </section>
   </main>
 
+  <!-- PARALLAX BAND (appears below hero; NOT behind hero) -->
+  <section class="parallax-band" id="parallaxBand" aria-hidden="true">
+    <div class="bg-photo"></div>
+    <div class="bg-glow"></div>
+    <div class="vignette"></div>
+    <div class="band-inner">
+      <div class="band-mark">STONE•MARK • WESTERN KENTUCKY</div>
+    </div>
+  </section>
+
   <section class="below" aria-label="Paducah KY home inspection details and credentials">
     <div class="wrap">
       <div class="panel">
@@ -618,11 +656,32 @@
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
       if (reduce.matches) return;
 
+      const band = document.getElementById("parallaxBand");
       let ticking = false;
+      let bandTop = 0;
+      let bandH = 1;
+
+      function measureBand(){
+        if (!band) return;
+        const r = band.getBoundingClientRect();
+        bandTop = (window.scrollY || 0) + r.top;
+        bandH = Math.max(1, r.height);
+      }
+
+      function clamp01(n){ return Math.max(0, Math.min(1, n)); }
 
       function update() {
         const y = window.scrollY || 0;
         document.documentElement.style.setProperty("--scrollY", y + "px");
+
+        // Band-relative scroll so it doesn't “start high then drop”
+        const by = Math.max(0, y - bandTop);
+        document.documentElement.style.setProperty("--bandY", by + "px");
+
+        // Progress through the band (0..1) if you ever want effects tied to it
+        const prog = clamp01(by / bandH);
+        document.documentElement.style.setProperty("--bandProg", prog);
+
         ticking = false;
       }
 
@@ -632,12 +691,16 @@
         requestAnimationFrame(update);
       }
 
+      measureBand();
       update();
-      window.addEventListener("scroll", onScroll, { passive: true });
 
-      // If reduced-motion gets toggled while open
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", () => { measureBand(); update(); }, { passive: true });
+
       reduce.addEventListener?.("change", (e) => {
-        if (e.matches) window.removeEventListener("scroll", onScroll);
+        if (e.matches) {
+          window.removeEventListener("scroll", onScroll);
+        }
       });
     })();
   </script>
