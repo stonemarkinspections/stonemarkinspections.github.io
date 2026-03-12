@@ -30,30 +30,42 @@
 
   <!-- LocalBusiness Structured Data -->
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"LocalBusiness",
-    "name":"StoneMark Inspections",
-    "url":"https://stonemarkinspections.com/",
-    "telephone":"+1-270-349-8237",
-    "areaServed":[
-      {"@type":"City","name":"Paducah"},
-      {"@type":"AdministrativeArea","name":"McCracken County"},
-      {"@type":"AdministrativeArea","name":"Western Kentucky"},
-      {"@type":"AdministrativeArea","name":"Marshall County"},
-      {"@type":"AdministrativeArea","name":"Graves County"},
-      {"@type":"AdministrativeArea","name":"Calloway County"}
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "@id": "https://stonemarkinspections.com/#business",
+  "name": "StoneMark Inspections",
+  "url": "https://stonemarkinspections.com/",
+  "telephone": "+1-270-349-8237",
+  "logo": "https://stonemarkinspections.com/logonolabel.png",
+  "image": "https://stonemarkinspections.com/logo1.png",
+  "description": "StoneMark Inspections provides professional home inspections in Paducah, Kentucky, Western Kentucky, and Southern Illinois, with add-on services including radon testing, mold and indoor air quality screening, pool and spa inspections, and thermal imaging.",
+  "areaServed": [
+    { "@type": "City", "name": "Paducah", "containedInPlace": { "@type": "State", "name": "Kentucky" } },
+    { "@type": "AdministrativeArea", "name": "McCracken County", "containedInPlace": { "@type": "State", "name": "Kentucky" } },
+    { "@type": "AdministrativeArea", "name": "Marshall County", "containedInPlace": { "@type": "State", "name": "Kentucky" } },
+    { "@type": "City", "name": "Mayfield", "containedInPlace": { "@type": "State", "name": "Kentucky" } },    
+    { "@type": "AdministrativeArea", "name": "Graves County", "containedInPlace": { "@type": "State", "name": "Kentucky" } },
+    { "@type": "City", "name": "Metropolis", "containedInPlace": { "@type": "State", "name": "Illinois" } },
+    { "@type": "AdministrativeArea", "name": "Massac County", "containedInPlace": { "@type": "State", "name": "Illinois" } },
+    { "@type": "City", "name": "Marion", "containedInPlace": { "@type": "State", "name": "Illinois" } },
+    { "@type": "AdministrativeArea", "name": "Pope County", "containedInPlace": { "@type": "State", "name": "Illinois" } },
+    { "@type": "AdministrativeArea", "name": "Pulaski County", "containedInPlace": { "@type": "State", "name": "Illinois" } },  
     ],
-    "serviceType":[
-      "Home Inspection",
-      "Radon Testing",
-      "Mold Inspection",
-      "Indoor Air Quality Screening",
-      "Pool and Spa Inspection",
-      "Thermal Imaging"
-    ]
-  }
-  </script>
+  "serviceType": [
+    "Home Inspection",
+    "Radon Testing",
+    "Mold Inspection",
+    "Indoor Air Quality Screening",
+    "Pool and Spa Inspection",
+    "Thermal Imaging"
+  ],
+  "sameAs": [
+    "https://www.facebook.com/",
+    "https://www.instagram.com/"
+  ]
+}
+</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
