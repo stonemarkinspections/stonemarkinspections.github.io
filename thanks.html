@@ -2,79 +2,309 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17945107974"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17945107974"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17945107974');
 
-  gtag('config', 'AW-17945107974');
-</script>
+    /* Optional: fire a conversion when this page loads.
+       If you already fire the conversion on form submit, you may remove this block.
+       If Google Ads expects the thank-you page load as the conversion, leave it in. */
+    gtag('event', 'conversion', {
+      'send_to': 'AW-17945107974'
+    });
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thank You | Aqualis Pools</title>
+  <title>Thank You | StoneMark Inspections</title>
+  <meta name="description" content="Thank you for contacting StoneMark Inspections. Your inspection request has been received, and we’ll follow up shortly." />
+
   <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      color: #ffffff;
-      background: linear-gradient(
-        135deg,
-        #e0f7fa 0%,
-        #007acc 25%,
-        #002a45 50%,
-        #007acc 75%,
-        #e0f7fa 100%
-      );
-      background-size: 400% 400%;
-      animation: backgroundShift 15s linear infinite;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
-      position: relative;
-      z-index: 1;
+    :root{
+      --bg:#050505;
+      --bg-deep:#000000;
+      --sandstone:#c2a875;
+      --sandstone-bright:#d6bc8a;
+      --sandstone-soft:rgba(194,168,117,0.14);
+      --sandstone-border:rgba(194,168,117,0.26);
+      --panel:rgba(255,255,255,0.04);
+      --panel-strong:rgba(255,255,255,0.06);
+      --text-main:#ffffff;
+      --text-muted:rgba(255,255,255,0.72);
+      --text-faint:rgba(255,255,255,0.50);
+      --shadow:0 20px 60px rgba(0,0,0,0.45);
     }
 
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%) repeat;
-      background-size: 200% 200%;
-      animation: shimmerWaves 6s linear infinite;
-      pointer-events: none;
-      z-index: 0;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
     }
 
-    @keyframes backgroundShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    html{
+      scroll-behavior:smooth;
     }
 
-    @keyframes shimmerWaves {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 100% 100%; }
+    body{
+      min-height:100vh;
+      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      color:var(--text-main);
+      background:
+        radial-gradient(circle at 50% 12%, rgba(194,168,117,0.18) 0%, rgba(194,168,117,0.07) 18%, transparent 42%),
+        linear-gradient(180deg, #0b0b0b 0%, #050505 45%, #000000 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px 18px;
+      text-align:center;
+      overflow:hidden;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.02) 45%, transparent 70%);
+      transform:translateX(-100%);
+      animation: sheen 9s linear infinite;
+      pointer-events:none;
+      opacity:0.55;
     }
 
-    p {
-      font-size: 1.25rem;
-      max-width: 600px;
-      margin: 0 auto;
-      opacity: 0.85;
+    @keyframes sheen{
+      0%   { transform:translateX(-100%); }
+      100% { transform:translateX(120%); }
+    }
+
+    .wrap{
+      width:100%;
+      max-width:820px;
+      position:relative;
+      z-index:1;
+    }
+
+    .card{
+      position:relative;
+      padding:46px 30px 36px;
+      border-radius:24px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.035) 100%);
+      border:1px solid var(--sandstone-border);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(4px);
+      -webkit-backdrop-filter:blur(4px);
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:24px;
+      padding:1px;
+      background:linear-gradient(135deg, rgba(194,168,117,0.32), rgba(255,255,255,0.04), rgba(194,168,117,0.20));
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;
+              mask-composite:exclude;
+      pointer-events:none;
+    }
+
+    .brand{
+      display:inline-block;
+      margin-bottom:16px;
+      color:var(--sandstone);
+      font-size:0.80rem;
+      letter-spacing:0.22em;
+      text-transform:uppercase;
+      font-weight:700;
+    }
+
+    .icon{
+      width:68px;
+      height:68px;
+      margin:0 auto 18px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:radial-gradient(circle, rgba(194,168,117,0.22) 0%, rgba(194,168,117,0.10) 55%, transparent 75%);
+      border:1px solid rgba(194,168,117,0.18);
+      color:var(--sandstone-bright);
+      font-size:1.8rem;
+      line-height:1;
+    }
+
+    h1{
+      color:var(--sandstone);
+      font-size:clamp(2.2rem, 5vw, 3.35rem);
+      line-height:1.06;
+      font-weight:650;
+      margin-bottom:16px;
+      letter-spacing:0.01em;
+    }
+
+    .lead{
+      max-width:650px;
+      margin:0 auto 14px;
+      color:var(--text-muted);
+      font-size:1.08rem;
+      line-height:1.8;
+    }
+
+    .note{
+      max-width:640px;
+      margin:0 auto;
+      color:var(--text-faint);
+      font-size:0.98rem;
+      line-height:1.8;
+    }
+
+    .actions{
+      margin-top:30px;
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn,
+    .btn-secondary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:999px;
+      text-decoration:none;
+      font-size:0.95rem;
+      letter-spacing:0.05em;
+      transition:transform 0.18s ease, opacity 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn{
+      background:var(--sandstone-soft);
+      border:1px solid var(--sandstone-border);
+      color:var(--sandstone-bright);
+      font-weight:600;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      opacity:0.94;
+      background:rgba(194,168,117,0.18);
+    }
+
+    .btn-secondary{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.12);
+      color:var(--text-muted);
+    }
+
+    .btn-secondary:hover{
+      transform:translateY(-1px);
+      opacity:0.94;
+      border-color:rgba(194,168,117,0.22);
+      color:#ffffff;
+    }
+
+    .details{
+      margin-top:28px;
+      padding-top:22px;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    .details p{
+      color:var(--text-faint);
+      font-size:0.88rem;
+      line-height:1.75;
+    }
+
+    .details strong{
+      color:var(--text-muted);
+      font-weight:600;
+    }
+
+    .details a{
+      color:var(--sandstone);
+      text-decoration:none;
+    }
+
+    .details a:hover{
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
+
+    .service-area{
+      margin-top:10px;
+      color:var(--text-faint);
+      font-size:0.84rem;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+    }
+
+    @media (max-width:640px){
+      .card{
+        padding:38px 20px 30px;
+        border-radius:20px;
+      }
+
+      .lead{
+        font-size:1rem;
+      }
+
+      .note{
+        font-size:0.94rem;
+      }
+
+      .actions{
+        gap:10px;
+      }
+
+      .btn,
+      .btn-secondary{
+        width:100%;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Thank You</h1>
-  <p>Your request has been received. We’ll be in touch shortly to discuss your home inspection, add ons, and answer any questions you may have.</p>
+  <main class="wrap">
+    <section class="card" aria-labelledby="thank-you-title">
+      <div class="brand">StoneMark Inspections</div>
+
+      <div class="icon" aria-hidden="true">✓</div>
+
+      <h1 id="thank-you-title">Request Received</h1>
+
+      <p class="lead">
+        Thank you. Your inspection request has been received, and I’ll follow up as soon as possible to confirm availability, review the property details, and answer any questions.
+      </p>
+
+      <p class="note">
+        If anything is time-sensitive, or if you’d simply rather talk through it directly, feel free to call or contact me at any time at
+        <strong style="color:#fff; font-weight:600;">(270) 349-8237</strong>.
+      </p>
+
+      <div class="actions">
+        <a class="btn" href="tel:+12703498237">Call or Text (270) 349-8237</a>
+        <a class="btn-secondary" href="/">Back to Home</a>
+      </div>
+
+      <div class="details">
+        <p>
+          <strong>StoneMark Inspections</strong><br>
+          Paducah, Kentucky • Western Kentucky • Southern Illinois<br>
+          <a href="tel:+12703498237">(270) 349-8237</a>
+        </p>
+
+        <div class="service-area">
+          Home Inspections • Radon • Mold • Indoor Air Quality • Pool &amp; Spa
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
