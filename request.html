@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17945107974"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17945107974"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17945107974');
+  </script>
 
-  gtag('config', 'AW-17945107974');
-</script>  <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Request an Inspection | StoneMark Inspections (Paducah, KY)</title>
   <meta name="description" content="Request a home inspection in Paducah, KY, Western Kentucky, and Southern Illinois. Add-ons available: radon, mold, indoor air quality, pool & spa. Call/text (270) 349-8237." />
@@ -27,6 +28,8 @@
       --text-main:#ffffff;
       --text-muted:rgba(255,255,255,0.65);
       --text-faint:rgba(255,255,255,0.52);
+      --error:#ffb3b3;
+      --success:#bfe7c1;
     }
 
     *{ box-sizing:border-box; margin:0; padding:0; }
@@ -68,6 +71,7 @@
       flex-wrap: wrap;
       margin: 18px auto 30px;
     }
+
     .pill{
       border: 1px solid var(--sandstone-border);
       background: rgba(255,255,255,0.02);
@@ -78,8 +82,16 @@
       letter-spacing: 0.10em;
       text-transform: uppercase;
     }
-    .pill a{ color: var(--sandstone); text-decoration:none; }
-    .pill a:hover{ text-decoration: underline; text-underline-offset: 4px; }
+
+    .pill a{
+      color: var(--sandstone);
+      text-decoration:none;
+    }
+
+    .pill a:hover{
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
 
     form{
       max-width: 640px;
@@ -163,7 +175,6 @@
       gap: 18px;
     }
 
-    /* Add-ons */
     .addons{
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.10);
@@ -194,6 +205,7 @@
       margin-top: 2px;
       accent-color: var(--sandstone);
       border-radius: 6px;
+      flex: 0 0 auto;
     }
 
     .check strong{
@@ -214,7 +226,6 @@
       margin-top: 12px;
     }
 
-    /* Floating text submit */
     .submit-row{
       margin-top: 26px;
       text-align:center;
@@ -224,15 +235,12 @@
       background: transparent;
       border: none;
       cursor: pointer;
-
       font-family: Georgia, "Times New Roman", serif;
       font-size: 1.15rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-
       color: var(--sandstone);
       padding: 10px 0;
-
       transition: opacity 0.2s ease, letter-spacing 0.2s ease;
     }
 
@@ -247,6 +255,11 @@
       border-radius: 10px;
     }
 
+    button[disabled]{
+      opacity: 0.55;
+      cursor: wait;
+    }
+
     .fineprint{
       margin-top: 18px;
       text-align:center;
@@ -255,11 +268,36 @@
       line-height: 1.6;
     }
 
-    .fineprint a{ color: var(--sandstone); }
-    .fineprint a:hover{ text-decoration: underline; text-underline-offset: 4px; }
+    .fineprint a{
+      color: var(--sandstone);
+    }
 
-    /* Hidden helper for formspree */
-    .hidden{ display:none; }
+    .fineprint a:hover{
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    .form-status{
+      display:none;
+      margin-top: 14px;
+      text-align:center;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .form-status.error{
+      display:block;
+      color: var(--error);
+    }
+
+    .form-status.success{
+      display:block;
+      color: var(--success);
+    }
 
     @media (max-width: 740px){
       form{ padding: 16px; }
@@ -283,8 +321,7 @@
       <div class="pill">Paducah, KY • Western Kentucky • Southern Illinois</div>
     </div>
 
-    <form action="https://formspree.io/f/mojjvebp" method="POST">
-      <!-- Helps Formspree show a nice email subject -->
+    <form id="inspection-form" action="https://formspree.io/f/mojjvebp" method="POST">
       <input class="hidden" type="text" name="_subject" value="New StoneMark Inspection Request" />
 
       <div class="grid">
@@ -406,12 +443,11 @@
         </div>
       </div>
 
-      <!-- Redirect after submit -->
-      <input type="hidden" name="_redirect" value="https://stonemarkinspections.com/thanks.html" />
-
       <div class="submit-row">
-        <button type="submit">Submit Request</button>
+        <button id="submit-button" type="submit">Submit Request</button>
       </div>
+
+      <div id="form-status" class="form-status" aria-live="polite"></div>
 
       <div class="fineprint">
         Missing details are completely fine — I’ll verify with the listing.
@@ -419,5 +455,57 @@
       </div>
     </form>
   </div>
+
+  <script>
+    const form = document.getElementById("inspection-form");
+    const submitButton = document.getElementById("submit-button");
+    const formStatus = document.getElementById("form-status");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      formStatus.className = "form-status";
+      formStatus.textContent = "";
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+
+      const data = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: data,
+          headers: {
+            "Accept": "application/json"
+          }
+        });
+
+        if (response.ok) {
+          if (typeof gtag === "function") {
+            gtag("event", "conversion", {
+              "send_to": "AW-17945107974"
+            });
+          }
+
+          formStatus.className = "form-status success";
+          formStatus.textContent = "Request sent. Redirecting...";
+
+          setTimeout(function () {
+            window.location.href = "/thanks.html";
+          }, 300);
+        } else {
+          formStatus.className = "form-status error";
+          formStatus.textContent = "There was a problem submitting your request. Please call or text (270) 349-8237.";
+          submitButton.disabled = false;
+          submitButton.textContent = "Submit Request";
+        }
+      } catch (error) {
+        formStatus.className = "form-status error";
+        formStatus.textContent = "There was a problem submitting your request. Please call or text (270) 349-8237.";
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit Request";
+      }
+    });
+  </script>
 </body>
 </html>
